@@ -10,42 +10,42 @@ export default {
 
   rail:  { plain:'Blood & Fat',     tech:'Logistics' },
   title: { plain:'Blood & Fat',     tech:'Logistics' },
-  sub:   { plain:'Insulin is a traffic controller. It does not manufacture anything.',
-           tech :'Network D-06 · traffic coordination, not moral accounting' },
+  sub:   { plain:'Insulin controls the traffic. It does not make anything.',
+           tech :'Network D-06 · the station coordinates the traffic' },
 
   drawing: { no:'MB-STN-06', rev:'A', vessel:'D-06',
              desc:'Distribution network', view:'Schematic' },
 
   /* Markers and drawing labels. The prose lives once, in main.*.points. */
   hotspots: [
-    { k:'line', n:1, plain:{ name:'The Line', fn:'About four grams, total' },
-                tech :{ name:'Circulating glucose', fn:'~4 g, whole body' } },
-    { k:'dispatcher', n:2, plain:{ name:'The Dispatcher', fn:'Signals only. Carries nothing.' },
-                      tech :{ name:'Dispatcher', fn:'Insulin · signalling only' } },
-    { k:'muscle', n:3, plain:{ name:'The Biggest Customer', fn:'The one bay you can enlarge' },
-                  tech :{ name:'Primary customer', fn:'Muscle · ~400 g glycogen' } },
-    { k:'adipose', n:4, plain:{ name:'The Reserve', fn:'Weeks of fuel, and it talks back' },
+    { k:'line', n:1, plain:{ name:'The Line', fn:'About four grams in total' },
+                tech :{ name:'Circulating glucose', fn:'About 4 g in the whole body' } },
+    { k:'dispatcher', n:2, plain:{ name:'The Dispatcher', fn:'It sends signals. It carries nothing.' },
+                      tech :{ name:'Dispatcher', fn:'Insulin · it sends signals only' } },
+    { k:'muscle', n:3, plain:{ name:'The Biggest Customer', fn:'You can make this bay larger' },
+                  tech :{ name:'Primary customer', fn:'Muscle · about 400 g of glycogen' } },
+    { k:'adipose', n:4, plain:{ name:'The Reserve', fn:'Weeks of fuel. It also sends signals.' },
                    tech :{ name:'Buffer storage', fn:'Adipose · tens of thousands of kcal' } },
-    { k:'loop', n:5, plain:{ name:'The Control Loop', fn:'Long delays, strong defaults' },
-                tech :{ name:'The control loop', fn:'Leptin · ghrelin · integration' } }
+    { k:'loop', n:5, plain:{ name:'The Control Loop', fn:'Long delays and strong responses' },
+                tech :{ name:'The control loop', fn:'Leptin and ghrelin · the brain combines them' } }
   ],
 
   modes: [
     { k:'aftermeal', label:{ plain:'After a meal', tech:'Dispatch active' }, fault:false,
-      cap:{ plain:'<b>After a meal.</b> Product arrives on the line, insulin rises, and tissues switch toward uptake and storage. The signal changes routing and metabolism; it does not create the incoming energy.',
-            tech :'<b>Dispatch active.</b> Post-prandial insulin changes transport and metabolism across muscle, adipose tissue and liver. It allocates incoming substrate; it does not create substrate.' } },
+      cap:{ plain:'<b>After a meal.</b> The product arrives on the line. The insulin level increases, and the tissues start to absorb and store the fuel. The signal changes the route and the chemistry. It does not make the energy.',
+            tech :'<b>Dispatch active.</b> After the meal, insulin changes the transport and the chemistry in the muscle, the fat tissue and the liver. It sends the arriving substrate to each tissue. It does not make substrate.' } },
 
     { k:'fasted', label:{ plain:'Fasted', tech:'Stores releasing' }, fault:false,
-      cap:{ plain:'<b>Fasted.</b> Incoming fuel falls, insulin drops, and stored fuel contributes more to the line. The bays are not literally shut; the whole network has shifted operating mode.',
-            tech :'<b>Stores releasing.</b> Inbound load is low, insulin falls, hepatic glucose output rises and stored substrate is mobilised. Basal uptake continues throughout.' } },
+      cap:{ plain:'<b>Fasted.</b> Less fuel arrives, so the insulin level falls. The stores then supply more of the fuel on the line. The bays do not close. The full network changes to a different operating condition.',
+            tech :'<b>Stores releasing.</b> The inbound load is low and the insulin level falls. The liver increases its glucose output, and the stores release their substrate. The tissues continue to absorb fuel at a low rate.' } },
 
     { k:'exercise', label:{ plain:'Exercising', tech:'Insulin-independent uptake' }, fault:false,
-      cap:{ plain:'<b>Exercising.</b> Working muscle has another way to open the bay: contraction recruits glucose transport partly independently of insulin. That is one reason movement helps blood sugar.',
-            tech :'<b>Contraction-mediated uptake.</b> Contracting muscle recruits GLUT4 through signalling pathways that are partly independent of insulin, while exercise also improves later insulin sensitivity.' } },
+      cap:{ plain:'<b>Exercising.</b> A muscle that works has a second method to open the bay. The contraction itself starts the glucose transport, and it needs less insulin to do this. This is one reason that movement helps your blood sugar.',
+            tech :'<b>Contraction-mediated uptake.</b> A muscle that contracts moves GLUT4 to the surface. It uses pathways that do not need insulin. Exercise also improves the response to insulin later.' } },
 
     { k:'sticking', label:{ plain:'Bays sticking', tech:'Reduced insulin response' }, fault:true,
-      cap:{ plain:'<b>Bays sticking.</b> The dispatcher signals harder and the doors still open slowly. That is insulin resistance — a mechanical fault in the doors, not a failure of character.',
-            tech :'<b>Reduced insulin response.</b> A given insulin signal produces less of the expected metabolic response across several tissues. The defect is distributed across signalling and metabolism, not simply a broken receptor.' } }
+      cap:{ plain:'<b>Bays sticking.</b> The dispatcher sends a stronger signal, but the doors still open slowly. This condition is insulin resistance. It is a fault in the machinery.',
+            tech :'<b>Reduced insulin response.</b> The same insulin signal now causes a smaller response in several tissues. The fault is in the signal pathways and in the chemistry of the cell. One broken receptor does not explain it.' } }
   ],
 
   svg: `<svg viewBox="-90 0 850 800" preserveAspectRatio="xMidYMid meet" role="img"
@@ -70,21 +70,21 @@ export default {
   <!-- bay 1 — muscle -->
   <rect class="bay" x="72" y="430" width="184" height="128"/>
   <rect class="shutter" x="96" y="430" width="136" height="16" style="transform-origin:164px 438px"/>
-  <text class="dimtext techonly"  x="164" y="500" text-anchor="middle">MUSCLE · ~400 g</text>
+  <text class="dimtext techonly"  x="164" y="500" text-anchor="middle">MUSCLE · about 400 g</text>
   <text class="dimtext plainonly" x="164" y="500" text-anchor="middle">MUSCLE</text>
   <text class="dimtext" x="164" y="516" text-anchor="middle" opacity=".6">bay 1</text>
 
   <!-- bay 2 — liver -->
   <rect class="bay" x="288" y="430" width="184" height="128"/>
   <rect class="shutter" x="312" y="430" width="136" height="16" style="transform-origin:380px 438px"/>
-  <text class="dimtext techonly"  x="380" y="500" text-anchor="middle">LIVER · ~100 g</text>
+  <text class="dimtext techonly"  x="380" y="500" text-anchor="middle">LIVER · about 100 g</text>
   <text class="dimtext plainonly" x="380" y="500" text-anchor="middle">LIVER</text>
   <text class="dimtext" x="380" y="516" text-anchor="middle" opacity=".6">bay 2</text>
 
   <!-- bay 3 — adipose -->
   <rect class="bay" x="504" y="430" width="184" height="128"/>
   <rect class="shutter" x="528" y="430" width="136" height="16" style="transform-origin:596px 438px"/>
-  <text class="dimtext techonly"  x="596" y="500" text-anchor="middle">ADIPOSE · weeks of fuel</text>
+  <text class="dimtext techonly"  x="596" y="500" text-anchor="middle">ADIPOSE · fuel for weeks</text>
   <text class="dimtext plainonly" x="596" y="500" text-anchor="middle">FAT STORE</text>
   <text class="dimtext" x="596" y="516" text-anchor="middle" opacity=".6">bay 3</text>
 
@@ -106,7 +106,7 @@ export default {
   <g class="mechonly">
     <path class="leader" d="M596 566 C640 640 400 690 220 660 C120 642 96 600 110 566" marker-end="url(#arw06)" style="stroke:var(--cardamom)" />
     <text class="dimtext techonly" x="356" y="706" text-anchor="middle" style="fill:var(--cardamom)">APPETITE LOOP — LEPTIN · GHRELIN · LONG DELAY</text>
-    <text class="dimtext plainonly" x="356" y="706" text-anchor="middle" style="fill:var(--cardamom)">The appetite loop. Slow, and it defends what is already stored.</text>
+    <text class="dimtext plainonly" x="356" y="706" text-anchor="middle" style="fill:var(--cardamom)">The appetite loop is slow. It defends the fuel already stored.</text>
   </g>
 
   <!-- ===== dispatch active ===== -->
@@ -123,7 +123,7 @@ export default {
   <g class="anim a-fasted">
     <path class="flowline" d="M164 424 L164 344"/>
     <path class="flowline" d="M380 424 L380 344"/>
-    <text class="dimtext" x="700" y="404" text-anchor="end" style="fill:var(--turmeric)">bays shut · stores feeding the line</text>
+    <text class="dimtext" x="700" y="404" text-anchor="end" style="fill:var(--turmeric)">bays shut · stores feed the line</text>
   </g>
 
   <!-- ===== insulin-independent uptake ===== -->
@@ -134,8 +134,8 @@ export default {
     <path class="leader" d="M300 212 L268 150 L254 150" style="stroke:var(--cardamom)" />
     <text class="dimtext" x="248" y="147" text-anchor="end" style="fill:var(--cardamom)">dispatcher idle</text>
     <path class="leader" d="M120 440 L96 388 L82 388" style="stroke:var(--cardamom)" />
-    <text class="dimtext techonly" x="76" y="385" text-anchor="end" style="fill:var(--cardamom)">bay opens anyway</text>
-    <text class="dimtext plainonly" x="76" y="385" text-anchor="end" style="fill:var(--cardamom)">bay opens anyway</text>
+    <text class="dimtext techonly" x="76" y="385" text-anchor="end" style="fill:var(--cardamom)">the bay still opens</text>
+    <text class="dimtext plainonly" x="76" y="385" text-anchor="end" style="fill:var(--cardamom)">the bay still opens</text>
   </g>
 
   <!-- ===== reduced insulin response ===== -->
@@ -167,7 +167,7 @@ export default {
     <path class="scribble" d="M356 190 L408 234 M408 190 L356 234"/>
     <path class="leader" d="M428 212 L470 150 L486 150" style="stroke:var(--chilli)" />
     <text class="hazardtext" x="492" y="146">"Insulin makes you fat"</text>
-    <text class="hazardtext" x="492" y="160" opacity=".75">— the booth is empty. Look in it.</text>
+    <text class="hazardtext" x="492" y="160" opacity=".75">the booth is empty</text>
   </g>
 
   <!-- ================= HOTSPOTS =================
@@ -201,68 +201,68 @@ export default {
 
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { k:'line', h:'There is almost nothing on the line.',
-          p:'At any moment your entire bloodstream holds about four grams of glucose. A teaspoon. Everything else is in storage or in transit. The system is defending a very small number very tightly, which is why the controls are so aggressive.' },
+        { k:'line', h:'The line holds very little glucose.',
+          p:'Your full blood volume holds about four grams of glucose at any moment. This is one teaspoon. All the remainder is in a store or in transport. The system holds a very small quantity within narrow limits. This is why the controls act so strongly.' },
         { k:'dispatcher', h:'Insulin cannot create calories.',
-          p:'Insulin cannot create calories, but it does change what tissues do with incoming fuel: it promotes glucose uptake in muscle and fat, supports storage, and suppresses fuel release. The dispatcher metaphor is about routing, not passivity.' },
-        { k:'muscle', h:'Muscle is a bay you can train.',
-          p:'Skeletal muscle is a major destination for post-meal glucose and a reservoir you can deliberately enlarge. More active muscle also creates more demand, which is why resistance training improves glucose handling even without weight loss.' },
-        { k:'adipose', h:'Fat is not inert padding.',
-          p:'A strategic reserve of remarkable capacity — tens of thousands of Calories, enough for weeks. Fat tissue is not inert padding: it secretes signals of its own, and both how much you carry and where it sits matter.' },
-        { k:'loop', h:'Appetite is a control loop, not a choice.',
-          p:'Signals including leptin and ghrelin are integrated with sleep, stress, illness, learned cues and many other inputs. Energy deficit also triggers strong biological responses that can raise hunger and reduce expenditure. Appetite is not a straightforward matter of choosing.' }
+          p:'Insulin cannot make calories. It changes what the tissues do with the fuel that arrives. It increases the glucose uptake in the muscle and the fat, it supports storage, and it stops the release of stored fuel. The dispatcher comparison describes the routing.' },
+        { k:'muscle', h:'You can make the muscle bay larger.',
+          p:'The skeletal muscle receives much of the glucose after a meal, and it is a store that you can make larger. More active muscle also makes more demand. Resistance training therefore improves your glucose control, and you do not have to lose weight.' },
+        { k:'adipose', h:'Fat tissue is active tissue.',
+          p:'This is a reserve of very large capacity. It holds tens of thousands of Calories, which is sufficient for some weeks. The tissue also makes its own signals. The quantity that you carry and the position of that fat both change the result.' },
+        { k:'loop', h:'Appetite operates as a control loop.',
+          p:'The brain combines signals such as leptin and ghrelin with your sleep, your stress, illness, learned signals and many other inputs. A shortage of energy also causes strong responses in the body. These can increase your hunger and reduce the energy that you use. You do not simply decide your appetite.' }
       ],
-      note: '<b>The useful model.</b> Every argument about diet that turns into an argument about willpower has quietly assumed this station works by choice. It does not. It is a control system with delayed feedback, strong responses to energy deficit and a heavy inheritance — and control systems are not improved by being shouted at. Understanding the loop is more useful than blaming the operator.'
+      note: '<b>Summary.</b> Many arguments about diet become arguments about willpower. Those arguments assume that you control this station by choice. You do not. It is a control system with delayed feedback, strong responses to a shortage of energy, and a large inherited component. You cannot improve a control system when you shout at it. It is more useful to understand the loop than to blame the operator.'
     },
     tech: {
       kicker: 'Equipment Datasheet',
       spec: [
-        { k:'Class',                v:'Distributed logistics network with hormonal dispatch' },
-        { k:'Duty',                 v:'Fuel routing · storage allocation · demand signalling' },
-        { k:'Circulating glucose',  v:'<em>~4 g, whole body</em>' },
-        { k:'Dispatcher half-life', v:'~5 minutes' },
-        { k:'Store: liver',         v:'~100 g glycogen' },
-        { k:'Store: muscle',        v:'~300–500 g glycogen' },
+        { k:'Class',                v:'A distributed logistics network. Hormones dispatch the traffic.' },
+        { k:'Duty',                 v:'It routes the fuel, allocates the storage and signals the demand.' },
+        { k:'Circulating glucose',  v:'<em>About 4 g in the whole body</em>' },
+        { k:'Dispatcher half-life', v:'About 5 minutes' },
+        { k:'Store: liver',         v:'About 100 g of glycogen' },
+        { k:'Store: muscle',        v:'About 300 to 500 g of glycogen' },
         { k:'Store: adipose',       v:'Tens of thousands of kcal' },
-        { k:'Response time',        v:'Minutes for dispatch; hours to days for the appetite loop' },
-        { k:'Regional note',        v:'At the same BMI, South Asian bodies tend to carry more fat and more of it abdominally, with metabolic risk appearing at lower weights' },
-        { k:'Useful instruments',   v:'Waist measurement, muscle mass, blood markers' },
+        { k:'Response time',        v:'Minutes for the dispatch. Hours or days for the appetite loop.' },
+        { k:'Regional note',        v:'At the same BMI, South Asian bodies usually carry more fat, and more of it is in the abdomen. The metabolic risk appears at a lower weight.' },
+        { k:'Useful instruments',   v:'The waist measurement, the muscle mass and the blood markers.' },
         { k:'Misleading instrument', v:'<em>Bodyweight alone</em>' }
       ],
       points: [
         { k:'line', h:'Circulating glucose',
-          p:'At any moment the whole circulation contains about 4 g of glucose. Everything else is in storage or in transit. The system defends a very small quantity very tightly, which is why the control action is so aggressive.' },
+          p:'The full circulation contains about 4 g of glucose at any moment. All the remainder is in a store or in transport. The system holds this very small quantity within narrow limits. This is why the control action is so strong.' },
         { k:'dispatcher', h:'Dispatcher',
-          p:'Insulin is a short-lived signal that changes transport and metabolism across tissues: it promotes GLUT4-mediated uptake in muscle and adipose tissue, favours glycogen and lipid storage, and suppresses hepatic glucose output and lipolysis. It cannot create energy.' },
+          p:'Insulin is a signal with a short life. It changes the transport and the chemistry in several tissues. It increases the GLUT4 uptake in the muscle and the fat tissue. It supports the storage of glycogen and lipid. It reduces the glucose output of the liver and the release of fat. It cannot make energy.' },
         { k:'muscle', h:'Primary customer',
-          p:'Skeletal muscle is a major site of post-prandial glucose disposal and stores several hundred grams of glycogen. Training increases glucose transport capacity and insulin sensitivity; more muscle also provides more storage and demand.' },
+          p:'The skeletal muscle removes much of the glucose after a meal, and it stores several hundred grams of glycogen. Training increases the glucose transport capacity and improves the response to insulin. More muscle also gives more storage and more demand.' },
         { k:'adipose', h:'Buffer storage',
-          p:'A strategic reserve of remarkable capacity: tens of thousands of Calories, enough for weeks. Adipose is endocrine tissue as well as storage; total amount matters, and visceral/abdominal distribution carries additional metabolic risk compared with subcutaneous depots.' },
+          p:'A reserve of very large capacity. It holds tens of thousands of Calories, which is sufficient for some weeks. The fat tissue stores fuel and it also makes hormones. The total quantity changes the risk. Fat in the abdomen carries more metabolic risk than fat below the skin.' },
         { k:'loop', h:'The control loop',
-          p:'Leptin broadly signals longer-term energy stores; ghrelin is one meal-related hunger signal among several. Central circuits integrate these with gut hormones, sleep, stress, illness and learned cues; sustained energy deficit can increase hunger and reduce expenditure.' }
+          p:'Leptin signals the size of the long-term stores. Ghrelin is one of several hunger signals related to a meal. Circuits in the brain combine these with the gut hormones, your sleep, your stress, illness and learned signals. A long shortage of energy can increase your hunger and reduce the energy that you use.' }
       ],
-      note: '<b>Design note.</b> Appetite and fuel handling emerge from interacting control loops, not a single dial. The dispatcher analogy is useful for insulin only if you remember that insulin also changes the machinery inside each receiving bay.',
+      note: '<b>Design note.</b> Several control loops interact and together produce your appetite and your fuel handling. There is no single control. The dispatcher comparison is useful for insulin, but remember that insulin also changes the machinery inside each receiving bay.',
       analogy: {
         tag: 'Closest machine',
-        body: 'A dispatcher at a distribution hub, with one biological twist: the dispatcher also changes how the receiving bays operate. Insulin routes and stores incoming fuel, suppresses release from stores, and changes liver output. What it still cannot do is manufacture energy from nothing.'
+        body: 'A dispatcher at a distribution centre, with one difference. This dispatcher also changes the operation of the receiving bays. Insulin routes the arriving fuel and stores it. It stops the release from the stores, and it changes the output of the liver. It cannot make energy from nothing.'
       }
     }
   },
 
   modelLimits: [
-    'Insulin is more than a door-opener. It changes glucose transport, glycogen synthesis, lipid metabolism, hepatic glucose output and lipolysis in tissue-specific ways.',
-    'Insulin resistance is a distributed metabolic phenotype, not literally a set of sticky doors or broken insulin receptors.'
+    'Insulin does more than open a door. It changes the glucose transport, the synthesis of glycogen, the chemistry of lipids, the glucose output of the liver and the release of fat. The effect is different in each tissue.',
+    'Insulin resistance is a condition that occurs across many tissues. It is not a set of doors that stick, and it is not a set of broken receptors.'
   ],
 
   myth: {
     claim: 'Insulin makes you fat.',
     mechanism: [
-      'Insulin helps decide where incoming energy goes and whether stored fuel is released. It is not a source of energy. The useful correction to “insulin makes you fat” is not that insulin does nothing to storage; it is that storage still obeys whole-body energy balance.',
-      'The version of this claim with something behind it is narrower and worth stating fairly: carbohydrate raises insulin more than fat does, insulin does promote storage and suppress release, and for people with impaired glucose handling this matters clinically. What does not follow is that carbohydrate is uniquely fattening. Controlled feeding studies that match total energy and protein, then vary the carbohydrate-to-fat ratio, find fat loss tracks the energy deficit, not the ratio.',
-      'South Asians are also a useful reminder that insulin resistance and metabolic risk are not reducible to one macronutrient. Risk often appears at lower BMI and with more central adiposity than European-derived cut-offs suggest; genetics, body composition, activity and the wider diet all sit inside the model.'
+      'Insulin helps to select the destination of the arriving energy. It also controls the release of stored fuel. It is not a source of energy. Insulin does change the storage. But the total storage still follows the energy balance of the whole body.',
+      'A narrower form of this claim is correct, and it is fair to state it. Carbohydrate raises the insulin more than fat does. Insulin does support storage and stop release. For a person with poor glucose control this is clinically important. But this does not show that carbohydrate alone makes you fat. Controlled feeding studies keep the total energy and the protein the same, and change the ratio of carbohydrate to fat. In those studies the fat loss follows the energy deficit. It does not follow the ratio.',
+      'South Asian bodies show that one macronutrient does not explain insulin resistance and metabolic risk. The risk often appears at a lower BMI, and with more fat in the abdomen, than the European limits indicate. Your genetics, your body composition, your activity and your full diet are all part of the model.'
     ],
-    whySurvives: 'Because it names a villain, and a villain is more usable than a system. It also contains just enough real physiology to survive a first inspection, which is the most durable kind of wrong.'
+    whySurvives: 'The claim names one guilty substance, and that is easier to use than a system. It also contains sufficient true physiology to pass a first examination. This is the most durable type of error.'
   }
 };

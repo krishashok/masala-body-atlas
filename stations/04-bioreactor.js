@@ -13,46 +13,46 @@ export default {
 
   rail:  { plain:'Gut Microbes',     tech:'Bioreactor' },
   title: { plain:'The Gut Microbes', tech:'The Bioreactor' },
-  sub:   { plain:"What you can't digest, they can",
-           tech :'Vessel B-04 · staffed by trillions, managed by nobody' },
+  sub:   { plain:'The microbes digest what you cannot digest.',
+           tech :'Vessel B-04 · trillions of cells operate it · no operator manages them' },
 
   drawing: { no:'MB-STN-04', rev:'A', vessel:'B-04',
              desc:'Anaerobic fermenter', view:'Anterior view' },
 
   /* Markers and drawing labels. The prose lives once, in main.*.points. */
   hotspots: [
-    { k:'feed', n:1, plain:{ name:'The Leftovers Inlet', fn:"What you couldn't digest" },
-                tech :{ name:'Feed inlet', fn:'Caecum · unavailable substrate' } },
-    { k:'dewater', n:2, plain:{ name:'The Drying Section', fn:'Reclaims about 1.5 litres a day' },
-                   tech :{ name:'Water recovery', fn:'Colon wall · ~1.5 L/day' } },
+    { k:'feed', n:1, plain:{ name:'The Leftovers Inlet', fn:'The material that you could not digest' },
+                tech :{ name:'Feed inlet', fn:'Caecum · substrate you cannot use' } },
+    { k:'dewater', n:2, plain:{ name:'The Drying Section', fn:'It recovers about 1.5 litres a day' },
+                   tech :{ name:'Water recovery', fn:'Colon wall · about 1.5 L a day' } },
     { k:'workforce', n:3, plain:{ name:'The Workforce', fn:'Several hundred species' },
-                     tech :{ name:'Microbial consortium', fn:'~10¹³ cells · ~200 g' } },
-    { k:'offtake', n:4, plain:{ name:'The Useful Output', fn:'Acids the wall itself burns' },
-                   tech :{ name:'Product offtake', fn:'SCFAs · butyrate, propionate, acetate' } },
+                     tech :{ name:'Microbial consortium', fn:'About 10¹³ cells · about 200 g' } },
+    { k:'offtake', n:4, plain:{ name:'The Useful Output', fn:'Acids that the wall uses as fuel' },
+                   tech :{ name:'Product offtake', fn:'Butyrate, propionate and acetate' } },
     { k:'vent', n:5, plain:{ name:'The Gas Vent', fn:'Half a litre to two litres a day' },
-                tech :{ name:'Gas handling', fn:'0.5–2 L/day · odourless in bulk' } }
+                tech :{ name:'Gas handling', fn:'0.5 to 2 L a day · it has no smell' } }
   ],
 
   modes: [
     { k:'ferment', label:{ plain:'Fermenting', tech:'Fermentation' }, fault:false,
-      cap:{ plain:'<b>Fermenting.</b> The residents work on everything you could not. This is the default state, and it runs for twelve to forty-eight hours — the longest stay of any stage.',
-            tech :'<b>Fermentation.</b> Anaerobic breakdown of unavailable substrate by the resident consortium. Residence time 12–48 h, the longest of any stage.' } },
+      cap:{ plain:'<b>Fermenting.</b> The microbes work on all the material that you could not digest. This is the usual condition. It continues for twelve to forty-eight hours. This is the longest time in any stage.',
+            tech :'<b>Fermentation.</b> The resident microbes break down the substrate that you cannot use. They do this without oxygen. The material stays here for 12 to 48 hours. This is the longest time in any stage.' } },
 
     { k:'water', label:{ plain:'Water recovery', tech:'Dewatering' }, fault:false,
-      cap:{ plain:'<b>Water recovery.</b> About a litre and a half of water is pulled back through the wall each day, and the contents thicken as they travel.',
-            tech :'<b>Dewatering.</b> ~1.5 L/day of water and electrolyte recovered across the wall; solids fraction rises along the run.' } },
+      cap:{ plain:'<b>Water recovery.</b> The wall recovers about one and a half litres of water each day. The contents become thicker as they move along the tube.',
+            tech :'<b>Dewatering.</b> The wall recovers about 1.5 L of water and the electrolytes each day. The quantity of solid material increases along the length of the tube.' } },
 
     { k:'gas', label:{ plain:'Gas', tech:'Gas offtake' }, fault:false,
-      cap:{ plain:'<b>Gas.</b> Fermentation makes gas, half a litre to two litres a day, and in bulk it has no smell at all. This is the reactor working, not the reactor failing.',
-            tech :'<b>Gas offtake.</b> 0.5–2 L/day of hydrogen, carbon dioxide and methane. Odourless in bulk. An output, not a fault condition.' } },
+      cap:{ plain:'<b>Gas.</b> Fermentation makes half a litre to two litres of gas each day. The gas has no smell. It shows that the reactor operates correctly.',
+            tech :'<b>Gas offtake.</b> The vessel makes 0.5 to 2 L of hydrogen, carbon dioxide and methane each day. The gas has no smell. It is a normal product of the process.' } },
 
     { k:'fast', label:{ plain:'Running too fast', tech:'Throughput high' }, fault:true,
-      cap:{ plain:'<b>Running too fast.</b> Fast transit can leave less time for water recovery, so the discharge stays wet. It is one common route to diarrhoea, not the only one.',
-            tech :'<b>Throughput high.</b> Short residence can reduce net water recovery. Other diarrhoeal mechanisms can increase secretion or impair absorption even without unusually fast transit.' } },
+      cap:{ plain:'<b>Running too fast.</b> The material moves quickly, so the wall has less time to recover the water. The discharge stays wet. This is one common cause of diarrhoea. There are other causes.',
+            tech :'<b>Throughput high.</b> A short time in the vessel reduces the quantity of water that the wall recovers. Other mechanisms also cause diarrhoea. They increase the secretion, or they reduce the absorption, at a normal speed.' } },
 
     { k:'slow', label:{ plain:'Running too slow', tech:'Throughput low' }, fault:true,
-      cap:{ plain:'<b>Running too slow.</b> Longer residence usually means more water is reclaimed, which can leave harder stool. Constipation is broader than transit time alone, but the rate effect is real.',
-            tech :'<b>Throughput low.</b> Extended residence generally increases net water recovery and stool hardness. Constipation can also reflect evacuation and medication effects.' } }
+      cap:{ plain:'<b>Running too slow.</b> A long time in the vessel lets the wall recover more water, and the stool becomes harder. The speed is one true cause of constipation. It is not the only cause.',
+            tech :'<b>Throughput low.</b> A long time in the vessel usually increases the water that the wall recovers, and the stool becomes harder. Medicines and the mechanics of evacuation can also cause constipation.' } }
   ],
 
   svg: `<svg viewBox="-90 0 850 800" preserveAspectRatio="xMidYMid meet" role="img"
@@ -109,7 +109,7 @@ export default {
   </g>
 
   <text class="dimtext techonly"  x="355" y="316" text-anchor="middle" opacity=".8">POPULATION ~10¹³ · SEVERAL HUNDRED SPECIES</text>
-  <text class="dimtext plainonly" x="355" y="316" text-anchor="middle" opacity=".8">Tens of trillions of them. Several hundred kinds.</text>
+  <text class="dimtext plainonly" x="355" y="316" text-anchor="middle" opacity=".8">Tens of trillions of cells. Several hundred species.</text>
   <text class="dimtext techonly"  x="355" y="338" text-anchor="middle" opacity=".55">WORKFORCE MASS ~200 g</text>
   <text class="dimtext plainonly" x="355" y="338" text-anchor="middle" opacity=".55">About 200 grams in total</text>
 
@@ -130,7 +130,7 @@ export default {
     <circle class="drip" cx="355" cy="200" r="6"   style="--dx:0px;--dy:-76px"/>
     <circle class="drip" cx="349" cy="200" r="4.5" style="--dx:4px;--dy:-80px;animation-delay:-.8s"/>
     <circle class="drip" cx="361" cy="200" r="5"   style="--dx:-4px;--dy:-72px;animation-delay:-1.5s"/>
-    <text class="dimtext" x="384" y="110" style="fill:var(--steel)">0.5–2 L/day · odourless</text>
+    <text class="dimtext" x="384" y="110" style="fill:var(--steel)">0.5–2 L a day · no smell</text>
   </g>
 
   <!-- ===== throughput faults ===== -->
@@ -169,7 +169,7 @@ export default {
   <g class="plainonly">
     <rect class="stamp" x="596" y="638" width="150" height="54"/>
     <text class="stamptext" x="671" y="662" text-anchor="middle">No control panel</text>
-    <text class="stamptext" x="671" y="678" text-anchor="middle" opacity=".8">Nobody drives this</text>
+    <text class="stamptext" x="671" y="678" text-anchor="middle" opacity=".8">No operator drives this</text>
   </g>
 
   <!-- myth annotation -->
@@ -178,7 +178,7 @@ export default {
     <path class="scribble" d="M335 202 L375 230 M375 202 L335 230"/>
     <path class="leader" d="M355 250 L440 380 L456 380" style="stroke:var(--chilli)" />
     <text class="hazardtext" x="355" y="416" text-anchor="middle">"A probiotic will fix this"</text>
-    <text class="hazardtext" x="355" y="432" text-anchor="middle" opacity=".75">— an established ecosystem resists invasion</text>
+    <text class="hazardtext" x="355" y="432" text-anchor="middle" opacity=".75">an established ecosystem resists invasion</text>
   </g>
 
   <!-- ================= HOTSPOTS ================= -->
@@ -186,8 +186,8 @@ export default {
     <path class="leader" d="M126 634 L80 664 L66 664"/>
     <text class="lbl-name techonly"  x="60" y="661" text-anchor="end">Feed inlet</text>
     <text class="lbl-name plainonly" x="60" y="661" text-anchor="end">The Leftovers Inlet</text>
-    <text class="lbl-fn techonly"    x="60" y="675" text-anchor="end">Caecum · unavailable substrate</text>
-    <text class="lbl-fn plainonly"   x="60" y="676" text-anchor="end">What you couldn't digest</text>
+    <text class="lbl-fn techonly"    x="60" y="675" text-anchor="end">Caecum · substrate you cannot use</text>
+    <text class="lbl-fn plainonly"   x="60" y="676" text-anchor="end">What you could not digest</text>
     <circle class="hotring" cx="126" cy="634" r="10"/>
     <circle class="hithalo" cx="126" cy="634" r="22"/>
     <circle class="hotdot" cx="126" cy="634" r="10"/>
@@ -198,8 +198,8 @@ export default {
     <path class="leader" d="M150 410 L86 400 L66 400"/>
     <text class="lbl-name techonly"  x="60" y="397" text-anchor="end">Water recovery</text>
     <text class="lbl-name plainonly" x="60" y="397" text-anchor="end">The Drying Section</text>
-    <text class="lbl-fn techonly"    x="60" y="411" text-anchor="end">Colon wall · ~1.5 L/day</text>
-    <text class="lbl-fn plainonly"   x="60" y="412" text-anchor="end">Reclaims ~1.5 litres a day</text>
+    <text class="lbl-fn techonly"    x="60" y="411" text-anchor="end">Colon wall · about 1.5 L a day</text>
+    <text class="lbl-fn plainonly"   x="60" y="412" text-anchor="end">Recovers about 1.5 litres a day</text>
     <circle class="hotring" cx="150" cy="410" r="10"/>
     <circle class="hithalo" cx="150" cy="410" r="22"/>
     <circle class="hotdot" cx="150" cy="410" r="10"/>
@@ -210,7 +210,7 @@ export default {
     <path class="leader" d="M352 216 L420 150 L470 150"/>
     <text class="lbl-name techonly"  x="476" y="147">Microbial consortium</text>
     <text class="lbl-name plainonly" x="476" y="147">The Workforce</text>
-    <text class="lbl-fn techonly"    x="476" y="161">~10¹³ cells · ~200 g</text>
+    <text class="lbl-fn techonly"    x="476" y="161">About 10¹³ cells · about 200 g</text>
     <text class="lbl-fn plainonly"   x="476" y="162">Several hundred species</text>
     <circle class="hotring" cx="352" cy="216" r="10"/>
     <circle class="hithalo" cx="352" cy="216" r="22"/>
@@ -222,8 +222,8 @@ export default {
     <path class="leader" d="M560 390 L594 356 L606 356"/>
     <text class="lbl-name techonly"  x="612" y="353">Product offtake</text>
     <text class="lbl-name plainonly" x="612" y="353">The Useful Output</text>
-    <text class="lbl-fn techonly"    x="612" y="367">SCFAs · butyrate first</text>
-    <text class="lbl-fn plainonly"   x="612" y="368">Acids the wall burns</text>
+    <text class="lbl-fn techonly"    x="612" y="367">Butyrate, propionate, acetate</text>
+    <text class="lbl-fn plainonly"   x="612" y="368">Acids the wall uses as fuel</text>
     <circle class="hotring" cx="560" cy="390" r="10"/>
     <circle class="hithalo" cx="560" cy="390" r="22"/>
     <circle class="hotdot" cx="560" cy="390" r="10"/>
@@ -234,8 +234,8 @@ export default {
     <path class="leader" d="M370 138 L440 82 L470 82"/>
     <text class="lbl-name techonly"  x="476" y="79">Gas handling</text>
     <text class="lbl-name plainonly" x="476" y="79">The Gas Vent</text>
-    <text class="lbl-fn techonly"    x="476" y="93">0.5–2 L/day · odourless</text>
-    <text class="lbl-fn plainonly"   x="476" y="94">Half a litre to two a day</text>
+    <text class="lbl-fn techonly"    x="476" y="93">0.5–2 L a day · no smell</text>
+    <text class="lbl-fn plainonly"   x="476" y="94">Half a litre to two litres a day</text>
     <circle class="hotring" cx="370" cy="138" r="10"/>
     <circle class="hithalo" cx="370" cy="138" r="22"/>
     <circle class="hotdot" cx="370" cy="138" r="10"/>
@@ -250,68 +250,68 @@ export default {
 
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { h:'It is a habitat, not a machine.', p:'You cannot command individual species. Diet, medicines, transit and the rest of the host environment change the conditions they live in.' },
-        { k:'feed', h:'They eat what you cannot.',
-          p:"What arrives here is everything your own enzymes could not take apart: fibre, resistant starch, and whatever was bound too tightly to release. Useless to you. Raw material to the residents." },
-        { k:'dewater', h:'It is also a dewatering plant.',
-          p:'This is a dewatering plant. Around a litre and a half of water is reclaimed each day, along with salts. Transit speed strongly affects the result, but secretion, inflammation, medicines and other factors can also make stools too wet or too dry.' },
+        { h:'This vessel holds a habitat.', p:'You cannot give an instruction to one species. Your food, your medicines, the speed of the material and the condition of your body all change the environment in which the microbes live.' },
+        { k:'feed', h:'The microbes eat what you cannot eat.',
+          p:'The material that arrives here is the material that your own enzymes could not divide. It is fibre, resistant starch, and material that was held too tightly to release. You cannot use it. The microbes use it as raw material.' },
+        { k:'dewater', h:'The vessel also removes water.',
+          p:'The wall recovers about one and a half litres of water each day, and it recovers the salts. The speed of the material has a large effect on the result. Secretion, inflammation and medicines can also make the stool too wet or too dry.' },
         { k:'workforce', h:'The Workforce',
-          p:'Several hundred species, tens of trillions of cells, a couple of hundred grams in total. They ferment what you cannot digest and produce useful acids as a by-product. You do not employ them; you feed them.' },
-        { k:'offtake', h:'The trade is real.',
-          p:'Butyrate, propionate, acetate. Butyrate is the preferred fuel of the colon lining itself — the cells here are partly fed by their own tenants. That is the clearest evidence the relationship is a trade, not an infestation.' },
-        { k:'vent', h:'Gas means it is working.',
-          p:'Fermentation makes gas — mostly hydrogen, carbon dioxide and methane, all of it odourless. Gas is a sign the reactor is working, which is an uncomfortable thing to be told and true anyway.' }
+          p:'Several hundred species live here. There are tens of trillions of cells, and they weigh about two hundred grams. They ferment the material that you cannot digest, and they make useful acids. You do not employ them. You feed them.' },
+        { k:'offtake', h:'You and the microbes exchange materials.',
+          p:'The microbes make butyrate, propionate and acetate. The lining of the colon uses butyrate as its preferred fuel. The microbes thus feed the cells that hold them. This is the clearest evidence of an exchange.' },
+        { k:'vent', h:'Gas shows that the vessel operates.',
+          p:'Fermentation makes hydrogen, carbon dioxide and methane. None of these gases has a smell. The gas shows that the reactor operates correctly.' }
       ],
-      note: '<b>The useful rule.</b> You do not micromanage this ecosystem. You change its habitat. A varied, fibre-rich diet is one useful input, but medicines, illness, transit, age and the host matter too. That is less marketable than a sachet promising to “fix the gut”.'
+      note: '<b>Summary.</b> You cannot control this ecosystem in detail. You can change its habitat. A varied diet that contains much fibre is one useful input. Medicines, illness, the speed of the material, your age and your own body also change the result. This is more difficult to sell than a packet that promises to correct your gut.'
     },
     tech: {
       kicker: 'Equipment Datasheet',
       spec: [
-        { k:'Class',            v:'Anaerobic fermentation vessel with integrated dewatering' },
-        { k:'Duty',             v:'Fermentation of unavailable substrate · water and electrolyte recovery · storage' },
+        { k:'Class',            v:'A fermentation vessel that operates without oxygen. It also removes water.' },
+        { k:'Duty',             v:'It ferments the substrate that you cannot use. It recovers water and electrolytes. It stores the residue.' },
         { k:'Length',           v:'~1.5 m' },
-        { k:'Residence time',   v:'<em>12–48 h</em> — the longest of any stage' },
-        { k:'Population',       v:'~10¹³ cells, several hundred species' },
-        { k:'Workforce mass',   v:'~200 g' },
-        { k:'Water reclaimed',  v:'~1.5 L/day' },
+        { k:'Residence time',   v:'<em>12 to 48 h</em>. This is the longest time in any stage.' },
+        { k:'Population',       v:'About 10¹³ cells. Several hundred species.' },
+        { k:'Workforce mass',   v:'About 200 g' },
+        { k:'Water reclaimed',  v:'About 1.5 L each day' },
         { k:'Principal products', v:'Butyrate, propionate, acetate' },
-        { k:'Gas production',   v:'0.5–2 L/day, odourless in bulk' },
-        { k:'Control system',   v:'<em>Not fitted.</em> Ecological, not mechanical.' }
+        { k:'Gas production',   v:'0.5 to 2 L each day. The gas has no smell.' },
+        { k:'Control system',   v:'<em>Not fitted.</em> The controls are ecological.' }
       ],
       points: [
         { k:'feed', h:'Feed inlet',
-          p:'What arrives here is everything your own enzymes could not take apart: fibre, resistant starch, some of what was bound too tightly to release. Useless to you. Raw material to the residents.' },
+          p:'The material that arrives here is the material that your own enzymes could not divide. It is fibre, resistant starch, and material that was held too tightly to release. You cannot use it. The microbes use it as raw material.' },
         { k:'dewater', h:'Water recovery',
-          p:'Around 1.5 litres of water reclaimed per day, along with sodium and other electrolytes. Transit time changes how much water can be recovered, but diarrhoea and constipation also have secretory, inflammatory, medication-related and other mechanisms.' },
+          p:'The wall recovers about 1.5 litres of water each day. It also recovers sodium and other electrolytes. The time in the vessel changes the quantity of water that the wall can recover. Secretion, inflammation and medicines also cause diarrhoea and constipation.' },
         { k:'workforce', h:'Microbial consortium',
-          p:'Several hundred species, tens of trillions of cells, a couple of hundred grams in total. They ferment what you cannot digest and produce short-chain fatty acids as a by-product.' },
+          p:'Several hundred species live here. There are tens of trillions of cells, and they weigh about two hundred grams. They ferment the material that you cannot digest, and they make short-chain fatty acids.' },
         { k:'offtake', h:'Product offtake',
-          p:'Butyrate, propionate, acetate. Butyrate is the preferred fuel of the colon lining itself — the cells here are partly fed by their own tenants. This is the clearest evidence that the relationship is a trade, not an infestation.' },
+          p:'The microbes make butyrate, propionate and acetate. The lining of the colon uses butyrate as its preferred fuel. The microbes thus feed the cells that hold them. This is the clearest evidence of an exchange.' },
         { k:'vent', h:'Gas handling',
-          p:'Fermentation produces gas: 0.5–2 L/day, mostly hydrogen, carbon dioxide and methane, all odourless. Gas is an indication that the vessel is operating, not that it is faulty.' }
+          p:'Fermentation makes 0.5 to 2 L of gas each day. The gas is mostly hydrogen, carbon dioxide and methane, and none of these has a smell. The gas shows that the vessel operates correctly.' }
       ],
-      note: '<b>Design note.</b> This is an ecosystem, not a programmable unit. Diet changes available substrate, but drugs, transit time, host physiology and prior ecology also shape the community; no single diversity score is a universal health gauge.',
+      note: '<b>Design note.</b> This vessel holds an ecosystem. You cannot program it. Your food changes the available substrate. Medicines, the speed of the material, your own physiology and the previous ecology also change the community. No single measurement of diversity gives a universal indication of health.',
       analogy: {
         tag: 'Process analogue',
-        body: 'An anaerobic digester at a sewage treatment works. Not as an insult — as literal process chemistry. Both are sealed, oxygen-free vessels where mixed microbial populations break down material that nothing else can use, producing gas and useful organic acids. Engineers who run digesters will tell you the same thing gastroenterologists will: you do not control the population directly. You control what goes in, and the ecosystem settles.'
+        body: 'An anaerobic digester at a sewage treatment plant. This is a comparison of the process chemistry. Both are closed vessels that contain no oxygen. In both, mixed populations of microbes break down material that nothing else can use. Both make gas and useful organic acids. The engineers who operate digesters give the same statement as the doctors: you do not control the population directly. You control the material that goes in, and the ecosystem then finds its own balance.'
       }
     }
   },
 
   modelLimits: [
-    'Microbiomes vary enormously between healthy people. A single “diversity” number is not a universal health score.',
-    'Transit time strongly affects stool water, but diarrhoea and constipation also have secretory, inflammatory, medication-related and evacuation mechanisms.'
+    'The microbial population differs greatly between healthy persons. One measurement of diversity does not give a universal indication of health.',
+    'The time in the vessel has a large effect on the water in the stool. Secretion, inflammation, medicines and the mechanics of evacuation also cause diarrhoea and constipation.'
   ],
 
   myth: {
     claim: 'Take this probiotic to fix your gut health.',
     mechanism: [
-      'Many probiotic strains are temporary visitors rather than permanent settlers. That does not make them inert: a transient organism can still change local chemistry or interact with the host while it passes through. “Repopulate your gut” is the overclaim.',
-      'This is not a blanket dismissal. Probiotic effects are strain- and indication-specific; some preparations reduce antibiotic-associated diarrhoea in settings where baseline risk is meaningful. That is a named strain or combination, a dose and an indication — very different from a sachet labelled “gut health”.',
-      'Substrate is one of the clearest levers you do have. Varied, fibre-rich plant foods provide different fermentable substrates and can shift microbial activity and composition. That is a much more defensible general recommendation than a generic product claiming to “fix” everybody&rsquo;s microbiome.'
+      'Many probiotic strains stay for a short time only. They do not become permanent residents. They are not inactive: an organism that passes through can change the local chemistry, and it can interact with your body. The claim to repopulate your gut is too strong.',
+      'Some probiotics do work. The effect is specific to the strain and to the condition. Some preparations reduce the diarrhoea that antibiotics cause, when the risk is high. Such a product has a named strain, a dose and a stated condition. A packet labelled for gut health has none of these.',
+      'The substrate is one control that you do have. Varied plant foods that contain much fibre supply different substrates for fermentation. They can change the activity and the composition of the microbes. This recommendation is much stronger than a general product that claims to correct the microbes of every person.'
     ],
-    whySurvives: 'Because "your gut" became a marketing category before it became a settled science, and a category that vague can absorb any claim. Also because the honest advice — eat a wider range of plants — cannot be packaged, priced, or patented.'
+    whySurvives: 'The words "your gut" became a marketing category before the science was settled. A category that is not specific can accept any claim. Also, the correct advice is to eat a wider range of plants. Nobody can put that in a packet, give it a price, or patent it.'
   }
 };

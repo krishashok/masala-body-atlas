@@ -79,14 +79,14 @@ export function facilityPlan({ nominal = false } = {}) {
   <path class="leader" d="M540 592 L756 592" style="stroke-dasharray:3 4"/>
   <text class="blk-h" x="540" y="560">INSTRUMENTATION</text>
   <text class="dimtext techonly"  x="540" y="580" opacity=".85">NOT PART OF THE LINE</text>
-  <text class="dimtext plainonly" x="540" y="580" opacity=".85">Measures, not plumbing.</text>
+  <text class="dimtext plainonly" x="540" y="580" opacity=".85">It measures the plant.</text>
 
   ${nominal ? `
   <rect class="stamp" x="540" y="300" width="216" height="112" style="stroke:var(--cardamom)"/>
   <text class="stamptext" x="648" y="332" text-anchor="middle" style="fill:var(--cardamom)">All systems nominal</text>
   <text class="stamptext" x="648" y="356" text-anchor="middle" opacity=".8" style="fill:var(--cardamom)">Unattended operation</text>
   <text class="stamptext" x="648" y="380" text-anchor="middle" opacity=".8" style="fill:var(--cardamom)">80 years</text>
-  <text class="blk-p"     x="648" y="402" text-anchor="middle" opacity=".5">and nobody was watching</text>
+  <text class="blk-p"     x="648" y="402" text-anchor="middle" opacity=".5">and no operator watched</text>
   ` : `
   <rect class="stamp" x="540" y="150" width="216" height="58"/>
   <text class="stamptext" x="648" y="174" text-anchor="middle">Control room</text>
@@ -114,24 +114,24 @@ export default {
 
   rail:  { plain:'Start Here', tech:'Preface · The Plant' },
   title: { plain:'The Plant',  tech:'The Plant' },
-  sub:   { plain:'Your body is a processing plant, and it has never once been switched off',
-           tech :'Facility overview · continuous operation since commissioning' },
+  sub:   { plain:'Your body is a processing plant. Nobody has ever switched it off.',
+           tech :'Facility overview · the plant has operated continuously since birth' },
 
   drawing: { no:'MB-STN-00', rev:'A', vessel:'—',
              desc:'Facility overview', view:'Site plan' },
 
   modes: [
     { k:'running', label:{ plain:'Running', tech:'Continuous operation' }, fault:false,
-      cap:{ plain:'<b>Running.</b> All eight stages, in series, right now. This is the default and it has no off switch — the plant has been in this state since before you could form a memory.',
-            tech :'<b>Continuous operation.</b> Eight principal stages in series, no shutdown state defined. The facility has never been offline since commissioning.' } },
+      cap:{ plain:'<b>Running.</b> All eight stages operate in series at this moment. This is the usual condition, and there is no switch to stop it. The plant has operated in this condition since before you could remember.',
+            tech :'<b>Continuous operation.</b> Eight principal stages operate in series. The facility has no shutdown condition. It has not stopped since birth.' } },
 
     { k:'postmeal', label:{ plain:'Just after a meal', tech:'Post-charge' }, fault:false,
-      cap:{ plain:'<b>Just after a meal.</b> The upstream stations are all busy at once — milling, acid, refining, fermenting. Most of what you feel as "full" is happening in the first four.',
-            tech :'<b>Post-charge.</b> Upstream stages loaded simultaneously: size reduction, acid hydrolysis, catalytic refining, fermentation. Peak concurrent duty.' } },
+      cap:{ plain:'<b>Just after a meal.</b> The first stations all operate at the same time. They grind the food, add acid, refine it and ferment it. The first four stations cause most of the sensation that you know as a full stomach.',
+            tech :'<b>Post-charge.</b> The upstream stages receive the charge at the same time. They reduce the size of the material, add acid, refine it with catalysts and ferment it. The plant operates at its maximum duty.' } },
 
     { k:'overnight', label:{ plain:'Overnight', tech:'Fasted state' }, fault:false,
-      cap:{ plain:'<b>Overnight.</b> Nothing is coming in, and the plant is still working — stores releasing, blood sugar held steady, filtering and rebuilding all night. Not eating is not the same as not working.',
-            tech :'<b>Fasted state.</b> No inbound charge. Downstream stages continue: store mobilisation, glucose regulation, filtration and tissue turnover. Absence of feed is not absence of duty.' } }
+      cap:{ plain:'<b>Overnight.</b> No material comes in, but the plant continues to work. The stores release fuel. The blood sugar stays steady. The plant filters the blood and rebuilds its own components all night.',
+            tech :'<b>Fasted state.</b> The plant receives no charge. The downstream stages continue to operate. They release the stores, control the glucose, filter the blood and replace tissue.' } }
   ],
 
   svg: `<svg viewBox="-90 0 850 800" preserveAspectRatio="xMidYMid meet" role="img"
@@ -181,7 +181,7 @@ export default {
     <path class="scribble" d="M178 318 L222 358 M222 318 L178 358"/>
     <path class="leader" d="M226 372 L238 596 L244 596" style="stroke:var(--chilli)"/>
     <text class="hazardtext" x="250" y="596">"Surface area of a tennis court"</text>
-    <text class="hazardtext" x="250" y="616" opacity=".75">— nearer half a badminton court</text>
+    <text class="hazardtext" x="250" y="616" opacity=".75">closer to half a badminton court</text>
   </g>
 
   <!-- feed / discharge tags -->
@@ -193,49 +193,49 @@ export default {
 
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { h:'It has never been switched off.', p:'Commissioned at birth, no trials, no shakedown period, and no shutdown since. It is running right now while you read this.' },
-        { h:'Nobody is at the controls.', p:'Most regulation is automatic: local loops, nerves, hormones and central integration keep negotiating while your attention is elsewhere.' },
-        { h:'It rebuilds itself while running.', p:'Components are replaced continuously, during operation, out of the material currently being processed.' },
-        { h:'The feedstock spec is: anything.', p:'Composition varies without notice, several times a day, and the plant is never told in advance.' },
-        { h:'Eight stages, five metres, one torso.', p:'In life the gut is roughly five metres end to end, with considerable variation, folded into about thirty centimetres of you.' }
+        { h:'Nobody has ever switched it off.', p:'The plant started at your birth. It had no trials and no test period. It has not stopped since that day. It operates now, while you read this.' },
+        { h:'Nobody operates the controls.', p:'The plant controls itself. Local loops, nerves and hormones agree the settings between them while you think about something different.' },
+        { h:'It rebuilds itself while it operates.', p:'The plant replaces its components continuously. It does this while it operates, and it uses the material that it processes at that time.' },
+        { h:'The plant accepts any feedstock.', p:'The composition of the feed changes several times a day. Nobody tells the plant what comes next.' },
+        { h:'Eight stages in five metres of line.', p:'In a living person the gut measures approximately five metres from end to end. The length varies between persons. It folds into approximately thirty centimetres of your body.' }
       ],
-      note: '<b>Start here.</b> No industrial plant on earth is built this way. Every real refinery has a control room, a maintenance schedule, planned shutdowns and a documented feedstock spec. This one has none of those, accepts unknown material several times a day, rebuilds its own walls while operating, and has never been switched off. That is the thing worth being amazed by — not any single organ, but that it keeps running while you pay it no attention at all.'
+      note: '<b>Summary.</b> No industrial plant is built in this manner. A refinery has a control room, a maintenance schedule, planned shutdowns and a written feedstock specification. This plant has none of these. It accepts unknown material several times a day. It rebuilds its own walls while it operates. Nobody has ever switched it off, and you give it no attention.'
     },
     tech: {
       kicker: 'Facility Datasheet',
       spec: [
-        { k:'Commissioned',        v:'At birth. No commissioning trials, no shakedown period.' },
-        { k:'Operating schedule',  v:'Continuous. No shutdown, no maintenance window, no operator.' },
-        { k:'Feedstock',           v:'Anything you decide is food. Composition varies without notice.' },
+        { k:'Commissioned',        v:'At birth. The plant had no trials and no test period.' },
+        { k:'Operating schedule',  v:'Continuous. The plant has no shutdown, no maintenance period and no operator.' },
+        { k:'Feedstock',           v:'Anything that you decide is food. The composition changes without notice.' },
         { k:'Throughput',          v:'Roughly a tonne of material per year' },
-        { k:'Process line length', v:'~5 m oro-anal in vivo; considerable variation' },
+        { k:'Process line length', v:'Approximately 5 m from mouth to exit in a living person. The length varies.' },
         { k:'Absorptive surface',  v:'<em>~30 m²</em>, refinery section' },
-        { k:'Stages',              v:'8 principal, plus continuous chemical processing downstream' },
-        { k:'Control system',      v:'Distributed + hierarchical: local, neural, endocrine and central loops' },
-        { k:'Repair strategy',     v:'Continuous self-replacement while running' },
-        { k:'Design life',         v:'<em>~80 years</em>, unattended' }
+        { k:'Stages',              v:'8 principal stages. Chemical processing continues downstream.' },
+        { k:'Control system',      v:'Distributed and hierarchical. Local, neural, endocrine and central loops.' },
+        { k:'Repair strategy',     v:'The plant replaces its own components while it operates.' },
+        { k:'Design life',         v:'<em>Approximately 80 years</em>. No operator attends it.' }
       ],
-      note: '<b>Design note.</b> No industrial plant on earth is built this way. Every real refinery has a control room, a maintenance schedule, planned shutdowns, and a documented feedstock spec. This one has none of those, accepts unknown material several times a day, rebuilds its own walls while operating, and has never been switched off.',
+      note: '<b>Design note.</b> No industrial plant is built in this manner. A refinery has a control room, a maintenance schedule, planned shutdowns and a written feedstock specification. This plant has none of these. It accepts unknown material several times a day, it rebuilds its own walls while it operates, and it has never stopped.',
       analogy: {
         tag: 'Engineering analogue',
-        body: 'A chemical processing plant, in the specific sense that it takes heterogeneous raw material, reduces it, reacts it, separates what is useful from what is not, distributes the products, and disposes of the residue. The difference is that a plant is built once and then maintained. This one is built continuously, out of the material it processes.'
+        body: 'A chemical processing plant. It takes raw material of mixed composition. It reduces the material, causes it to react, and separates the useful part from the remainder. It then distributes the products and discharges the residue. An industrial plant is built one time and then maintained. This plant is built continuously, from the material that it processes.'
       }
     }
   },
 
   modelLimits: [
-    'The control-room metaphor is deliberately incomplete. The body has central integration in the brain and endocrine system as well as enormous local autonomy; there is no single master controller analogous to an industrial operator.',
-    'The ~5 m line length is an in-vivo average with large individual variation. Relaxed or post-mortem measurements, especially of small bowel, are much longer.'
+    'The control-room comparison is incomplete, and this is intended. The brain and the endocrine system do integrate the plant centrally, and the local stages also control themselves. There is no single master controller equivalent to an industrial operator.',
+    'The length of approximately 5 m is an average for a living person, and it varies greatly between persons. Measurements of relaxed tissue, or of tissue after death, give much larger values for the small intestine.'
   ],
 
   myth: {
     claim: 'Your small intestine has the surface area of a tennis court.',
     mechanism: [
-      'Everybody repeats this, including a lot of textbooks. It came from an early estimate that multiplied out the folds, villi and microvilli on idealised geometry. When Helander and Fändriks did the measurement properly in 2014 using actual human tissue, the answer came out around 30 m² — more like a large living room than a tennis court.',
-      'The correction does not make the organ less impressive. Around thirty square metres is still an enormous sheet of chemically active membrane folded into your abdomen. It makes the point that a number repeated confidently for decades can simply be wrong, and that finding this out is science working, not science failing.'
+      'Many persons repeat this, and many textbooks print it. It comes from an early estimate. That estimate multiplied the folds, the villi and the microvilli on an ideal geometry. In 2014 Helander and Fändriks measured human tissue correctly. They found a value of approximately 30 m². This is the area of a large room.',
+      'The correction does not make the organ less impressive. Thirty square metres is a very large sheet of chemically active membrane, and it folds into your abdomen. It shows that a number can be wrong after many decades of confident repetition. To find this error is a success of science.'
     ],
-    whySurvives: 'Because it is a good line. Tennis court is vivid, memorable, and quotable, and nobody who repeats it has any reason to check. Most nutrition folklore propagates for exactly this reason — not because anyone is lying, but because a good sentence travels faster than a correction.'
+    whySurvives: 'It is a good sentence. A tennis court is easy to see and easy to remember, and the persons who repeat it have no reason to check it. Most nutrition folklore continues for this reason. A good sentence travels faster than a correction.'
   }
 };

@@ -13,46 +13,46 @@ export default {
 
   rail:  { plain:'Liver & Kidneys',     tech:'Reprocessing' },
   title: { plain:'The Liver & Kidneys', tech:'Reprocessing' },
-  sub:   { plain:'Two units already do, continuously, what a detox product claims to sell you',
-           tech :'Vessels L-05 & K-05 · transformation, then ruthless editing' },
+  sub:   { plain:'These two units already do the work that a detox product offers to sell you.',
+           tech :'Vessels L-05 and K-05 · the first unit rewrites, the second selects' },
 
   drawing: { no:'MB-STN-05', rev:'A', vessel:'L-05 / K-05',
              desc:'Refinery + filtration skid', view:'Block schematic' },
 
   /* Markers and drawing labels. The prose lives once, in main.*.points. */
   hotspots: [
-    { k:'firstpass', n:1, plain:{ name:'The Inspection Inlet', fn:'Most water-soluble cargo comes here first' },
-                     tech :{ name:'First-pass inlet', fn:'Portal vein · most water-soluble product' } },
-    { k:'transform', n:2, plain:{ name:'The Rewrite Floor', fn:'Rebuilds molecules to order' },
-                     tech :{ name:'Transformation', fn:'Hepatocytes · rewrite and package' } },
-    { k:'warehouse', n:3, plain:{ name:'The Warehouse', fn:'About 100 g of sugar, held back' },
-                     tech :{ name:'Glycogen store', fn:'~100 g · released between meals' } },
-    { k:'filter', n:4, plain:{ name:'The Filter', fn:'~180 litres a day, thrown out' },
-                  tech :{ name:'The filter', fn:'Glomerulus · ~180 L/day' } },
-    { k:'reclaim', n:5, plain:{ name:'The Reclaim', fn:'Buys back over 99%' },
-                   tech :{ name:'The reclaim', fn:'Tubules · >99% recovered' } }
+    { k:'firstpass', n:1, plain:{ name:'The Inspection Inlet', fn:'Most soluble material arrives here first' },
+                     tech :{ name:'First-pass inlet', fn:'Portal vein · most soluble product' } },
+    { k:'transform', n:2, plain:{ name:'The Rewrite Floor', fn:'It rebuilds molecules' },
+                     tech :{ name:'Transformation', fn:'Hepatocytes · they rewrite and package' } },
+    { k:'warehouse', n:3, plain:{ name:'The Warehouse', fn:'It holds about 100 g of sugar' },
+                     tech :{ name:'Glycogen store', fn:'About 100 g · released between meals' } },
+    { k:'filter', n:4, plain:{ name:'The Filter', fn:'It removes about 180 litres a day' },
+                  tech :{ name:'The filter', fn:'Glomerulus · about 180 L a day' } },
+    { k:'reclaim', n:5, plain:{ name:'The Reclaim', fn:'It recovers more than 99%' },
+                   tech :{ name:'The reclaim', fn:'Tubules · they recover more than 99%' } }
   ],
 
   modes: [
     { k:'fed', label:{ plain:'Fed', tech:'Storing' }, fault:false,
-      cap:{ plain:'<b>Fed.</b> Product arrives, gets inspected and rewritten, and the warehouse fills. This is the hour or two after a meal.',
-            tech :'<b>Storing.</b> First-pass load arriving; surplus glucose committed to glycogen. Warehouse level rising.' } },
+      cap:{ plain:'<b>Fed.</b> The product arrives. The liver examines it and rewrites it, and the store fills. This occurs in the hour or two after a meal.',
+            tech :'<b>Storing.</b> The first-pass load arrives. The liver converts the surplus glucose into glycogen. The level in the store increases.' } },
 
     { k:'fasted', label:{ plain:'Fasted', tech:'Releasing' }, fault:false,
-      cap:{ plain:'<b>Fasted.</b> Dietary input has stopped. Liver glycogen feeds the bloodstream and new glucose production increasingly joins in, helping hold blood sugar steady overnight.',
-            tech :'<b>Releasing.</b> Dietary first-pass load is low; glycogenolysis and gluconeogenesis support hepatic glucose output through the overnight fast.' } },
+      cap:{ plain:'<b>Fasted.</b> No food arrives. The liver releases its glycogen into the blood. It also makes new glucose, and it makes more of it as the fast continues. These two supplies hold the blood sugar steady overnight.',
+            tech :'<b>Releasing.</b> The first-pass load is low. The liver breaks down its glycogen, and it also makes new glucose. Both processes hold the glucose output steady through the overnight fast.' } },
 
     { k:'alcohol', label:{ plain:'Alcohol', tech:'Priority queue' }, fault:false,
-      cap:{ plain:'<b>Alcohol.</b> It goes to the front of the oxidation queue because the body has little capacity to store it. While that load is being cleared, handling of other fuels shifts.',
-            tech :'<b>Priority queue.</b> Ethanol oxidation is prioritised; the resulting redox shift suppresses fat oxidation and alters handling of other substrates until the load clears.' } },
+      cap:{ plain:'<b>Alcohol.</b> The liver oxidises the alcohol first, because your body cannot store much of it. While the liver clears that load, it changes how it handles the other fuels.',
+            tech :'<b>Priority queue.</b> The liver oxidises the ethanol first. This changes the chemical balance in the cell. The liver then oxidises less fat, and it handles the other substrates differently, until it clears the load.' } },
 
     { k:'filter', label:{ plain:'Filter and reclaim', tech:'Filtration duty' }, fault:false,
-      cap:{ plain:'<b>Filter and reclaim.</b> A hundred and eighty litres a day thrown out of the blood, and nearly all of it bought straight back. Look at the two pipes: that is the whole joke.',
-            tech :'<b>Filtration duty.</b> ~180 L/day filtered, >99% reclaimed, 1–2 L/day discharged. The inlet and outlet are drawn to scale relative to each other.' } },
+      cap:{ plain:'<b>Filter and reclaim.</b> The kidney removes one hundred and eighty litres from the blood each day. It then recovers almost all of it. Look at the two pipes and compare their sizes.',
+            tech :'<b>Filtration duty.</b> The kidney filters about 180 L each day. It recovers more than 99% and discharges 1 to 2 L. The inlet pipe and the outlet pipe are drawn to the same scale.' } },
 
     { k:'dry', label:{ plain:'Dehydrated', tech:'Reclaim elevated' }, fault:false,
-      cap:{ plain:'<b>Dehydrated.</b> Reclaim is dialled up and the output concentrates. That is what the colour is telling you — a control system working, not an alarm.',
-            tech :'<b>Reclaim elevated.</b> Water recovery raised against volume status; discharge concentrates. A control response, not a fault.' } }
+      cap:{ plain:'<b>Dehydrated.</b> The kidney increases the recovery of water, and the discharge becomes more concentrated. The colour shows you that the control system operates correctly.',
+            tech :'<b>Reclaim elevated.</b> The kidney increases the water recovery because the volume in your body is low. The discharge becomes more concentrated. This is a normal control response.' } }
   ],
 
   svg: `<svg viewBox="-90 0 850 800" preserveAspectRatio="xMidYMid meet" role="img"
@@ -68,13 +68,13 @@ export default {
   <!-- ===== inlet ===== -->
   <path class="pipe h" d="M-70 300 L120 300 L120 348 L-70 348 Z"/>
   <text class="blk-h" x="-70" y="286">FIRST PASS</text>
-  <text class="dimtext techonly"  x="-70" y="378">MOST WATER-SOLUBLE CARGO</text>
-  <text class="dimtext plainonly" x="-70" y="378">Most soluble cargo</text>
+  <text class="dimtext techonly"  x="-70" y="378">MOST SOLUBLE MATERIAL</text>
+  <text class="dimtext plainonly" x="-70" y="378">Most soluble material</text>
 
   <!-- long-chain fat does not take this road -->
   <path class="leader" d="M-40 348 L-40 470 L250 470" style="stroke:var(--steel);stroke-dasharray:5 5" marker-end="url(#arw05)"/>
   <text class="dimtext techonly"  x="-34" y="462" style="fill:var(--steel)">LONG-CHAIN FAT · VIA LYMPH</text>
-  <text class="dimtext plainonly" x="-34" y="462" style="fill:var(--steel)">Fat takes the lymph road</text>
+  <text class="dimtext plainonly" x="-34" y="462" style="fill:var(--steel)">Fat travels by the lymph</text>
 
   <!-- ===== L-05 : the refinery ===== -->
   <rect class="vessel" x="120" y="150" width="300" height="280"/>
@@ -84,12 +84,12 @@ export default {
   <rect class="bay" x="148" y="200" width="244" height="82"/>
   <text class="lbl-name techonly"  x="270" y="238" text-anchor="middle">Transformation</text>
   <text class="lbl-name plainonly" x="270" y="238" text-anchor="middle">The Rewrite Floor</text>
-  <text class="lbl-fn" x="270" y="262" text-anchor="middle">Rebuilds molecules to order</text>
+  <text class="lbl-fn" x="270" y="262" text-anchor="middle">Rebuilds molecules</text>
 
   <rect class="bay" x="148" y="312" width="244" height="88"/>
   <text class="lbl-name techonly"  x="270" y="350" text-anchor="middle">Glycogen store</text>
   <text class="lbl-name plainonly" x="270" y="350" text-anchor="middle">The Warehouse</text>
-  <text class="lbl-fn" x="270" y="374" text-anchor="middle">About 100 g, held back</text>
+  <text class="lbl-fn" x="270" y="374" text-anchor="middle">About 100 g, held in store</text>
 
   <path class="pipe v" d="M250 430 L290 430 L290 540 L250 540 Z"/>
 
@@ -105,23 +105,23 @@ export default {
 
   <rect class="bay" x="475" y="200" width="200" height="82"/>
   <text class="lbl-name" x="575" y="238" text-anchor="middle">The Filter</text>
-  <text class="lbl-fn techonly"  x="575" y="262" text-anchor="middle">≈ 180 L/day filtered</text>
-  <text class="lbl-fn plainonly" x="575" y="262" text-anchor="middle">~180 litres a day</text>
+  <text class="lbl-fn techonly"  x="575" y="262" text-anchor="middle">About 180 L a day filtered</text>
+  <text class="lbl-fn plainonly" x="575" y="262" text-anchor="middle">About 180 litres a day</text>
 
   <rect class="bay" x="475" y="312" width="200" height="88"/>
   <text class="lbl-name" x="575" y="350" text-anchor="middle">The Reclaim</text>
   <text class="lbl-fn techonly"  x="575" y="374" text-anchor="middle">&gt; 99% recovered</text>
-  <text class="lbl-fn plainonly" x="575" y="374" text-anchor="middle">Buys back over 99%</text>
+  <text class="lbl-fn plainonly" x="575" y="374" text-anchor="middle">Recovers over 99%</text>
 
   <!-- two fat pipes and a hairline: the whole argument of this station -->
   <path class="pipe v" d="M472 430 L516 430 L516 540 L472 540 Z"/>
   <path class="pipe v" d="M596 430 L640 430 L640 540 L596 540 Z"/>
   <path class="pipe" d="M675 353 L743 353 L743 660 L736 660 L736 360 L675 360 Z"/>
-  <text class="dimtext techonly"  x="464" y="472" text-anchor="end">≈ 180 L/day in</text>
+  <text class="dimtext techonly"  x="464" y="472" text-anchor="end">About 180 L a day in</text>
   <text class="dimtext plainonly" x="464" y="472" text-anchor="end">180 litres in</text>
   <text class="dimtext techonly"  x="648" y="472">≈ 178 back</text>
-  <text class="dimtext plainonly" x="636" y="472">nearly all back</text>
-  <text class="dimtext" x="730" y="690" text-anchor="end" style="fill:var(--turmeric)">1–2 L/day out</text>
+  <text class="dimtext plainonly" x="636" y="472">almost all back</text>
+  <text class="dimtext" x="730" y="690" text-anchor="end" style="fill:var(--turmeric)">1–2 L a day out</text>
 
   <!-- ===== storing ===== -->
   <g class="anim a-fed">
@@ -173,7 +173,7 @@ export default {
     <path class="scribble" d="M158 190 L382 390 M382 190 L158 390"/>
     <path class="leader" d="M420 190 L452 116 L468 116" style="stroke:var(--chilli)"/>
     <text class="hazardtext" x="474" y="112">"Do a detox cleanse"</text>
-    <text class="hazardtext" x="474" y="128" opacity=".75">— this unit has never stopped</text>
+    <text class="hazardtext" x="474" y="128" opacity=".75">this unit has never stopped</text>
   </g>
 
   <!-- ================= HOTSPOTS — markers only; every block is labelled ===== -->
@@ -201,69 +201,69 @@ export default {
 
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { h:'You cannot feel any of it.', p:'There are no instruments on this station you can read. Both units also hide damage until a large fraction of capacity is gone.' },
-        { k:'firstpass', h:'Most soluble cargo gets a first pass.',
-          p:'Most water-soluble nutrients and swallowed drugs enter the portal vein and reach the liver before the rest of the circulation. Long-chain dietary fat takes a famous side road: chylomicrons enter lymph first and reach the liver later.' },
-        { k:'transform', h:'It rewrites molecules.',
-          p:'Molecules are chemically rewritten — made easier to excrete, converted into something usable, or packaged for transport. The same machinery handles nutrients, medicines, alcohol and hormones, which is exactly why they interfere with each other.' },
-        { k:'warehouse', h:'There is a warehouse and a factory attached.',
-          p:'Roughly a hundred grams of liver glycogen can be mobilised between meals. As fasting continues, the liver also makes new glucose from other substrates. Overnight blood glucose is defended by both routes.' },
-        { k:'filter', h:'The kidney design is genuinely strange.',
-          p:'About 180 litres of ultrafiltrate are made per day. The filter passes water and many small solutes while keeping blood cells and most large proteins in circulation; the tubules then reclaim nearly everything useful.' },
+        { h:'You cannot feel any of this work.', p:'This station has no instrument that you can read. Both units also continue to operate after damage. They give no signal until a large part of their capacity is gone.' },
+        { k:'firstpass', h:'Most soluble material goes to the liver first.',
+          p:'Most soluble nutrients and most medicines that you swallow enter the portal vein. They reach the liver before they reach the rest of the blood. Long-chain fat uses a different route. The wall packs it into chylomicrons, which enter the lymph first and reach the liver later.' },
+        { k:'transform', h:'The liver rewrites molecules.',
+          p:'The liver changes the chemistry of a molecule. It can make the molecule easier to discharge, change it into a usable form, or pack it for transport. The same machinery handles nutrients, medicines, alcohol and hormones. They therefore interfere with each other.' },
+        { k:'warehouse', h:'The liver has a store and a factory.',
+          p:'The liver can release about one hundred grams of glycogen between meals. As the fast continues, it also makes new glucose from other substrates. Both routes hold your blood glucose steady overnight.' },
+        { k:'filter', h:'The design of the kidney is unusual.',
+          p:'The kidney makes about 180 litres of filtrate each day. The filter lets water and many small molecules through. It keeps the blood cells and most large proteins in the blood. The tubules then recover almost all the useful material.' },
         { k:'reclaim', h:'The Reclaim',
-          p:'Around 178 of those 180 litres are recovered, along with the glucose, amino acids and salts worth keeping. Over ninety-nine per cent, adjusted continuously against how much you drank, how much you sweated, and what your blood is doing.' }
+          p:'The tubules recover about 178 of those 180 litres. They also recover the glucose, the amino acids and the necessary salts. This is more than ninety-nine per cent. The kidney adjusts the quantity continuously against the fluid that you drank, the fluid that you lost, and the condition of your blood.' }
       ],
-      note: '<b>The detox problem.</b> Both units here perform continuous detoxification, unpaid and unsupervised, every second you have been alive — including while you were reading the word "detox". There is no queue of accumulated toxins waiting for a juice to arrive. If these units were genuinely not clearing your blood, you would not be shopping. You would be in hospital.'
+      note: '<b>Summary.</b> Both units remove unwanted substances continuously. They have done this every second of your life, and nobody pays them or supervises them. No quantity of toxins waits in your body for a juice to arrive. If these units did not clear your blood, you would be in hospital.'
     },
     tech: {
       kicker: 'Equipment Datasheet',
       spec: [
-        { k:'Class',              v:'Multi-stage transformation refinery (L-05) + filtration/reclaim skid (K-05)' },
-        { k:'Duty',               v:'Chemical transformation · storage · packaging · filtration · pH and volume control' },
-        { k:'L-05 mass',          v:'~1.5 kg' },
-        { k:'L-05 throughput',    v:'~1.5 L blood/min' },
+        { k:'Class',              v:'A refinery with several stages (L-05), and a filter and reclaim unit (K-05).' },
+        { k:'Duty',               v:'It changes the chemistry, stores material, packs it for transport, filters the blood, and controls the pH and the volume.' },
+        { k:'L-05 mass',          v:'About 1.5 kg' },
+        { k:'L-05 throughput',    v:'About 1.5 L of blood each minute' },
         { k:'L-05 stored fuel',   v:'<em>~100 g glycogen</em>' },
-        { k:'K-05 filtration',    v:'<em>~180 L/day</em>' },
+        { k:'K-05 filtration',    v:'<em>About 180 L each day</em>' },
         { k:'K-05 recovery',      v:'&gt; 99%' },
-        { k:'Net discharge',      v:'1–2 L/day' },
-        { k:'Regeneration',       v:'L-05 has exceptional capacity to restore mass after injury or resection' },
-        { k:'Instrumentation',    v:'None visible to the operator. You cannot feel any of this happening.' },
-        { k:'Failure signalling', v:'Late. Both units mask damage until a large fraction of capacity is gone.' }
+        { k:'Net discharge',      v:'1 to 2 L each day' },
+        { k:'Regeneration',       v:'L-05 can grow again after injury or after surgery.' },
+        { k:'Instrumentation',    v:'None. You cannot feel this work.' },
+        { k:'Failure signalling', v:'Late. Both units continue to operate until a large part of the capacity is gone.' }
       ],
       points: [
         { k:'firstpass', h:'First-pass inlet',
-          p:'Portal blood carries most absorbed water-soluble nutrients and many oral drugs to the liver before systemic circulation. Long-chain lipids are packaged into chylomicrons and initially travel by intestinal lymph, bypassing hepatic first pass.' },
+          p:'The portal blood carries most soluble nutrients and many swallowed medicines to the liver. They arrive there before they enter the general circulation. The wall packs long-chain fat into chylomicrons. These travel first in the lymph of the intestine and do not pass through the liver at that stage.' },
         { k:'transform', h:'Transformation',
-          p:'Molecules are chemically rewritten: made more water-soluble for excretion, converted into something the body can use, or packaged for transport. The same machinery handles nutrients, medicines, alcohol and hormones, which is why they interfere with each other.' },
+          p:'The liver changes the chemistry of a molecule. It can make the molecule more soluble so that the body can discharge it, change it into a usable form, or pack it for transport. The same machinery handles nutrients, medicines, alcohol and hormones. They therefore interfere with each other.' },
         { k:'warehouse', h:'Glycogen store',
-          p:'Roughly 100 g of glycogen is stored in the liver. Between meals the liver uses glycogenolysis and, increasingly with fasting, gluconeogenesis to defend blood glucose.' },
+          p:'The liver stores about 100 g of glycogen. Between meals it breaks down that glycogen. As the fast continues it also makes new glucose. Both processes hold the blood glucose steady.' },
         { k:'filter', h:'The filter',
-          p:'About 180 litres of ultrafiltrate are formed per day. The glomerular barrier has high conductance for water and small solutes but excludes cells and most macromolecules; tubular transport then performs the fine editing.' },
+          p:'The kidney makes about 180 litres of filtrate each day. The filter passes water and small molecules easily. It stops the cells and most large molecules. The tubules then make the fine adjustment.' },
         { k:'reclaim', h:'The reclaim',
-          p:'Around 178 of the 180 litres are recovered, along with glucose, amino acids and salts worth keeping. Over 99% recovery, adjusted continuously against intake, losses and blood pH.' }
+          p:'The tubules recover about 178 of the 180 litres. They also recover the glucose, the amino acids and the necessary salts. The recovery is more than 99%. The kidney adjusts it continuously against your intake, your losses and the pH of your blood.' }
       ],
-      note: "<b>Design note.</b> The kidney's strategy is the strange one. A sensible engineer separating waste from a valuable stream might extract only the waste. The glomeruli instead filter enormous volumes of plasma water and small solutes, then the tubules buy back almost everything worth keeping. It is energetically expensive, but it gives exquisite control over the final output and helps keep blood chemistry within a tight operating range.",
+      note: '<b>Design note.</b> The method of the kidney is unusual. An engineer who separates waste from a valuable stream usually removes the waste only. The kidney does the opposite. The filters remove very large volumes of water and small molecules, and the tubules then recover almost all the useful material. This method uses much energy. It also gives very precise control of the final output, and it holds the blood chemistry in a narrow range.',
       analogy: {
         tag: 'Engineering analogue',
-        body: 'A refinery with a bonded warehouse attached, feeding a reverse-osmosis plant that runs its permeate back through recovery. The unusual feature is the "reject everything, then reclaim" architecture, which real plants avoid because it wastes energy — and which biology uses because it buys extraordinarily precise control.'
+        body: 'A refinery with a store attached. It feeds a reverse-osmosis plant that sends its output back through a recovery stage. The unusual feature is the method: the plant removes everything and then recovers what it needs. Industrial plants avoid this method because it wastes energy. Biology uses it because it gives very precise control.'
       }
     }
   },
 
   modelLimits: [
-    'Portal first-pass applies to most water-soluble gut products, not all absorbed material. Long-chain dietary fat largely reaches systemic blood through lymph first.',
-    'The kidney does not filter blood indiscriminately: cells and most large proteins are retained while water and many small solutes enter the filtrate.'
+    'The first pass through the liver applies to most soluble products from the gut. It does not apply to all absorbed material. Most long-chain fat reaches the blood through the lymph first.',
+    'The kidney does not filter the blood without selection. The filter keeps the cells and most large proteins in the blood. Water and many small molecules enter the filtrate.'
   ],
 
   myth: {
     claim: 'Do a detox cleanse to flush out the toxins.',
     mechanism: [
-      'Both units in this drawing perform continuous detoxification, unpaid and unsupervised, every second you have been alive, including while you were reading the word "detox". There is no queue of accumulated toxins waiting for a juice to arrive. If these units were genuinely not clearing your blood, you would not be shopping — you would be in hospital.',
-      'Ask the specific question and the category collapses: which toxin, measured how, cleared by what mechanism, demonstrated in whom? Products in this category never answer it, because the word "toxin" is doing marketing work, not chemistry.',
-      'The sharper point is that this is not merely a waste of money. Herbal and dietary supplements are now a documented and rising cause of drug-induced liver injury — the exact organ the product claims to be helping. Some botanical extracts at concentrated doses, and some traditional preparations found to be contaminated with heavy metals, have put people in liver failure.'
+      'Both units in this drawing remove unwanted substances continuously. They have done this every second of your life, and nobody pays them or supervises them. No quantity of toxins waits in your body for a juice to arrive. If these units did not clear your blood, you would be in hospital.',
+      'Ask four specific questions. Which toxin? How did you measure it? Which mechanism removes it? In which persons did you show this? These products never answer these questions. The word "toxin" is a marketing term here, and it has no chemical meaning.',
+      'These products can also do damage. Herbal and dietary supplements are a recorded cause of liver injury, and the number of cases increases. This is the same organ that the product offers to help. Some plant extracts at high doses have caused liver failure. Some traditional preparations that contained heavy metals have also caused it.'
     ],
-    whySurvives: 'Because "cleansing" is an old and emotionally satisfying idea that long predates any knowledge of what the liver does, and because feeling slightly unwell is universal while its causes are usually boring. A cleanse offers agency. The truthful version — this is already handled, go to bed earlier — offers none.'
+    whySurvives: 'The idea of a cleanse is old, and it satisfies people. It is much older than any knowledge of the liver. Also, every person feels unwell sometimes, and the causes are usually ordinary. A cleanse gives you an action to take. The correct answer gives you none: the work is already done, so go to bed earlier.'
   }
 };

@@ -12,8 +12,8 @@ export default {
 
   rail:  { plain:'Mouth',     tech:'Intake & Wet Mill' },
   title: { plain:'The Mouth', tech:'Intake & Wet Mill' },
-  sub:   { plain:'Where food gets smaller, wetter, and safely aimed',
-           tech :'Vessel M-01 · size reduction, dosing, and a swallow interlock' },
+  sub:   { plain:'The station makes the food smaller and wetter, then sends it to the correct pipe.',
+           tech :'Vessel M-01 · the station reduces the size, adds fluid and protects the airway' },
 
   drawing: { no:'MB-STN-01', rev:'A', vessel:'M-01',
              desc:'Wet mill with dosing', view:'Sagittal section' },
@@ -23,35 +23,35 @@ export default {
      sits in main.*.points, keyed by `k`, so each component is described
      once and the panel and the drawing are the same list. */
   hotspots: [
-    { k:'crusher',  n:1, plain:{ name:'The Crusher',        fn:'Breaks food into smaller bits' },
-                         tech :{ name:'Dentition',          fn:'Size reduction · several hundred N' } },
-    { k:'dosing',   n:2, plain:{ name:'The Wetting Jets',   fn:'Adds spit, on demand' },
-                         tech :{ name:'Salivary glands',    fn:'Dosing line · 0.5–1.5 L/day' } },
-    { k:'qc',       n:3, plain:{ name:'The Taste Check',    fn:'A fast, rough quality check' },
-                         tech :{ name:'Tongue',             fn:'QC sensor · five-channel assay' } },
-    { k:'diverter', n:4, plain:{ name:'The Airway Interlock', fn:'Protects the air pipe as you swallow' },
-                         tech :{ name:'Airway protection',  fn:'Coordinated laryngeal closure' } },
-    { k:'conveyor', n:5, plain:{ name:'The Conveyor',       fn:'Squeezes food down, 8–10 seconds' },
-                         tech :{ name:'Oesophagus',         fn:'Peristaltic conveyor · 2–4 cm/s' } }
+    { k:'crusher',  n:1, plain:{ name:'The Crusher',        fn:'It breaks the food into small pieces' },
+                         tech :{ name:'Dentition',          fn:'It reduces the size · several hundred N' } },
+    { k:'dosing',   n:2, plain:{ name:'The Wetting Jets',   fn:'It adds saliva when necessary' },
+                         tech :{ name:'Salivary glands',    fn:'Dosing line · 0.5 to 1.5 L each day' } },
+    { k:'qc',       n:3, plain:{ name:'The Taste Check',    fn:'It makes a quick check of the material' },
+                         tech :{ name:'Tongue',             fn:'Sensor · it measures five channels' } },
+    { k:'diverter', n:4, plain:{ name:'The Airway Interlock', fn:'It protects the air pipe when you swallow' },
+                         tech :{ name:'Airway protection',  fn:'The larynx closes in sequence' } },
+    { k:'conveyor', n:5, plain:{ name:'The Conveyor',       fn:'It pushes the food down in 8 to 10 seconds' },
+                         tech :{ name:'Oesophagus',         fn:'Conveyor · 2 to 4 cm each second' } }
   ],
 
   /* ---------------- process modes ---------------- */
   modes: [
     { k:'chew', label:{ plain:'Chewing', tech:'Milling' }, fault:false,
-      cap:{ plain:'<b>Chewing.</b> The crusher works and the jets dose. Most of the action is mechanical, while salivary chemistry has already begun on starch.',
-            tech :'<b>Milling.</b> Size reduction with simultaneous dosing at 0.5–1.5 L/day. No particle-size target: the transfer reflex fires on bolus cohesion, not on a spec.' } },
+      cap:{ plain:'<b>Chewing.</b> The teeth break the food and the glands add saliva. The teeth do most of the work. The saliva has already started to break down the starch.',
+            tech :'<b>Milling.</b> The teeth reduce the size of the material. The glands add 0.5 to 1.5 L of saliva each day at the same time. There is no target particle size. The swallow reflex starts when the material holds together.' } },
 
     { k:'swallow', label:{ plain:'Swallowing', tech:'Transfer cycle' }, fault:false,
-      cap:{ plain:'<b>Swallowing.</b> The airway closes in a coordinated sequence and the wave carries the mouthful down. The whole thing takes seconds and you do not think about any of it.',
-            tech :'<b>Transfer cycle.</b> Laryngeal closure protects the airway while a peristaltic wave conveys the bolus down the oesophagus. Typical transit is on the order of seconds.' } },
+      cap:{ plain:'<b>Swallowing.</b> The airway closes in a sequence. A wave of muscle then carries the food down. The full sequence takes a few seconds, and you give it no attention.',
+            tech :'<b>Transfer cycle.</b> The larynx closes and protects the airway. A wave of muscle then moves the food down the oesophagus. The transfer takes a few seconds.' } },
 
     { k:'inverted', label:{ plain:'Upside down', tech:'Inverted transfer' }, fault:false,
-      cap:{ plain:'<b>Upside down.</b> Gravity is now pulling the wrong way and the mouthful still arrives. The tube squeezes it along — it was never falling in the first place.',
-            tech :'<b>Inverted transfer.</b> Gravity is opposed, but peristalsis can still convey the bolus. Orientation is not required for transfer, although it can alter transit dynamics.' } },
+      cap:{ plain:'<b>Upside down.</b> Gravity now pulls in the wrong direction, but the food still arrives. The tube pushes the food along it. The food does not fall down the tube.',
+            tech :'<b>Inverted transfer.</b> Gravity opposes the movement, but the wave of muscle still moves the food. The transfer does not need a specific body position. The position can change the speed.' } },
 
     { k:'aspirate', label:{ plain:'Gone down the wrong way', tech:'Diverter mistiming' }, fault:true,
-      cap:{ plain:'<b>Gone down the wrong way.</b> The gate mistimes, a bit of food enters the air pipe, and the cough reflex fires. Violent, effective, and entirely involuntary.',
-            tech :'<b>Airway-protection failure.</b> Closure is incomplete or mistimed and material enters the airway. Recovery is often by cough reflex — violent, effective, involuntary.' } }
+      cap:{ plain:'<b>Gone down the wrong way.</b> The valve closes at the wrong time. A small quantity of food enters the air pipe. The cough reflex then starts. It is strong, it is effective, and you do not control it.',
+            tech :'<b>Airway-protection failure.</b> The airway does not close fully, or it closes at the wrong time. Material then enters the airway. The cough reflex usually removes it. The reflex is strong and you do not control it.' } }
   ],
 
   /* ---------------- the drawing ---------------- */
@@ -222,8 +222,8 @@ export default {
     <path class="leader" d="M180 198 L250 66 L470 66"/>
     <text class="lbl-name techonly"  x="476" y="63">Dentition</text>
     <text class="lbl-name plainonly" x="476" y="63">The Crusher</text>
-    <text class="lbl-fn techonly"    x="476" y="77">Size reduction · several hundred N</text>
-    <text class="lbl-fn plainonly"   x="476" y="78">Breaks food into smaller bits</text>
+    <text class="lbl-fn techonly"    x="476" y="77">Reduces size · several hundred N</text>
+    <text class="lbl-fn plainonly"   x="476" y="78">Breaks food into small pieces</text>
     <circle class="hotring" cx="180" cy="198" r="10"/>
     <circle class="hithalo" cx="180" cy="198" r="22"/>
     <circle class="hotdot" cx="180" cy="198" r="10"/>
@@ -234,8 +234,8 @@ export default {
     <path class="leader" d="M126 332 L104 420 L98 420"/>
     <text class="lbl-name techonly"  x="92" y="417" text-anchor="end">Salivary glands</text>
     <text class="lbl-name plainonly" x="92" y="417" text-anchor="end">The Wetting Jets</text>
-    <text class="lbl-fn techonly"    x="92" y="431" text-anchor="end">Dosing line · 0.5–1.5 L/day</text>
-    <text class="lbl-fn plainonly"   x="92" y="432" text-anchor="end">Adds spit, on demand</text>
+    <text class="lbl-fn techonly"    x="92" y="431" text-anchor="end">Dosing line · 0.5–1.5 L a day</text>
+    <text class="lbl-fn plainonly"   x="92" y="432" text-anchor="end">Adds saliva when needed</text>
     <circle class="hotring" cx="126" cy="332" r="10"/>
     <circle class="hithalo" cx="126" cy="332" r="22"/>
     <circle class="hotdot" cx="126" cy="332" r="10"/>
@@ -246,8 +246,8 @@ export default {
     <path class="leader" d="M198 276 L152 500 L98 500"/>
     <text class="lbl-name techonly"  x="92" y="497" text-anchor="end">Tongue</text>
     <text class="lbl-name plainonly" x="92" y="497" text-anchor="end">The Taste Check</text>
-    <text class="lbl-fn techonly"    x="92" y="511" text-anchor="end">QC sensor · five-channel assay</text>
-    <text class="lbl-fn plainonly"   x="92" y="512" text-anchor="end">A fast, rough quality check</text>
+    <text class="lbl-fn techonly"    x="92" y="511" text-anchor="end">Sensor · five channels</text>
+    <text class="lbl-fn plainonly"   x="92" y="512" text-anchor="end">A quick, approximate check</text>
     <circle class="hotring" cx="198" cy="276" r="10"/>
     <circle class="hithalo" cx="198" cy="276" r="22"/>
     <circle class="hotdot" cx="198" cy="276" r="10"/>
@@ -258,8 +258,8 @@ export default {
     <path class="leader" d="M372 306 L470 250 L516 250"/>
     <text class="lbl-name techonly"  x="522" y="247">Airway protection</text>
     <text class="lbl-name plainonly" x="522" y="247">The Airway Interlock</text>
-    <text class="lbl-fn techonly"    x="522" y="261">Coordinated laryngeal closure</text>
-    <text class="lbl-fn plainonly"   x="522" y="262">Protects the air pipe as you swallow</text>
+    <text class="lbl-fn techonly"    x="522" y="261">The larynx closes in sequence</text>
+    <text class="lbl-fn plainonly"   x="522" y="262">Protects the air pipe</text>
     <circle class="hotring" cx="372" cy="306" r="10"/>
     <circle class="hithalo" cx="372" cy="306" r="22"/>
     <circle class="hotdot" cx="372" cy="306" r="10"/>
@@ -270,8 +270,8 @@ export default {
     <path class="leader" d="M399 470 L500 512 L546 512"/>
     <text class="lbl-name techonly"  x="552" y="509">Oesophagus</text>
     <text class="lbl-name plainonly" x="552" y="509">The Conveyor</text>
-    <text class="lbl-fn techonly"    x="552" y="523">Peristaltic conveyor · 2–4 cm/s</text>
-    <text class="lbl-fn plainonly"   x="552" y="524">Squeezes food down, 8–10 seconds</text>
+    <text class="lbl-fn techonly"    x="552" y="523">Conveyor · 2–4 cm a second</text>
+    <text class="lbl-fn plainonly"   x="552" y="524">Pushes food down in 8–10 s</text>
     <circle class="hotring" cx="399" cy="470" r="10"/>
     <circle class="hithalo" cx="399" cy="470" r="22"/>
     <circle class="hotdot" cx="399" cy="470" r="10"/>
@@ -297,50 +297,50 @@ export default {
   /* ---------------- main panel ---------------- */
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { k:'crusher', h:'Chewing is the mill.',
-          p:'Chewing is size reduction. It exposes more surface to the chemistry that has already started in your saliva, and your back teeth can bite with several hundred newtons.' },
-        { k:'dosing', h:'Spit is not just water.',
-          p:'Half a litre to a litre and a half a day, delivered when needed. It lubricates, buffers, kills some bacteria, and carries an enzyme that starts on starch straight away — briefly, because the acid downstream stops it.' },
-        { k:'qc', h:'Taste is a quick check, not a label.',
-          p:'Sweet, salty, sour, bitter and umami are fast chemical clues, not an ingredient list. They tell the nervous system something about what just arrived, and they are easy to fool.' },
-        { k:'diverter', h:'Your food and your air share a junction.',
-          p:'The critical part. Every swallow triggers a coordinated airway-protection sequence: the larynx rises, the vocal folds close and the epiglottis folds back. Mistime that choreography and the cough reflex takes over.' },
-        { k:'conveyor', h:'Swallowing is not falling.',
-          p:'It does not simply drop food. A squeezing wave pushes it along a tube about 25 cm long, so swallowing can work lying down or even against gravity. Posture can still change how fast and smoothly the trip goes.' }
+        { k:'crusher', h:'Chewing reduces the size of the food.',
+          p:'Small pieces give more surface to the saliva, which has already started to break down the starch. Your back teeth can apply several hundred newtons of force.' },
+        { k:'dosing', h:'Saliva does more than make the food wet.',
+          p:'The glands make half a litre to one and a half litres each day, and they make it when you need it. The saliva lubricates the food and controls the acidity. It kills some bacteria. It also carries an enzyme that starts on the starch immediately. The acid at Station 02 then stops that enzyme.' },
+        { k:'qc', h:'Taste gives you a quick check.',
+          p:'Sweet, salt, sour, bitter and umami are quick chemical signals. They are not a list of ingredients. They tell the nervous system a small quantity of information about the material that arrived. It is easy to give them a false signal.' },
+        { k:'diverter', h:'Your food and your air use the same junction.',
+          p:'This is the critical part. Each swallow starts a protection sequence. The larynx moves up, the vocal folds close, and the epiglottis folds back. If the sequence occurs at the wrong time, the cough reflex starts.' },
+        { k:'conveyor', h:'The tube pushes the food down.',
+          p:'A wave of muscle pushes the food along a tube approximately 25 cm long. You can thus swallow when you lie down, and also against gravity. Your body position can change the speed of the transfer.' }
       ],
-      note: '<b>The odd bit.</b> No engineer would ever run a food line and an air line through the same junction — it is a genuinely bad piece of plant layout. We have it because the machinery was inherited, not designed: the plumbing was laid down long before anything needed to breathe and eat and talk through the same opening. The protection sequence is a superb solution to a problem that should not exist.'
+      note: '<b>Summary.</b> No engineer puts a food line and an air line through the same junction. It is a bad plant layout. We have this layout because we inherited the machinery, and nobody designed it. The pipework was made long before an animal had to breathe, eat and speak through the same opening. The protection sequence is an excellent solution to a problem that should not exist.'
     },
     tech: {
       kicker: 'Equipment Datasheet',
       spec: [
-        { k:'Class',              v:'Wet mill with integrated dosing and QC' },
-        { k:'Duty',               v:'Size reduction · lubrication · initial hydrolysis · safe transfer' },
-        { k:'Dosing rate',        v:'<em>0.5–1.5 L/day</em>, demand-triggered' },
+        { k:'Class',              v:'A wet mill. It also doses fluid and checks the material.' },
+        { k:'Duty',               v:'It reduces the size, lubricates the food, starts to break it down, and transfers it safely.' },
+        { k:'Dosing rate',        v:'<em>0.5 to 1.5 L each day</em>. The glands supply it when you need it.' },
         { k:'Dosing pH',          v:'6.2 – 7.6' },
-        { k:'Catalyst',           v:'Salivary amylase — begins on starch, largely denatured at Station 02' },
-        { k:'Transfer time',      v:'Seconds, <em>not gravity-dependent</em>' },
-        { k:'Transfer mechanism', v:'Peristaltic wave, ~2–4 cm/s' },
-        { k:'Particle spec',      v:'No fixed target. The reflex fires on bolus cohesion.' },
-        { k:'Failure mode',       v:'Airway-protection mistiming. Recovery: violent, effective, involuntary.' }
+        { k:'Catalyst',           v:'Salivary amylase. It starts on the starch. The acid at Station 02 stops most of it.' },
+        { k:'Transfer time',      v:'A few seconds. <em>It does not need gravity.</em>' },
+        { k:'Transfer mechanism', v:'A wave of muscle at approximately 2 to 4 cm each second.' },
+        { k:'Particle spec',      v:'No fixed target. The reflex starts when the material holds together.' },
+        { k:'Failure mode',       v:'The airway closes at the wrong time. The cough reflex then clears it.' }
       ],
       points: [
         { k:'crusher', h:'Dentition',
-          p:'Mechanical size reduction. Smaller particles expose more area to enzymes; the exact rate change depends on particle geometry and mixing. Molar bite force runs to several hundred newtons.' },
+          p:'The teeth reduce the size of the material. Small particles give more area to the enzymes. The shape of the particles and the mixing both change the rate. The back teeth apply several hundred newtons.' },
         { k:'dosing', h:'Salivary glands',
-          p:'Demand-triggered dosing at 0.5–1.5 L/day, carrying amylase, lubricant, buffer and antimicrobials. The amylase acts on starch immediately; most of it is denatured by the acid at Station 02.' },
+          p:'The glands supply 0.5 to 1.5 L each day when you need it. The saliva carries amylase, lubricant, buffer and antimicrobial agents. The amylase acts on the starch immediately. The acid at Station 02 then stops most of it.' },
         { k:'qc', h:'Tongue',
-          p:'A crude, fast assay: sweet receptors respond to sugars and other sweet molecules; salt to sodium ions; sour to acidity; umami especially to glutamate and nucleotides; bitter to a broad range of compounds. Useful signal, not composition analysis.' },
+          p:'A quick and approximate measurement. The sweet receptors respond to sugars and to other sweet molecules. The salt receptors respond to sodium ions, and the sour receptors respond to acidity. The umami receptors respond to glutamate and to nucleotides. The bitter receptors respond to many compounds. The signal is useful, but it does not give you the composition.' },
         { k:'diverter', h:'Airway protection',
-          p:'Not a single flap-valve: safe swallowing coordinates true-vocal-fold closure, laryngeal elevation, epiglottic inversion and pressure changes around the bolus. Failure of that sequence can allow penetration or aspiration.' },
+          p:'This is more than one flap valve. A safe swallow coordinates four actions: the vocal folds close, the larynx moves up, the epiglottis folds back, and the pressure changes around the food. If the sequence fails, material can enter the airway.' },
         { k:'conveyor', h:'Oesophagus',
-          p:'A peristaltic tube roughly 25 cm long. Transfer is driven by coordinated wall contraction rather than gravity alone. Swallowing can work inverted, although posture measurably affects transit and pressure.' }
+          p:'A tube approximately 25 cm long. The wall contracts in sequence and moves the food. Gravity is not necessary. You can swallow when you are upside down, but your body position changes the speed and the pressure.' }
       ],
-      note: '<b>Design note.</b> No engineer would route a food line and an air line through the same junction. It is an appalling piece of plant layout that would fail any design review. We have it because the machinery is inherited, not designed — the plumbing was laid down long before anything needed to breathe and eat and talk through the same opening.',
+      note: '<b>Design note.</b> No engineer routes a food line and an air line through the same junction. It is a very bad plant layout, and it would fail a design review. We have this layout because we inherited the machinery, and nobody designed it. The pipework was made long before an animal had to breathe, eat and speak through the same opening.',
       analogy: {
         tag: 'What it actually resembles',
-        body: 'A peristaltic pump, the kind used in dialysis machines and laboratory dosing rigs. It moves fluid by squeezing the outside of a flexible tube, so nothing mechanical ever touches the material and gravity is not doing the work. This is why you can drink a glass of water lying down.'
+        body: 'A peristaltic pump. Dialysis machines and laboratory dosing equipment use this type of pump. It moves fluid when it presses the outside of a flexible tube. No mechanical part touches the material, and gravity does no work. This is why you can drink a glass of water when you lie down.'
       }
     }
   },
@@ -348,10 +348,10 @@ export default {
   myth: {
     claim: 'Chew every mouthful thirty-two times.',
     mechanism: [
-      'There is no evidence for thirty-two, or for any specific number. The figure traces back to Victorian-era diet advocacy, not to physiology. The mill has no counter.',
-      "What chewing actually does is reduce particle size and mix in lubricant until the material is cohesive enough to trigger the swallow reflex — which fires on its own, when it's ready, whether you counted or not. A soft idli needs a handful of chews. A mouthful of raw carrot needs many more. The correct number is \"until it's ready,\" which your jaw already knows.",
-      'There is a modest real finding underneath: slower eating can reduce intake for some people. But there is no magic twenty-minute satiety timer; signals from the mouth, stomach, intestine and brain overlap throughout a meal. That is an argument for pace, not arithmetic.'
+      'There is no evidence for thirty-two, or for any other specific number. The figure comes from Victorian diet advice. It does not come from physiology. The mill has no counter.',
+      'Chewing reduces the particle size and mixes in the lubricant. It continues until the material holds together. The swallow reflex then starts by itself, and your count makes no difference. A soft idli needs a few chews. Raw carrot needs many more. The correct number is the number that makes the material ready, and your jaw already knows it.',
+      'One small true finding is below this advice. Slow eating can reduce the quantity that some persons eat. But there is no twenty-minute timer for the sensation of a full stomach. Signals from the mouth, the stomach, the intestine and the brain overlap during the full meal. This supports a slow speed. It does not support a count.'
     ],
-    whySurvives: 'Because a number feels like knowledge. "Chew thoroughly" is advice; "chew thirty-two times" sounds like a finding. Precision is persuasive even when it is invented, which is a pattern you will see at every remaining station.'
+    whySurvives: 'A number feels like knowledge. The words "chew the food fully" are advice. The words "chew thirty-two times" sound like a measurement. A precise number persuades you even when somebody invented it. You will see this pattern at each remaining station.'
   }
 };

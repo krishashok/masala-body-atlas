@@ -15,8 +15,8 @@ export default {
 
   rail:  { plain:'Small Intestine',     tech:'Main Refinery' },
   title: { plain:'The Small Intestine', tech:'The Main Refinery' },
-  sub:   { plain:'Where food stops being food and starts being you',
-           tech :'Vessel R-03 · where feedstock becomes you' },
+  sub:   { plain:'This station makes the food into part of your body.',
+           tech :'Vessel R-03 · the station makes the feedstock into your tissue' },
 
   drawing: { no:'MB-STN-03', rev:'A', vessel:'R-03',
              desc:'Continuous-flow reactor', view:'Anterior view' },
@@ -24,34 +24,34 @@ export default {
   /* ---------------- hotspots ---------------- */
   /* Markers and drawing labels. The prose lives once, in main.*.points. */
   hotspots: [
-    { k:'neutralise', n:1, plain:{ name:'The Acid Fix', fn:'Cancels the stomach acid, fast' },
-                      tech :{ name:'Neutralisation zone', fn:'Duodenum · pH 2 → 6–7' } },
-    { k:'bile', n:2, plain:{ name:'The Detergent Line', fn:'Breaks fat into droplets' },
-                tech :{ name:'Emulsifier injection', fn:'Bile · stored, concentrated, on demand' } },
-    { k:'catalyst', n:3, plain:{ name:'The Enzyme Line', fn:'All three tool types at once' },
-                    tech :{ name:'Catalyst injection', fn:'Pancreas · amylase, proteases, lipase' } },
-    { k:'surface', n:4, plain:{ name:'The Folded Surface', fn:'Folds on folds on folds' },
-                   tech :{ name:'Surface amplification', fn:'Villi & microvilli · ~30 m²' } },
-    { k:'turnstiles', n:5, plain:{ name:'The Border Control', fn:'Several ways through the wall' },
-                      tech :{ name:'Selective membrane', fn:'Carriers · channels · diffusion' } }
+    { k:'neutralise', n:1, plain:{ name:'The Acid Fix', fn:'It removes the stomach acid quickly' },
+                      tech :{ name:'Neutralisation zone', fn:'Duodenum · pH 2 to pH 6 or 7' } },
+    { k:'bile', n:2, plain:{ name:'The Detergent Line', fn:'It breaks the fat into droplets' },
+                tech :{ name:'Emulsifier injection', fn:'Bile · the body stores it and supplies it when necessary' } },
+    { k:'catalyst', n:3, plain:{ name:'The Enzyme Line', fn:'It supplies all three tool types together' },
+                    tech :{ name:'Catalyst injection', fn:'Pancreas · amylase, proteases and lipase' } },
+    { k:'surface', n:4, plain:{ name:'The Folded Surface', fn:'Folds carry smaller folds' },
+                   tech :{ name:'Surface amplification', fn:'Villi and microvilli · approximately 30 m²' } },
+    { k:'turnstiles', n:5, plain:{ name:'The Border Control', fn:'The wall has several routes through it' },
+                      tech :{ name:'Selective membrane', fn:'Carriers, channels and diffusion' } }
   ],
 
   modes: [
     { k:'flow', label:{ plain:'Normal flow', tech:'Normal flow' }, fault:false,
-      cap:{ plain:'<b>Normal flow.</b> Material moves along steadily while the acid is cancelled, the tools are dosed in, and the useful parts are pulled through the wall. Two to six hours end to end.',
-            tech :'<b>Normal flow.</b> Continuous throughput with neutralisation on arrival, catalyst dosing, and selective uptake across the wall. Residence time 2–6 h.' } },
+      cap:{ plain:'<b>Normal flow.</b> The material moves along the tube at a steady rate. The station removes the acid, adds the enzymes, and moves the useful parts through the wall. The material needs two to six hours to pass through.',
+            tech :'<b>Normal flow.</b> The station operates continuously. It neutralises the acid when the material arrives, adds the catalysts, and absorbs selected molecules through the wall. The material stays in the station for 2 to 6 hours.' } },
 
     { k:'fatty', label:{ plain:'Fatty meal', tech:'Emulsification' }, fault:false,
-      cap:{ plain:'<b>Fatty meal.</b> The detergent line opens and the fat gets broken into droplets small enough to work on. Without this step, fat would just sit there as a blob the tools cannot reach.',
-            tech :'<b>Emulsification.</b> Bile release on fat sensing; the immiscible phase is dispersed into droplets within reach of lipase. Without it the interfacial area is far too small.' } },
+      cap:{ plain:'<b>Fatty meal.</b> The bile line opens. The bile breaks the fat into small droplets. The enzymes can then reach the fat. If this step does not occur, the fat stays as one mass and the enzymes cannot reach it.',
+            tech :'<b>Emulsification.</b> Sensors find the fat, and the gallbladder releases the bile. The bile breaks the fat into droplets, and the lipase can then reach them. Without the bile the contact area is too small.' } },
 
     { k:'closeup', label:{ plain:'Close up', tech:'Detail view' }, fault:false,
-      cap:{ plain:'<b>Close up.</b> Zoom into the wall and it stops being a tube. Folds carry fringes carry finer fringes, and the membrane offers different routes for different molecules.',
-            tech :'<b>Detail view.</b> Surface amplification and membrane selectivity at scale. Two detail windows: wall geometry, and a single membrane with its carriers.' } },
+      cap:{ plain:'<b>Close up.</b> Look at the wall closely. It is not a smooth tube. Folds carry fringes, and those fringes carry smaller fringes. The membrane gives a different route to each type of molecule.',
+            tech :'<b>Detail view.</b> The folds increase the surface area, and the membrane selects the molecules. Two windows show the detail. The first shows the shape of the wall. The second shows one membrane and its carriers.' } },
 
     { k:'lactose', label:{ plain:'Lactose not absorbed', tech:'Uptake shortfall' }, fault:true,
-      cap:{ plain:'<b>Lactose not absorbed.</b> Without the tool that splits it, the sugar cannot cross. It travels on to Station 04, where the residents ferment it — which is where the gas and the cramping come from.',
-            tech :'<b>Uptake shortfall.</b> Absent lactase, the disaccharide is not hydrolysed and cannot cross. It passes to Station 04 as fermentable substrate. Symptoms are downstream, driven by osmotic water movement and microbial fermentation.' } }
+      cap:{ plain:'<b>Lactose not absorbed.</b> The enzyme that divides this sugar is absent, so the sugar cannot cross the wall. It continues to Station 04. The microbes there ferment it, and this makes the gas and the pain.',
+            tech :'<b>Uptake shortfall.</b> Lactase is absent, so the station cannot divide the sugar and the sugar cannot cross the wall. It passes to Station 04 as substrate for fermentation. The symptoms occur downstream. Water movement and microbial fermentation cause them.' } }
   ],
 
   /* ---------------- the drawing ---------------- */
@@ -123,7 +123,7 @@ export default {
                             M284 616 L284 596 M292 608 L292 588 M300 600 L300 580 M308 604 L308 584 M316 596 L316 576
                             M324 604 L324 584 M332 608 L332 588 M340 600 L340 580 M348 608 L348 588 M356 616 L356 596
                             M364 612 L364 592 M372 604 L372 584 M380 608 L380 588 M388 616 L388 596 M396 622 L396 602"/>
-    <text class="lbl-fn" x="162" y="658">folds · fringes · finer fringes</text>
+    <text class="lbl-fn" x="162" y="658">folds, fringes and smaller fringes</text>
 
     <!-- detail B: one membrane, one carrier per molecule -->
     <rect class="inset" x="440" y="540" width="300" height="130"/>
@@ -137,7 +137,7 @@ export default {
     <circle class="frag-bit" cx="588" cy="648" r="4.5" style="--dx:0px;--dy:-52px"/>
     <circle class="frag-bit" cx="510" cy="648" r="4"   style="--dx:0px;--dy:-52px;animation-delay:-1.1s"/>
     <circle class="chyme b"  cx="666" cy="648" r="5" style="animation:none"/>
-    <text class="lbl-fn" x="452" y="658">one carrier per molecule · saturable</text>
+    <text class="lbl-fn" x="452" y="658">one carrier for each molecule · limited rate</text>
   </g>
 
   <!-- ===== uptake shortfall (fault) ===== -->
@@ -175,7 +175,7 @@ export default {
     <text class="lbl-name techonly"  x="476" y="93">Neutralisation zone</text>
     <text class="lbl-name plainonly" x="476" y="93">The Acid Fix</text>
     <text class="lbl-fn techonly"    x="476" y="107">Duodenum · pH 2 → 6–7</text>
-    <text class="lbl-fn plainonly"   x="476" y="108">Cancels the stomach acid, fast</text>
+    <text class="lbl-fn plainonly"   x="476" y="108">Removes the stomach acid</text>
     <circle class="hotring" cx="300" cy="150" r="10"/>
     <circle class="hithalo" cx="300" cy="150" r="22"/>
     <circle class="hotdot" cx="300" cy="150" r="10"/>
@@ -186,7 +186,7 @@ export default {
     <path class="leader" d="M128 140 L100 200 L94 200"/>
     <text class="lbl-name techonly"  x="88" y="197" text-anchor="end">Emulsifier injection</text>
     <text class="lbl-name plainonly" x="88" y="197" text-anchor="end">The Detergent Line</text>
-    <text class="lbl-fn techonly"    x="88" y="211" text-anchor="end">Bile · on demand</text>
+    <text class="lbl-fn techonly"    x="88" y="211" text-anchor="end">Bile · supplied when needed</text>
     <text class="lbl-fn plainonly"   x="88" y="212" text-anchor="end">Breaks fat into droplets</text>
     <circle class="hotring" cx="128" cy="124" r="10"/>
     <circle class="hithalo" cx="128" cy="124" r="22"/>
@@ -198,8 +198,8 @@ export default {
     <path class="leader" d="M430 198 L540 155 L566 155"/>
     <text class="lbl-name techonly"  x="572" y="152">Catalyst injection</text>
     <text class="lbl-name plainonly" x="572" y="152">The Enzyme Line</text>
-    <text class="lbl-fn techonly"    x="572" y="166">Pancreas · 3 classes at once</text>
-    <text class="lbl-fn plainonly"   x="572" y="167">All three tool types at once</text>
+    <text class="lbl-fn techonly"    x="572" y="166">Pancreas · 3 classes together</text>
+    <text class="lbl-fn plainonly"   x="572" y="167">All three tool types together</text>
     <circle class="hotring" cx="430" cy="198" r="10"/>
     <circle class="hithalo" cx="430" cy="198" r="22"/>
     <circle class="hotdot" cx="430" cy="198" r="10"/>
@@ -210,8 +210,8 @@ export default {
     <path class="leader" d="M380 300 L540 240 L566 240"/>
     <text class="lbl-name techonly"  x="572" y="237">Surface amplification</text>
     <text class="lbl-name plainonly" x="572" y="237">The Folded Surface</text>
-    <text class="lbl-fn techonly"    x="572" y="251">Villi &amp; microvilli · ~30 m²</text>
-    <text class="lbl-fn plainonly"   x="572" y="252">Folds on folds on folds</text>
+    <text class="lbl-fn techonly"    x="572" y="251">Villi and microvilli · about 30 m²</text>
+    <text class="lbl-fn plainonly"   x="572" y="252">Folds carry smaller folds</text>
     <circle class="hotring" cx="380" cy="300" r="10"/>
     <circle class="hithalo" cx="380" cy="300" r="22"/>
     <circle class="hotdot" cx="380" cy="300" r="10"/>
@@ -222,8 +222,8 @@ export default {
     <path class="leader" d="M470 468 L556 468 L576 448"/>
     <text class="lbl-name techonly"  x="582" y="445">Selective membrane</text>
     <text class="lbl-name plainonly" x="582" y="445">The Border Control</text>
-    <text class="lbl-fn techonly"    x="582" y="459">Carriers · channels · diffusion</text>
-    <text class="lbl-fn plainonly"   x="582" y="460">Several ways through the wall</text>
+    <text class="lbl-fn techonly"    x="582" y="459">Carriers, channels, diffusion</text>
+    <text class="lbl-fn plainonly"   x="582" y="460">Several routes through the wall</text>
     <circle class="hotring" cx="470" cy="468" r="10"/>
     <circle class="hithalo" cx="470" cy="468" r="22"/>
     <circle class="hotdot" cx="470" cy="468" r="10"/>
@@ -240,70 +240,70 @@ export default {
   /* ---------------- main panel ---------------- */
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { h:'This is where the work happens.', p:'The stomach gets the reputation. Almost everything you have ever eaten actually became part of you here, across this surface.' },
-        { k:'neutralise', h:'The acid gets neutralised fast.',
-          p:'What arrives from the stomach is strongly acidic. Bicarbonate rapidly raises the pH toward the range where pancreatic and brush-border enzymes work best — a huge swing, done continuously in a moving stream.' },
-        { k:'bile', h:'Bile is detergent, not digestion.',
-          p:"Fat and water don't mix, which is a real problem when your tools are water-based and your food isn't. Bile is a detergent. It breaks fat into droplets small enough to be worked on — exactly what dish soap does to a greasy pan." },
-        { k:'catalyst', h:'Everything is handled at once.',
-          p:'One enzyme for starch, others for protein, another for fat — all delivered into the same stream at the same time. This refinery does not handle one kind of food at a time. It never has.' },
+        { h:'This station does most of the work.', p:'People give the stomach the reputation. Almost all the food that you have eaten became part of your body here, across this surface.' },
+        { k:'neutralise', h:'The station removes the acid quickly.',
+          p:'The material from the stomach is strongly acidic. Bicarbonate raises the pH quickly. The enzymes from the pancreas and the wall then operate at their best pH. This is a large change, and the station makes it continuously in a moving stream.' },
+        { k:'bile', h:'Bile is a detergent.',
+          p:'Fat and water do not mix. This is a problem, because the enzymes are in water and the fat is not. Bile breaks the fat into small droplets, and the enzymes can then reach them. Dish soap does the same thing to a greasy pan.' },
+        { k:'catalyst', h:'The station handles all the food types together.',
+          p:'One enzyme acts on the starch, other enzymes act on the protein, and another acts on the fat. The station supplies all of them into the same stream at the same time. It has always operated in this manner.' },
         { k:'surface', h:'The Folded Surface',
-          p:'Folds carrying fringes carrying finer fringes. It is the same trick as the fins on a radiator: get the most contact area into the least space. This is what turns a plain tube into a working surface.' },
-        { k:'turnstiles', h:'The wall is selective, not sealed.',
-          p:'The wall is selective, but it does not use one universal kind of gate. Many nutrients use dedicated carriers or channels; others diffuse across cells or slip between them. The route depends on the molecule.' }
+          p:'Folds carry fringes, and those fringes carry smaller fringes. The fins on a radiator use the same method. Both put the largest contact area into the smallest space. This makes a plain tube into a working surface.' },
+        { k:'turnstiles', h:'The wall selects what crosses it.',
+          p:'The wall does not use one type of gate. Many nutrients use a carrier or a channel that is specific to them. Others move through the cells, or between them. The route depends on the molecule.' }
       ],
-      note: '<b>The actual refinery.</b> Station 02 gets the reputation; this station does most of the digestion and absorption. The stomach is where food goes. This is where much of it stops being food.'
+      note: '<b>Summary.</b> People give Station 02 the reputation. This station does most of the digestion and most of the absorption. Food goes into the stomach. This station makes it into part of your body.'
     },
     tech: {
       kicker: 'Equipment Datasheet',
       spec: [
-        { k:'Class',              v:'Continuous-flow catalytic reactor with selective membrane separation' },
-        { k:'Duty',               v:'Neutralisation · hydrolysis · emulsification · selective uptake' },
-        { k:'Length',             v:'~3 m in life under muscle tone; ~6–7 m relaxed' },
+        { k:'Class',              v:'A continuous-flow catalytic reactor. It has a membrane that separates selected molecules.' },
+        { k:'Duty',               v:'It neutralises the acid, breaks down the food, emulsifies the fat and absorbs selected molecules.' },
+        { k:'Length',             v:'Approximately 3 m in a living person. Approximately 6 to 7 m when the muscle is relaxed.' },
         { k:'Absorptive surface', v:'<em>~30 m²</em>' },
         { k:'Inlet pH',           v:'~2' },
-        { k:'Operating pH',       v:'6 – 7, corrected on arrival' },
-        { k:'Catalysts',          v:'Amylase, proteases, lipase — injected, not resident' },
-        { k:'Surfactant',         v:'Bile salts, recycled and reused' },
+        { k:'Operating pH',       v:'6 to 7. The station corrects the pH when the material arrives.' },
+        { k:'Catalysts',          v:'Amylase, proteases and lipase. The pancreas supplies them; they do not stay in the tube.' },
+        { k:'Surfactant',         v:'Bile salts. The body recovers them and uses them again.' },
         { k:'Residence time',     v:'2 – 6 h' },
-        { k:'Uptake duty',        v:'<em>~95%</em> of available macronutrient' },
-        { k:'Selectivity',        v:'Carriers · channels · transcellular diffusion · paracellular routes' }
+        { k:'Uptake duty',        v:'<em>Approximately 95%</em> of the available macronutrient.' },
+        { k:'Selectivity',        v:'Carriers, channels, diffusion through the cells, and routes between the cells.' }
       ],
       points: [
         { k:'neutralise', h:'Neutralisation zone',
-          p:'Acidic chyme arrives from Station 02 and is neutralised toward roughly pH 6–7 by bicarbonate-rich secretions. Most downstream pancreatic enzymes require this less-acidic environment; the transition happens rapidly while the stream keeps moving.' },
+          p:'Acidic material arrives from Station 02. Secretions that contain bicarbonate raise the pH to approximately 6 or 7. Most enzymes from the pancreas need this pH. The change occurs quickly, and the stream continues to move.' },
         { k:'bile', h:'Emulsifier injection',
-          p:'Fat and water do not mix, which is a serious process problem when the catalysts are water-soluble and the feedstock is not. Bile is a detergent: it breaks fat into droplets small enough for lipase to reach. Made by the liver, stored and concentrated in the gallbladder, released on demand.' },
+          p:'Fat and water do not mix. This is a serious process problem, because the catalysts dissolve in water and the feedstock does not. Bile is a detergent. It breaks the fat into droplets that lipase can reach. The liver makes the bile. The gallbladder stores it and concentrates it, then releases it when the station needs it.' },
         { k:'catalyst', h:'Catalyst injection',
-          p:'Amylase for carbohydrate, proteases for protein, lipase for fat, all delivered into the same stream at the same time. The refinery does not process one macronutrient at a time. It never has.' },
+          p:'Amylase acts on the carbohydrate, proteases act on the protein, and lipase acts on the fat. The pancreas supplies all of them into the same stream at the same time. The station has always processed the macronutrients together.' },
         { k:'surface', h:'Surface amplification',
-          p:'Folds carrying fringes carrying finer fringes. The same trick as fins on a heat exchanger: get the most contact area into the least volume. This is what turns a tube into a processing surface.' },
+          p:'Folds carry fringes, and those fringes carry smaller fringes. The fins on a heat exchanger use the same method. Both put the largest contact area into the smallest volume. This makes a tube into a processing surface.' },
         { k:'turnstiles', h:'Selective membrane',
-          p:'Absorption uses multiple routes: active and facilitated transport, channels, passive transcellular diffusion and paracellular movement. Many carriers are saturable and regulated, but not every molecule needs a dedicated turnstile.' }
+          p:'The wall uses several routes. These are active transport, facilitated transport, channels, diffusion through the cells and movement between the cells. Many carriers have a maximum rate, and the body controls them. A molecule does not always need a carrier of its own.' }
       ],
-      note: '<b>Design note.</b> This is the principal digestion-and-absorption stage. Selectivity comes from a mix of transporters, channels, membrane permeability and paracellular pathways rather than one turnstile per molecule.',
+      note: '<b>Design note.</b> This is the principal stage for digestion and absorption. Transporters, channels, the permeability of the membrane, and the routes between the cells together select what crosses. There is not one gate for each molecule.',
       analogy: {
         tag: 'Process analogue',
-        body: 'A catalytic reactor with a selective membrane separation stage. Feedstock is conditioned to the right pH, catalysts are dosed in, a surfactant handles the immiscible phase, and the products are pulled across a membrane that admits some molecules and refuses others. Chemical engineers build these one process step at a time, in separate vessels. This does all of it simultaneously, in a moving stream, in a soft tube.'
+        body: 'A catalytic reactor with a membrane that separates selected molecules. The station corrects the pH of the feedstock and adds the catalysts. A surfactant holds the fat in the water. The products then cross a membrane that admits some molecules and refuses others. Chemical engineers build each of these steps in a separate vessel. This station does all the steps at the same time, in a moving stream, in a soft tube.'
       }
     }
   },
 
   modelLimits: [
-    'The turnstile drawing is shorthand. Intestinal uptake includes active and facilitated carriers, channels, passive transcellular diffusion and paracellular routes.',
-    'Long-chain dietary fat is packaged into chylomicrons and leaves mainly through intestinal lymph before joining the systemic circulation.'
+    'The gate in the drawing is a simplification. The intestine absorbs material through active carriers, facilitated carriers, channels, diffusion through the cells, and routes between the cells.',
+    'The wall puts long-chain fat into chylomicrons. Most of this fat leaves through the lymph of the intestine, and it enters the blood after that.'
   ],
 
   /* ---------------- myth ---------------- */
   myth: {
-    claim: "Don't eat protein and carbohydrate together — the body can't digest both at once.",
+    claim: 'Do not eat protein and carbohydrate together. The body cannot digest both at the same time.',
     mechanism: [
-      'It can, and it always has. Amylase, proteases and lipase enter the same stretch of intestine and work in parallel on different substrates. Mixed meals are routine operating conditions.',
-      'The idea comes from early-twentieth-century food-combining schemes, which reasoned from the fact that different enzymes prefer different pH — true in a test tube, but not a reason to separate foods: the gut creates local pH conditions and releases multiple enzymes into the same mixed meal.',
-      'You also have a few thousand years of field testing: dal and rice, roti and sabzi, idli and sambar. Human cuisines are overwhelmingly mixed meals, and controlled studies have not found a digestive advantage to separating protein from carbohydrate.'
+      'The body can digest both, and it has always done so. Amylase, proteases and lipase enter the same length of intestine. They act on different substrates at the same time. A mixed meal is a usual operating condition.',
+      'This idea comes from food-combining systems of the early twentieth century. Those systems used one true fact: different enzymes operate best at different pH. This is true in a test tube. It is not a reason to separate the foods. The gut makes the necessary pH at each location, and it releases several enzymes into the same mixed meal.',
+      'You also have some thousands of years of practical evidence: dal with rice, roti with sabzi, idli with sambar. Almost all human food is a mixed meal. Controlled studies show no advantage in digestion when a person separates the protein from the carbohydrate.'
     ],
-    whySurvives: 'Because it converts a complicated system into a simple rule, and rules feel actionable in a way that mechanisms don&rsquo;t. Nearly every food fear you have met is a real-but-narrow fact promoted to a universal law.'
+    whySurvives: 'It makes a complicated system into a simple rule. A rule is easier to obey than a mechanism is to understand. Almost every food fear that you know is a true but narrow fact that somebody made into a universal law.'
   }
 };

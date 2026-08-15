@@ -20,42 +20,42 @@ export default {
 
   rail:  { plain:"Why It's Hard",  tech:'Control Room' },
   title: { plain:"Why It's Hard",  tech:'The Control Room' },
-  sub:   { plain:'Every instrument has a blind spot. Confidence rises when different ones agree.',
-           tech :'Every sensor has a characteristic bias and failure mode' },
+  sub:   { plain:'Each instrument has a blind spot. Your confidence increases when different instruments agree.',
+           tech :'Each sensor has its own bias and its own failure mode' },
 
   drawing: { no:'MB-STN-08', rev:'A', vessel:'—',
              desc:'Instrument wall', view:'Elevation' },
 
   /* Markers and drawing labels. The prose lives once, in main.*.points. */
   hotspots: [
-    { k:'trial', n:1, plain:{ name:'The Clean Gauge', fn:'Trustworthy, short, and artificial' },
-                 tech :{ name:'Randomised trial', fn:'Low bias · short · small n' } },
-    { k:'cohort', n:2, plain:{ name:'The Long Gauge', fn:'Real life, and hopelessly tangled' },
-                  tech :{ name:'Cohort study', fn:'Long · real conditions · confounded' } },
-    { k:'bias', n:3, plain:{ name:'The Tilt', fn:'The food gets credit for the whole life' },
-                tech :{ name:'Healthy-user effect', fn:'Systematic · in one direction' } },
-    { k:'amplifier', n:4, plain:{ name:'The Megaphone', fn:'Picks the loudest gauge and shouts' },
-                     tech :{ name:'The amplifier', fn:'Funding and media · gain: high' } },
+    { k:'trial', n:1, plain:{ name:'The Clean Gauge', fn:'It is reliable, short and artificial' },
+                 tech :{ name:'Randomised trial', fn:'Low bias · short · few subjects' } },
+    { k:'cohort', n:2, plain:{ name:'The Long Gauge', fn:'Real life. Many factors are mixed together.' },
+                  tech :{ name:'Cohort study', fn:'Long · real conditions · many mixed factors' } },
+    { k:'bias', n:3, plain:{ name:'The Tilt', fn:'The food receives the credit for a full life' },
+                tech :{ name:'Healthy-user effect', fn:'Systematic · always in one direction' } },
+    { k:'amplifier', n:4, plain:{ name:'The Megaphone', fn:'It selects the extreme gauge and broadcasts it' },
+                     tech :{ name:'The amplifier', fn:'Funding and media · high gain' } },
     { k:'converge', n:5, plain:{ name:'Agreement', fn:'The strongest reading on the panel' },
-                    tech :{ name:'Convergence', fn:'Agreement across independent designs' } }
+                    tech :{ name:'Convergence', fn:'Independent designs agree' } }
   ],
 
   modes: [
     { k:'onestudy', label:{ plain:'One study', tech:'Single instrument' }, fault:false,
-      cap:{ plain:'<b>One study.</b> A single gauge, read confidently. This is what almost every headline you have ever seen is standing on.',
-            tech :'<b>Single instrument.</b> One reading, taken at face value. Effect sizes in this field are typically small, and one instrument cannot tell you which way it is wrong.' } },
+      cap:{ plain:'<b>One study.</b> One gauge, read with confidence. Almost every headline that you have seen stands on one gauge.',
+            tech :'<b>Single instrument.</b> One reading, accepted without a check. The effects in this field are usually small. One instrument cannot tell you the direction of its own error.' } },
 
     { k:'allgauges', label:{ plain:'All the gauges', tech:'Full panel' }, fault:false,
-      cap:{ plain:'<b>All the gauges.</b> Five instruments, five different readings. Each has a characteristic blind spot; disagreement is information about the instruments as well as the question.',
-            tech :'<b>Full panel.</b> Five designs, five readings. Each carries characteristic bias and uncertainty. Picking a favourite is not a method.' } },
+      cap:{ plain:'<b>All the gauges.</b> Five instruments give five different readings. Each has its own blind spot. The disagreement tells you about the instruments and about the question.',
+            tech :'<b>Full panel.</b> Five designs give five readings. Each has its own bias and its own uncertainty. To select your preferred gauge is not a method.' } },
 
     { k:'converge', label:{ plain:'Convergence', tech:'Convergence' }, fault:false,
-      cap:{ plain:'<b>Convergence.</b> They settle into agreement. This is what trustworthy actually looks like — undramatic, slow, and almost never in the news.',
-            tech :'<b>Convergence.</b> Independent designs with different failure modes point the same way. That is among the strongest readings the panel can produce.' } },
+      cap:{ plain:'<b>Convergence.</b> The instruments come into agreement. This is the appearance of a reliable result. It is slow, it is not dramatic, and it is almost never in the news.',
+            tech :'<b>Convergence.</b> Independent designs with different failure modes give the same result. This is one of the strongest readings that the panel can give.' } },
 
     { k:'megaphone', label:{ plain:'With a megaphone', tech:'Amplified' }, fault:false,
-      cap:{ plain:'<b>With a megaphone.</b> The most extreme gauge gets picked up and broadcast. The field looks like it keeps changing its mind because you are watching it correct itself in public, at speed, with the volume up.',
-            tech :'<b>Amplified.</b> Selection for surprise picks the outlying instrument and broadcasts it. The apparent instability of the field is the error-correction being observed in public, at gain.' } }
+      cap:{ plain:'<b>With a megaphone.</b> The media select the most extreme gauge and broadcast it. The field appears to change its opinion continuously. You are watching it correct itself in public, at speed, and at high volume.',
+            tech :'<b>Amplified.</b> The media select the instrument that gives a surprising result, and they broadcast it. The field appears unstable. You are observing its error correction in public, at high gain.' } }
   ],
 
   svg: `<svg viewBox="-90 0 850 800" preserveAspectRatio="xMidYMid meet" role="img"
@@ -75,7 +75,7 @@ export default {
   <!-- ===== one study ===== -->
   <g class="anim a-onestudy">
     ${gauge(370, 258, 'RCT-1', 'reads high', [-16, -20])}
-    <text class="dimtext" x="370" y="330" text-anchor="middle" opacity=".7">one instrument, read confidently</text>
+    <text class="dimtext" x="370" y="330" text-anchor="middle" opacity=".7">one instrument, read with confidence</text>
   </g>
 
   <!-- ===== full panel ===== -->
@@ -85,7 +85,7 @@ export default {
     ${gauge(370, 258, 'MEC-3', 'mechanism', [-4, -24])}
     ${gauge(485, 258, 'OBS-4', 'observed', [20, -14])}
     ${gauge(600, 258, 'SR-5', 'review', [-12, -21])}
-    <text class="dimtext" x="370" y="352" text-anchor="middle" opacity=".7">five instruments · five readings · none of them faulty</text>
+    <text class="dimtext" x="370" y="352" text-anchor="middle" opacity=".7">five instruments · five readings · none is faulty</text>
   </g>
 
   <!-- ===== convergence ===== -->
@@ -117,9 +117,9 @@ export default {
   <!-- the settled core, always on the wall -->
   <g class="mechonly">
     <rect class="bay" x="60" y="500" width="620" height="120"/>
-    <text class="dimtext techonly"  x="80" y="528">SETTLED CORE — NOT SERIOUSLY DISPUTED, NEVER IN THE NEWS</text>
-    <text class="dimtext plainonly" x="80" y="528">THE BORING PART NOBODY ARGUES ABOUT</text>
-    <text class="lbl-fn" x="80" y="556">Smoking causes cancer · severe energy excess over years causes harm</text>
+    <text class="dimtext techonly"  x="80" y="528">SETTLED CORE — FEW DISPUTE IT, NEVER IN THE NEWS</text>
+    <text class="dimtext plainonly" x="80" y="528">THE PART NOBODY DISPUTES</text>
+    <text class="lbl-fn" x="80" y="556">Smoking causes cancer · a large energy excess over years causes harm</text>
     <text class="lbl-fn" x="80" y="574">Trans fats damage cardiovascular health</text>
     <text class="lbl-fn" x="80" y="592">Extreme deficiency of any essential nutrient causes deficiency disease</text>
   </g>
@@ -130,7 +130,7 @@ export default {
     <path class="scribble" d="M340 230 L400 288 M400 230 L340 288"/>
     <path class="leader" d="M428 258 L500 470 L516 470" style="stroke:var(--chilli)" />
     <text class="hazardtext" x="522" y="466">"Nobody really knows anything"</text>
-    <text class="hazardtext" x="522" y="480" opacity=".75">— the reversals are the point</text>
+    <text class="hazardtext" x="522" y="480" opacity=".75">the reversals show the quality</text>
   </g>
 
   <!-- ================= HOTSPOTS ================= -->
@@ -138,8 +138,8 @@ export default {
     <path class="leader" d="M140 196 L118 108 L104 108"/>
     <text class="lbl-name techonly"  x="98" y="105" text-anchor="end">Randomised trial</text>
     <text class="lbl-name plainonly" x="98" y="105" text-anchor="end">The Clean Gauge</text>
-    <text class="lbl-fn techonly"    x="98" y="119" text-anchor="end">Low bias · short · small n</text>
-    <text class="lbl-fn plainonly"   x="98" y="120" text-anchor="end">Trustworthy, short, artificial</text>
+    <text class="lbl-fn techonly"    x="98" y="119" text-anchor="end">Low bias · short · few subjects</text>
+    <text class="lbl-fn plainonly"   x="98" y="120" text-anchor="end">Reliable, short, artificial</text>
     <circle class="hotring" cx="140" cy="196" r="10"/>
     <circle class="hithalo" cx="140" cy="196" r="22"/>
     <circle class="hotdot" cx="140" cy="196" r="10"/>
@@ -150,8 +150,8 @@ export default {
     <path class="leader" d="M255 196 L300 96 L316 96"/>
     <text class="lbl-name techonly"  x="322" y="93">Cohort study</text>
     <text class="lbl-name plainonly" x="322" y="93">The Long Gauge</text>
-    <text class="lbl-fn techonly"    x="322" y="107">Decades · real conditions · confounded</text>
-    <text class="lbl-fn plainonly"   x="322" y="108">Real life, hopelessly tangled</text>
+    <text class="lbl-fn techonly"    x="322" y="107">Decades · real conditions · mixed factors</text>
+    <text class="lbl-fn plainonly"   x="322" y="108">Real life · many mixed factors</text>
     <circle class="hotring" cx="255" cy="196" r="10"/>
     <circle class="hithalo" cx="255" cy="196" r="22"/>
     <circle class="hotdot" cx="255" cy="196" r="10"/>
@@ -162,8 +162,8 @@ export default {
     <path class="leader" d="M120 370 L96 434 L82 434"/>
     <text class="lbl-name techonly"  x="76" y="431" text-anchor="end">Healthy-user effect</text>
     <text class="lbl-name plainonly" x="76" y="431" text-anchor="end">The Tilt</text>
-    <text class="lbl-fn techonly"    x="76" y="445" text-anchor="end">Systematic, in one direction</text>
-    <text class="lbl-fn plainonly"   x="76" y="446" text-anchor="end">The food gets all the credit</text>
+    <text class="lbl-fn techonly"    x="76" y="445" text-anchor="end">Systematic · one direction</text>
+    <text class="lbl-fn plainonly"   x="76" y="446" text-anchor="end">The food receives all the credit</text>
     <circle class="hotring" cx="120" cy="370" r="10"/>
     <circle class="hithalo" cx="120" cy="370" r="22"/>
     <circle class="hotdot" cx="120" cy="370" r="10"/>
@@ -174,8 +174,8 @@ export default {
     <path class="leader" d="M620 330 L668 396 L684 396"/>
     <text class="lbl-name techonly"  x="690" y="393" text-anchor="end">The amplifier</text>
     <text class="lbl-name plainonly" x="690" y="393" text-anchor="end">The Megaphone</text>
-    <text class="lbl-fn techonly"    x="690" y="407" text-anchor="end">Funding and media · gain high</text>
-    <text class="lbl-fn plainonly"   x="690" y="408" text-anchor="end">Picks the loudest gauge</text>
+    <text class="lbl-fn techonly"    x="690" y="407" text-anchor="end">Funding and media · high gain</text>
+    <text class="lbl-fn plainonly"   x="690" y="408" text-anchor="end">Selects the extreme gauge</text>
     <circle class="hotring" cx="620" cy="330" r="10"/>
     <circle class="hithalo" cx="620" cy="330" r="22"/>
     <circle class="hotdot" cx="620" cy="330" r="10"/>
@@ -186,7 +186,7 @@ export default {
     <path class="leader" d="M370 620 L420 690 L436 690"/>
     <text class="lbl-name techonly"  x="442" y="687">Convergence</text>
     <text class="lbl-name plainonly" x="442" y="687">Agreement</text>
-    <text class="lbl-fn techonly"    x="442" y="701">Agreement across independent designs</text>
+    <text class="lbl-fn techonly"    x="442" y="701">Independent designs agree</text>
     <text class="lbl-fn plainonly"   x="442" y="702">The strongest reading on the panel</text>
     <circle class="hotring" cx="370" cy="620" r="10"/>
     <circle class="hithalo" cx="370" cy="620" r="22"/>
@@ -200,68 +200,68 @@ export default {
 
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { h:'No single instrument is enough.', p:'Each study design has characteristic blind spots. That is a property of measurement, not a scandal.' },
-        { k:'trial', h:'The clean ones are short.',
-          p:'Randomising who gets what tends to balance both known and unknown confounders between groups, which is why trials are so powerful. It does not guarantee perfect balance in one finite study, and nutrition trials are often short, expensive and hard to blind.' },
-        { k:'cohort', h:'The long ones are tangled.',
-          p:'It follows real people eating real food for decades, which is the timescale that actually matters. It also cannot separate the food from everyone who eats it: their income, their exercise, their smoking, their doctor.' },
+        { h:'One instrument is not sufficient.', p:'Each study design has its own blind spots. This is a property of measurement.' },
+        { k:'trial', h:'The reliable studies are short.',
+          p:'A trial selects each group by chance. This usually balances the known factors and the unknown factors between the groups, and it makes a trial powerful. It does not give a perfect balance in one small study. Nutrition trials are also short and expensive, and it is difficult to hide the treatment from the subjects.' },
+        { k:'cohort', h:'The long studies contain mixed factors.',
+          p:'This design follows real persons who eat real food for decades. That is the correct period to study. It cannot separate the food from the persons who eat it. Their income, their exercise, their smoking and their doctor all change the result.' },
         { k:'bias', h:'The Tilt',
-          p:'People who take up any recommended behaviour tend to take up others at the same time. Whatever food you are studying arrives surrounded by a whole lifestyle, and the food gets the credit for all of it.' },
-        { k:'amplifier', h:'The volume is not evidence.',
-          p:'Industry funds research into its own products, and the findings skew accordingly. Press releases select for surprise. A modest, hedged result becomes a headline the paper&rsquo;s own authors would not sign.' },
-        { k:'converge', h:'Believe them when they agree.',
-          p:'When trials, long studies, mechanism and different populations point the same way, confidence rises sharply — especially when those methods fail in different ways. It is slower and less dramatic than one headline, which is exactly the point.' }
+          p:'A person who starts one recommended behaviour usually starts other recommended behaviours at the same time. The food that you study thus arrives with a full set of habits. The food then receives the credit for all of them.' },
+        { k:'amplifier', h:'A loud claim is not evidence.',
+          p:'Industry pays for research into its own products, and the results move in that direction. Press offices select the surprising results. A small result with careful limits becomes a headline that the authors of the paper would not sign.' },
+        { k:'converge', h:'Accept the result when the designs agree.',
+          p:'Trials, long studies, mechanism and different populations can give the same result. Your confidence then increases greatly, and it increases most when those methods fail in different ways. This is slower and less dramatic than one headline.' }
       ],
-      note: '<b>Why it looks messy.</b> The reason nutrition science looks like it keeps changing its mind is that you are watching the error-correction happen in public, at speed, with a megaphone attached. The mechanism that makes it look unreliable — findings challenged, revised, sometimes reversed — is the same mechanism that makes it worth trusting over decades. A field that never reversed anything would not be more rigorous. It would just not be checking.'
+      note: '<b>Summary.</b> Nutrition science appears to change its opinion continuously. You are watching its error correction in public, at speed, and at high volume. Other scientists challenge a finding, revise it, and sometimes reverse it. That process makes the field appear unreliable. The same process makes it reliable across decades. A field that reversed nothing would not be more careful. It would not be checking its work.'
     },
     tech: {
       kicker: 'Instrumentation Datasheet',
       spec: [
-        { k:'Class',                  v:'Distributed instrumentation, imperfectly calibrated' },
-        { k:'Randomised trial',       v:'Strong causal design · often shorter · adherence/blinding limits' },
-        { k:'Cohort study',           v:'Long duration · real conditions · confounded' },
-        { k:'Mechanistic work',       v:'Explains how · does not establish whether it matters in people' },
-        { k:'Self-reported intake',   v:'Systematically low' },
-        { k:'Effect sizes',           v:'Typically small. Hazard ratios near 1.1 mean very little alone.' },
-        { k:'Relative vs absolute',   v:'"Raises risk 30%" may mean 1 in 100 becomes 1.3 in 100' },
-        { k:'Funding effect',         v:'Measurable, and in the sponsor&rsquo;s direction' },
-        { k:'Publication effect',     v:'Positive and surprising results are likelier to appear' },
-        { k:'Trustworthy reading',    v:'<em>Agreement across independent designs</em>' }
+        { k:'Class',                  v:'Distributed instruments. None of them is perfectly calibrated.' },
+        { k:'Randomised trial',       v:'A strong design for cause · usually short · the subjects do not always comply, and it is difficult to hide the treatment' },
+        { k:'Cohort study',           v:'Long period · real conditions · many mixed factors' },
+        { k:'Mechanistic work',       v:'It explains the mechanism. It does not show that the effect is important in a person.' },
+        { k:'Self-reported intake',   v:'Always too low' },
+        { k:'Effect sizes',           v:'Usually small. A hazard ratio near 1.1 means very little by itself.' },
+        { k:'Relative vs absolute',   v:'A rise of 30% can mean that 1 person in 100 becomes 1.3 persons in 100.' },
+        { k:'Funding effect',         v:'Measurable. The result moves toward the interest of the sponsor.' },
+        { k:'Publication effect',     v:'Journals publish positive and surprising results more often.' },
+        { k:'Trustworthy reading',    v:'<em>Independent designs that agree</em>' }
       ],
       points: [
         { k:'trial', h:'Randomised trial',
-          p:'Randomisation tends to balance measured and unmeasured baseline factors on average. It is powerful causal machinery, not a guarantee of perfect balance in a finite trial; long-term diet trials also face adherence, cost and blinding limits.' },
+          p:'Selection by chance usually balances the measured factors and the unmeasured factors. It is a powerful method to show cause. It does not guarantee a perfect balance in one small trial. A long diet trial also has problems with compliance, with cost, and with the concealment of the treatment.' },
         { k:'cohort', h:'Cohort study',
-          p:'Follows real people eating real food for decades, which is the timescale that actually matters. It cannot separate the food from everyone who eats it: their income, their exercise, their smoking, their doctor.' },
+          p:'This design follows real persons who eat real food for decades. That is the correct period to study. It cannot separate the food from the persons who eat it. Their income, their exercise, their smoking and their doctor all change the result.' },
         { k:'bias', h:'Healthy-user effect',
-          p:'People who take up any recommended behaviour tend to take up others at the same time. Whatever food is under study arrives surrounded by a whole lifestyle, and the food gets the credit for all of it.' },
+          p:'A person who starts one recommended behaviour usually starts other recommended behaviours at the same time. The food under study thus arrives with a full set of habits. The food then receives the credit for all of them.' },
         { k:'amplifier', h:'The amplifier',
-          p:'Industry funds research into its own products, and the findings skew accordingly. Press releases select for surprise. A modest, hedged result becomes a headline that the paper&rsquo;s own authors would not sign.' },
+          p:'Industry pays for research into its own products, and the results move in that direction. Press offices select the surprising results. A small result with careful limits becomes a headline that the authors of the paper would not sign.' },
         { k:'converge', h:'Convergence',
-          p:'Convergence across trials, cohorts, mechanistic work and populations is powerful when the designs have genuinely different failure modes. Shared bias can still make several instruments agree on the wrong number.' }
+          p:'Agreement between trials, cohorts, mechanism studies and populations is powerful, but only when those designs fail in different ways. A bias that they share can still make several instruments agree on the wrong value.' }
       ],
-      note: '<b>Design note.</b> The reason nutrition science looks like it keeps changing its mind is that you are watching the error-correction happen in public, at speed, with a megaphone attached. The mechanism that makes it look unreliable is the same mechanism that makes it worth trusting over decades. A field that never reversed anything would not be more rigorous. It would just not be checking.',
+      note: '<b>Design note.</b> Nutrition science appears to change its opinion continuously. You are watching its error correction in public, at speed, and at high volume. The process that makes the field appear unreliable is the process that makes it reliable across decades. A field that reversed nothing would not be more careful. It would not be checking its work.',
       analogy: {
         tag: 'How the panel works',
-        body: 'A control room full of imperfect instruments. Operators do not solve this by choosing a favourite gauge; they compare instruments with different failure modes, check calibration, and become more confident when independent readings converge.'
+        body: 'A control room that contains many imperfect instruments. An operator does not select a preferred gauge. The operator compares instruments that fail in different ways, checks the calibration, and accepts a reading with more confidence when independent instruments agree.'
       }
     }
   },
 
   modelLimits: [
-    'Randomisation tends to balance confounders on average; it does not guarantee perfect balance in one finite trial.',
-    'Convergence is most persuasive when methods have genuinely different biases. Several methods can still agree because they share the same systematic error.'
+    'Selection by chance usually balances the mixed factors. It does not guarantee a perfect balance in one small trial.',
+    'Agreement is most persuasive when the methods have different biases. Several methods can also agree because they share the same systematic error.'
   ],
 
   myth: {
-    claim: 'Scientists keep changing their minds, so nobody really knows anything.',
+    claim: 'Scientists change their opinion continuously, so nobody knows anything.',
     mechanism: [
-      'Some things have not changed in decades and are not seriously disputed: smoking causes cancer, severe energy excess over years causes harm, trans fats damage cardiovascular health, extreme deficiency of any essential nutrient causes deficiency disease. This is the settled core, and it is boring, which is why it is never in the news.',
-      'What changes is the frontier: the marginal effect of one food, the optimal ratio of one macronutrient, the newest candidate for villain. That is where the evidence is thin and the headlines live. Mistaking the frontier for the whole field is like concluding that bridges are unreliable because engineers are still arguing about a new material.',
-      'And the reversals are the point. A discipline that finds and publishes its own errors is demonstrating exactly the property that makes it worth believing. Compare it fairly — not against an imaginary source of permanent truth, but against the alternatives on offer, which change their minds just as often and never announce it.'
+      'Some results have not changed for decades, and few scientists dispute them. Smoking causes cancer. A large excess of energy over many years causes harm. Trans fats damage the heart and the blood vessels. A severe shortage of an essential nutrient causes a deficiency disease. This is the settled core. It is not interesting, and it is therefore never in the news.',
+      'The new work changes. This includes the small effect of one food, the best ratio of one macronutrient, and the newest substance to blame. The evidence there is weak, and the headlines come from there. Do not judge the full field by its newest work. You would not call all bridges unsafe because engineers still discuss a new material.',
+      'The reversals are the evidence of quality. A discipline that finds its own errors and publishes them shows the property that makes it reliable. Compare it fairly. Do not compare it with an imaginary source of permanent truth. Compare it with the alternatives, which change their opinion as often and never state that they have done so.'
     ],
-    whySurvives: 'Because "nobody knows" is comfortable. It converts the effort of weighing evidence into permission to believe whatever you already preferred — and there is always someone selling certainty to fill the gap.'
+    whySurvives: 'The statement that nobody knows is comfortable. It removes the work of weighing the evidence, and it permits you to keep the opinion that you already had. Somebody is always available to sell you certainty in that space.'
   }
 };

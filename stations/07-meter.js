@@ -10,8 +10,8 @@ export default {
 
   rail:  { plain:'Calories',        tech:'Energy Meter' },
   title: { plain:'Calories',        tech:'The Energy Meter' },
-  sub:   { plain:'The physics is exact. The measurement is not. Those are different problems.',
-           tech :'Instrument FI-07 · exact physics, approximate readings' },
+  sub:   { plain:'The physics is exact. The measurement is not exact. These are two different problems.',
+           tech :'Instrument FI-07 · the physics is exact and the readings are approximate' },
 
   drawing: { no:'MB-STN-07', rev:'A', vessel:'FI-07',
              desc:'Energy balance instrument', view:'Schematic' },
@@ -19,29 +19,29 @@ export default {
   /* Markers and drawing labels. The prose lives once, in main.*.points. */
   hotspots: [
     { k:'intake', n:1, plain:{ name:'What Went In', fn:'The least reliable number here' },
-                  tech :{ name:'Intake metering', fn:'−20 to −30% typical, self-reported' } },
-    { k:'base', n:2, plain:{ name:'The Base Load', fn:'Most of the total, and not yours to set' },
-                tech :{ name:'Base load', fn:'BMR · 60–70% of total' } },
-    { k:'tef', n:3, plain:{ name:'The Handling Charge', fn:'It costs energy to process energy' },
-               tech :{ name:'Processing cost', fn:'TEF · ~10% of intake' } },
-    { k:'neat', n:4, plain:{ name:'Fidgeting', fn:'The term that ruins the arithmetic' },
-                tech :{ name:'Incidental movement', fn:'NEAT · highly variable, adapts down' } },
-    { k:'exercise', n:5, plain:{ name:'Actual Exercise', fn:'A modest slice, and the wrong output to judge' },
-                    tech :{ name:'Deliberate exercise', fn:'Modest slice · major off-meter effect' } }
+                  tech :{ name:'Intake metering', fn:'Self-reported · usually 20 to 30% too low' } },
+    { k:'base', n:2, plain:{ name:'The Base Load', fn:'Most of the total. You do not set it.' },
+                tech :{ name:'Base load', fn:'BMR · 60 to 70% of the total' } },
+    { k:'tef', n:3, plain:{ name:'The Handling Charge', fn:'Your body uses energy to process energy' },
+               tech :{ name:'Processing cost', fn:'TEF · about 10% of the intake' } },
+    { k:'neat', n:4, plain:{ name:'Fidgeting', fn:'This term makes the arithmetic unreliable' },
+                tech :{ name:'Incidental movement', fn:'NEAT · it varies greatly and it decreases' } },
+    { k:'exercise', n:5, plain:{ name:'Actual Exercise', fn:'A small part. Do not judge exercise by it.' },
+                    tech :{ name:'Deliberate exercise', fn:'A small part · large effects this meter misses' } }
   ],
 
   modes: [
     { k:'reading', label:{ plain:'Reading the meter', tech:'Indicated value' }, fault:false,
-      cap:{ plain:'<b>Reading the meter.</b> A confident four-digit number, displayed to the nearest unit. This is what the app shows you, and it looks exactly like a measurement.',
-            tech :'<b>Indicated value.</b> Four significant figures, displayed without qualification. The law it rests on is exact; the display implies the inputs are too.' } },
+      cap:{ plain:'<b>Reading the meter.</b> The display shows a four-digit number to the nearest unit. The app shows you this number, and it looks like a measurement.',
+            tech :'<b>Indicated value.</b> The display shows four significant figures and gives no limits. The law below the number is exact. The display suggests that the inputs are also exact.' } },
 
     { k:'errorbars', label:{ plain:'Show the error bars', tech:'With uncertainty' }, fault:false,
-      cap:{ plain:'<b>Show the error bars.</b> The same number, honestly. For many people, uncertainty in daily intake and expenditure can be comparable to the deficit they think they have created.',
-            tech :'<b>With uncertainty.</b> Input uncertainty rendered on the same reading. Depending on the person and method, it can be comparable to a modest target deficit.' } },
+      cap:{ plain:'<b>Show the error bars.</b> This is the same number with its limits. For many persons the uncertainty in the daily intake and the daily expenditure is as large as the deficit that they believe they made.',
+            tech :'<b>With uncertainty.</b> The same reading now shows the uncertainty of the inputs. The uncertainty changes with the person and with the method. It can be as large as a small target deficit.' } },
 
     { k:'months', label:{ plain:'Months of eating less', tech:'Adaptive response' }, fault:false,
-      cap:{ plain:'<b>Months of eating less.</b> Expenditure quietly adapts downward — the base load drifts, the fidgeting falls, and the gap you calculated is not the gap you are running. Nobody cheated.',
-            tech :'<b>Adaptive response.</b> Sustained restriction lowers base load and incidental movement. The realised deficit falls below the calculated one without any change in reported intake.' } }
+      cap:{ plain:'<b>Months of eating less.</b> Your expenditure decreases. The base load falls, and you move less without your knowledge. The deficit that you calculated is larger than the deficit that you have. Nobody made an error.',
+            tech :'<b>Adaptive response.</b> A long period of restriction reduces the base load and the incidental movement. The true deficit becomes smaller than the calculated deficit. The reported intake does not change.' } }
   ],
 
   svg: `<svg viewBox="-90 0 850 800" preserveAspectRatio="xMidYMid meet" role="img"
@@ -82,7 +82,7 @@ export default {
     <line class="errbar" x1="514" y1="336" x2="514" y2="368"/>
     <text class="dimtext techonly" x="400" y="474" text-anchor="middle" style="fill:var(--chilli)">SOMEWHERE BETWEEN 1,500 AND 2,300</text>
     <text class="dimtext plainonly" x="400" y="474" text-anchor="middle" style="fill:var(--chilli)">Somewhere between 1,500 and 2,300</text>
-    <text class="dimtext" x="400" y="490" text-anchor="middle" opacity=".7" style="fill:var(--chilli)">and the deficit you were aiming at is smaller than that</text>
+    <text class="dimtext" x="400" y="490" text-anchor="middle" opacity=".7" style="fill:var(--chilli)">the deficit is smaller than you intended</text>
   </g>
 
   <!-- ===== adaptive response ===== -->
@@ -91,8 +91,8 @@ export default {
     <path class="leader" d="M60 592 C160 592 200 604 236 616" marker-end="url(#arw07)" style="stroke:var(--chilli)" />
     <path class="leader" d="M60 196 C160 196 200 206 236 214" marker-end="url(#arw07)" style="stroke:var(--chilli)" />
     <text class="dimtext techonly" x="400" y="474" text-anchor="middle" style="fill:var(--chilli)">EXPENDITURE ADAPTING DOWN · DEFICIT SHRINKING</text>
-    <text class="dimtext plainonly" x="400" y="474" text-anchor="middle" style="fill:var(--chilli)">Spending quietly drifts down. The gap closes on its own.</text>
-    <text class="dimtext" x="400" y="490" text-anchor="middle" opacity=".7">Nobody cheated. This is a control system doing what control systems do.</text>
+    <text class="dimtext plainonly" x="400" y="474" text-anchor="middle" style="fill:var(--chilli)">The expenditure falls. The gap closes without your action.</text>
+    <text class="dimtext" x="400" y="490" text-anchor="middle" opacity=".7">Nobody made an error. This is normal control-system behaviour.</text>
   </g>
 
   <!-- error bars sit on every input, always -->
@@ -128,7 +128,7 @@ export default {
     <path class="scribble" d="M370 326 L430 378 M430 326 L370 378"/>
     <path class="leader" d="M452 352 L450 250 L464 250" style="stroke:var(--chilli)"/>
     <text class="hazardtext" x="470" y="246">"My app says 1,847"</text>
-    <text class="hazardtext" x="452" y="260" opacity=".75">— it says that. It does not know that.</text>
+    <text class="hazardtext" x="452" y="260" opacity=".75">It states that. It does not know that.</text>
   </g>
 
   <!-- ================= HOTSPOTS ================= -->
@@ -136,7 +136,7 @@ export default {
     <path class="leader" d="M138 150 L220 92 L236 92"/>
     <text class="lbl-name techonly"  x="242" y="89">Intake metering</text>
     <text class="lbl-name plainonly" x="242" y="89">What Went In</text>
-    <text class="lbl-fn techonly"    x="242" y="105">−20 to −30% typical, self-reported</text>
+    <text class="lbl-fn techonly"    x="242" y="105">Self-reported · usually 20–30% too low</text>
     <text class="lbl-fn plainonly"   x="242" y="106">The least reliable number here</text>
     <circle class="hotring" cx="138" cy="150" r="10"/>
     <circle class="hithalo" cx="138" cy="150" r="22"/>
@@ -148,7 +148,7 @@ export default {
     <path class="leader" d="M138 231 L100 276 L86 276"/>
     <text class="lbl-name techonly"  x="80" y="273" text-anchor="end">Base load</text>
     <text class="lbl-name plainonly" x="80" y="273" text-anchor="end">The Base Load</text>
-    <text class="lbl-fn techonly"    x="80" y="287" text-anchor="end">BMR · 60–70% of total</text>
+    <text class="lbl-fn techonly"    x="80" y="287" text-anchor="end">BMR · 60–70% of the total</text>
     <text class="lbl-fn plainonly"   x="80" y="288" text-anchor="end">Most of the total</text>
     <circle class="hotring" cx="138" cy="231" r="10"/>
     <circle class="hithalo" cx="138" cy="231" r="22"/>
@@ -160,8 +160,8 @@ export default {
     <path class="leader" d="M596 380 L640 300 L656 300"/>
     <text class="lbl-name techonly"  x="662" y="297">Processing cost</text>
     <text class="lbl-name plainonly" x="608" y="297">Handling Charge</text>
-    <text class="lbl-fn techonly"    x="662" y="311">TEF · ~10%</text>
-    <text class="lbl-fn plainonly"   x="662" y="312">~10% of intake</text>
+    <text class="lbl-fn techonly"    x="662" y="311">TEF · about 10%</text>
+    <text class="lbl-fn plainonly"   x="662" y="312">About 10% of intake</text>
     <circle class="hotring" cx="596" cy="380" r="10"/>
     <circle class="hithalo" cx="596" cy="380" r="22"/>
     <circle class="hotdot" cx="596" cy="380" r="10"/>
@@ -172,8 +172,8 @@ export default {
     <path class="leader" d="M138 553 L96 508 L82 508"/>
     <text class="lbl-name techonly"  x="76" y="505" text-anchor="end">Incidental movement</text>
     <text class="lbl-name plainonly" x="76" y="505" text-anchor="end">Fidgeting</text>
-    <text class="lbl-fn techonly"    x="76" y="519" text-anchor="end">NEAT · adapts downward</text>
-    <text class="lbl-fn plainonly"   x="76" y="520" text-anchor="end">Ruins the arithmetic</text>
+    <text class="lbl-fn techonly"    x="76" y="519" text-anchor="end">NEAT · it decreases</text>
+    <text class="lbl-fn plainonly"   x="76" y="520" text-anchor="end">Makes the arithmetic unreliable</text>
     <circle class="hotring" cx="138" cy="553" r="10"/>
     <circle class="hithalo" cx="138" cy="553" r="22"/>
     <circle class="hotdot" cx="138" cy="553" r="10"/>
@@ -184,8 +184,8 @@ export default {
     <path class="leader" d="M138 629 L138 700 L152 700"/>
     <text class="lbl-name techonly"  x="158" y="697">Deliberate exercise</text>
     <text class="lbl-name plainonly" x="158" y="697">Actual Exercise</text>
-    <text class="lbl-fn techonly"    x="158" y="711">Modest slice · major off-meter effect</text>
-    <text class="lbl-fn plainonly"   x="158" y="712">A modest slice on the meter</text>
+    <text class="lbl-fn techonly"    x="158" y="711">A small part · large effects not measured</text>
+    <text class="lbl-fn plainonly"   x="158" y="712">A small part of the meter</text>
     <circle class="hotring" cx="138" cy="629" r="10"/>
     <circle class="hithalo" cx="138" cy="629" r="22"/>
     <circle class="hotdot" cx="138" cy="629" r="10"/>
@@ -200,68 +200,68 @@ export default {
 
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { h:'The physics is not negotiable.', p:'Energy balances. Nothing here is a loophole, and anyone selling you one is selling you something else.' },
-        { k:'intake', h:'The instrument is noisy.',
-          p:'Self-reported intake often underestimates true intake, sometimes substantially, because portions are hard to estimate and items are forgotten. Packet labels and food databases add their own uncertainty. Every number you type into an app inherits some of it.' },
-        { k:'base', h:'Most of the spending is not yours to set.',
-          p:'Resting metabolism is usually the largest slice; in many sedentary adults it is around sixty to seventy per cent of total expenditure. It varies with body size, lean mass, age and other factors, and falls as mass is lost.' },
+        { h:'You cannot change the physics.', p:'The energy balances. There is no exception here. A person who offers you an exception offers you something different.' },
+        { k:'intake', h:'The instrument is not accurate.',
+          p:'A person who reports their own intake usually reports a value that is too low, and sometimes much too low. It is difficult to estimate a portion, and it is easy to forget an item. The labels on packets and the food databases add more uncertainty. Each number that you type into an app carries some of this error.' },
+        { k:'base', h:'You do not set most of the expenditure.',
+          p:'The resting metabolism is usually the largest part. In many adults who do not exercise it is sixty to seventy per cent of the total. It changes with your body size, your lean mass and your age. It falls when you lose mass.' },
         { k:'tef', h:'The Handling Charge',
-          p:'Around ten per cent of what you eat is spent digesting what you eat. Protein costs the most to process. This is a real effect and a small one, and it is regularly sold as though it were large.' },
-        { k:'neat', h:'Fidgeting is the wild card.',
-          p:'Standing, walking about, gesturing, shifting in your chair. A highly variable component: it can differ by hundreds of Calories a day between people, and it can quietly fall during sustained energy restriction.' },
-        { k:'exercise', h:'Exercise is not the whole meter.',
-          p:'For most non-athletes, deliberate exercise is a modest slice of total expenditure, while its important effects extend well beyond Calories: muscle, glucose handling, fitness, mood and ageing. Judging exercise by the calorie counter is measuring the wrong output.' }
+          p:'Your body uses about ten per cent of the food that you eat to digest that food. Protein needs the most energy. The effect is true, and it is small. Many products describe it as a large effect.' },
+        { k:'neat', h:'Small movements change the total greatly.',
+          p:'This includes standing, walking, gesturing and movement in your chair. The quantity varies greatly. It can differ by hundreds of Calories a day between two persons, and it falls during a long period of restriction.' },
+        { k:'exercise', h:'Exercise is one part of the meter.',
+          p:'For most persons who are not athletes, planned exercise is a small part of the total expenditure. Its important effects are not measured in Calories. They are your muscle, your glucose control, your fitness, your mood and how you age. If you judge exercise by the calorie counter, you measure the wrong output.' }
       ],
-      note: '<b>Read the trend.</b> Both popular positions are wrong. "Calories do not matter" claims energy can be created, which it cannot. "Just count your Calories" claims the meter can be read to the nearest unit, which it cannot either. The law is exact; the instrument is not. You are steering a real system with a blurred gauge — which is an argument for consistent habits and long time-frames, and against re-weighing your rice.'
+      note: '<b>Summary.</b> Both common positions are wrong. The statement that Calories do not matter claims that you can make energy. You cannot. The statement that you must count your Calories claims that you can read the meter to the nearest unit. You cannot do that either. The law is exact and the instrument is not. You control a real system with an inaccurate gauge. Use consistent habits over long periods, and do not weigh your rice again.'
     },
     tech: {
       kicker: 'Instrument Datasheet',
       spec: [
         { k:'Class',                v:'Energy balance instrument' },
-        { k:'Governing law',        v:'Thermodynamics. Exact. Not negotiable.' },
-        { k:'Intake reading error', v:'Self-report often biased low; magnitude varies' },
-        { k:'Label values',         v:'Estimated; rounding and regulatory tolerances vary' },
-        { k:'Base load share',      v:'Often ~60–70% in sedentary adults' },
-        { k:'Processing cost share', v:'~10%' },
-        { k:'Incidental movement',  v:'Highly variable; adapts downward under restriction' },
-        { k:'Available ≠ label',    v:'Whole nuts and high-fibre foods deliver measurably less than their Atwater figures' },
-        { k:'Combined uncertainty', v:'Can be comparable to a modest daily target deficit' },
-        { k:'Display precision',    v:'Four significant figures. Entirely fictional.' }
+        { k:'Governing law',        v:'Thermodynamics. It is exact and you cannot change it.' },
+        { k:'Intake reading error', v:'A self-report is usually too low. The size of the error varies.' },
+        { k:'Label values',         v:'Estimated. The rounding and the legal tolerances vary.' },
+        { k:'Base load share',      v:'Usually 60 to 70% in adults who do not exercise' },
+        { k:'Processing cost share', v:'About 10%' },
+        { k:'Incidental movement',  v:'It varies greatly. It decreases during restriction.' },
+        { k:'Available ≠ label',    v:'Whole nuts and foods with much fibre supply measurably less energy than the Atwater figures state.' },
+        { k:'Combined uncertainty', v:'It can be as large as a small daily target deficit.' },
+        { k:'Display precision',    v:'Four significant figures. The precision is false.' }
       ],
       points: [
         { k:'intake', h:'Intake metering',
-          p:'Often the noisiest input in the system. Self-reported intake commonly underestimates measured energy intake, with the size of the error varying by method and population. Label and database values add further uncertainty.' },
+          p:'This is usually the least accurate input in the system. A self-report is usually lower than the measured intake. The size of the error changes with the method and with the group of persons. The labels and the databases add more uncertainty.' },
         { k:'base', h:'Base load',
-          p:'Usually the largest component of total expenditure; often around 60–70% in sedentary adults. It varies with body size, lean mass, age and physiology, and declines as body mass falls.' },
+          p:'This is usually the largest part of the total expenditure. It is 60 to 70% in many adults who do not exercise. It changes with your body size, your lean mass, your age and your physiology. It falls when your body mass falls.' },
         { k:'tef', h:'Processing cost',
-          p:'Around 10% of intake is expended processing that intake. Protein carries the highest thermic cost. A real effect, and a small one.' },
+          p:'Your body uses about 10% of the intake to process that intake. Protein has the highest cost. The effect is true and it is small.' },
         { k:'neat', h:'Incidental movement',
-          p:'Fidgeting, standing, ambulation, gesture. A highly variable component of expenditure: it can differ by hundreds of Calories a day between people and can fall under energy restriction. This is the term that ruins the arithmetic.' },
+          p:'This includes small movements, standing, walking and gesture. The quantity varies greatly. It can differ by hundreds of Calories a day between two persons, and it falls during energy restriction. This term makes the arithmetic unreliable.' },
         { k:'exercise', h:'Deliberate exercise',
-          p:'For most non-athletes, deliberate exercise is a modest component of total expenditure, with major effects this instrument does not capture: muscle mass, glucose handling, cardiovascular fitness, mood and ageing. Judging it by the calorie counter is reading the wrong output.' }
+          p:'For most persons who are not athletes, planned exercise is a small part of the total expenditure. It has large effects that this instrument does not measure. These are your muscle mass, your glucose control, your cardiovascular fitness, your mood and how you age. If you judge exercise by the calorie counter, you read the wrong output.' }
       ],
-      note: '<b>Design note.</b> Both popular positions here are wrong. "Calories don&rsquo;t matter" is a claim that energy can be created, which it cannot. "Just count your Calories" is a claim that the meter can be read to the nearest unit, which it cannot either. The law is exact; the instrument is not.',
+      note: '<b>Design note.</b> Both common positions here are wrong. The statement that Calories do not matter claims that you can make energy. You cannot. The statement that you must count your Calories claims that you can read the meter to the nearest unit. You cannot do that either. The law is exact and the instrument is not.',
       analogy: {
         tag: 'How to read it',
-        body: 'A plant energy meter whose inputs have different, imperfect tolerances. No process engineer would deny that energy balances, or pretend every input is known to four digits. They would watch the trend over time and recalibrate against the actual output.'
+        body: 'An energy meter in a plant. Each of its inputs has a different tolerance, and none of them is exact. A process engineer does not deny that the energy balances. The engineer also does not claim that each input is known to four digits. The engineer watches the trend over a long period and calibrates the meter against the true output.'
       }
     }
   },
 
   modelLimits: [
-    'The uncertainty shown here is pedagogical, not a fixed ±25% applied to every person or every input. Some quantities can be measured far more accurately than others.',
-    'Energy balance is exact over time; the practical problem is estimating the changing inputs and outputs closely enough to steer behaviour.'
+    'The uncertainty in this drawing is an example for teaching. It is not a fixed value of 25% for every person and every input. Some quantities can be measured much more accurately than others.',
+    'The energy balance is exact over a long period. The practical problem is different: you must estimate the inputs and the outputs accurately enough to control your behaviour, and both of them change.'
   ],
 
   myth: {
     claim: 'My app says I ate 1,847 Calories today.',
     mechanism: [
-      'It says that. It does not know that. That number is the sum of a portion estimate, a database entry, and a label tolerance, each carrying error, and it is displayed without any of them.',
-      'Food-energy numbers ultimately come from calorimetry plus average metabolizable-energy factors; nobody burns your exact idli before lunch. Your body is not a bomb calorimeter: absorption is incomplete, microbes get a share, and Atwater factors are population averages that can miss the usable energy of particular foods and food structures.',
-      'On the other side of the meter, expenditure adapts. Eat less for long enough and incidental movement falls, base load drifts down, and the deficit you calculated is not the deficit you are running. This is not the body "holding on to fat" out of spite. It is a control system doing what control systems do. None of this creates a loophole in physics — it means the arithmetic is real and the inputs are soft, which is a very different problem from the one the app is pretending to solve.'
+      'The app states that number. It does not know that number. The number is the sum of a portion estimate, a database entry and a label tolerance. Each of these carries an error, and the display shows none of them.',
+      'The energy values for food come from calorimetry and from average factors for metabolizable energy. Nobody burns your idli before you eat it. Your body is not a calorimeter. It does not absorb all the material, the microbes take a part, and the Atwater factors are averages for a population. Those averages can be wrong for a particular food or a particular food structure.',
+      'The expenditure also changes. If you eat less for a long period, your incidental movement falls and your base load decreases. The deficit that you calculated is then larger than the deficit that you have. Your body does not hold the fat to oppose you. This is the normal behaviour of a control system. None of this makes an exception in the physics. The arithmetic is correct, and the inputs are uncertain. This is a different problem from the problem that the app offers to solve.'
     ],
-    whySurvives: 'Because the app displays a number and numbers feel like measurements. A range with uncertainty is less satisfying than 1,847, even when the range is the more honest description.'
+    whySurvives: 'The app shows a number, and a number feels like a measurement. A range with limits satisfies you less than the value 1,847. The range is the more correct description.'
   }
 };

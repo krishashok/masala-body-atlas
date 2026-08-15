@@ -9,7 +9,7 @@ export default {
 
   rail:  { plain:'Stomach',     tech:'Acid Reactor' },
   title: { plain:'The Stomach', tech:'The Acid Reactor' },
-  sub:   { plain:'A muscular bag of acid, and tougher than you think',
+  sub:   { plain:'A container of muscle that holds acid. It is stronger than you think.',
            tech :'Vessel R-02 · commonly, "the stomach"' },
 
   drawing: { no:'MB-STN-02', rev:'D', vessel:'R-02',
@@ -18,38 +18,38 @@ export default {
   /* ---------------- hotspots ---------------- */
   /* Markers and drawing labels. The prose lives once, in main.*.points. */
   hotspots: [
-    { k:'cardia', n:1, plain:{ name:'The Top Gate', fn:'Stops food coming back up' },
+    { k:'cardia', n:1, plain:{ name:'The Top Gate', fn:'Stops food returning' },
                   tech :{ name:'Cardia / LES', fn:'Inlet check valve' } },
-    { k:'fundus', n:2, plain:{ name:'The Stretchy Top', fn:'Makes room for a big meal' },
+    { k:'fundus', n:2, plain:{ name:'The Stretchy Top', fn:'Makes room for a large meal' },
                   tech :{ name:'Fundus', fn:'Surge tank · gas headspace' } },
-    { k:'body', n:3, plain:{ name:'The Acid Bath', fn:'Where the acid goes in' },
+    { k:'body', n:3, plain:{ name:'The Acid Bath', fn:'The acid enters here' },
                 tech :{ name:'Body', fn:'Acid dosing · agitation' } },
-    { k:'antrum', n:4, plain:{ name:'The Grinder', fn:'Squeezes food into mush' },
+    { k:'antrum', n:4, plain:{ name:'The Grinder', fn:'Breaks food into a paste' },
                   tech :{ name:'Antrum', fn:'3 strokes/min' } },
-    { k:'pylorus', n:5, plain:{ name:'The Bottom Gate', fn:'Lets a little out at a time' },
-                   tech :{ name:'Pylorus', fn:'Metering valve · 2–3 mL/stroke' } }
+    { k:'pylorus', n:5, plain:{ name:'The Bottom Gate', fn:'Releases a little at a time' },
+                   tech :{ name:'Pylorus', fn:'Metering valve · 2–3 mL a stroke' } }
   ],
 
   modes: [
     { k:'normal', label:{ plain:'Resting', tech:'Normal operation' }, fault:false,
-      cap:{ plain:"<b>Resting.</b> Contents churn slowly and the bottom gate lets a little through at a time. This is what it's doing for most of the two to four hours after a meal.",
-            tech :'<b>Normal operation.</b> Ambient agitation with antral peristalsis at ~3/min and metered discharge through the pylorus. Residence time 2–4 h for a mixed meal.' } },
+      cap:{ plain:'<b>Resting.</b> The contents move slowly. The bottom valve opens and releases a small quantity each time. The stomach stays in this condition for most of the two to four hours after a meal.',
+            tech :'<b>Normal operation.</b> The lower wall contracts about 3 times a minute. The pylorus releases the contents in measured quantities. A mixed meal stays in the vessel for 2 to 4 hours.' } },
 
     { k:'grind', label:{ plain:'Grinding', tech:'Grind cycle' }, fault:false,
-      cap:{ plain:'<b>Grinding.</b> Squeezing waves drive solid food at the almost-closed exit; big pieces bounce back and get torn apart. Liquids pass more easily; most solids wait until they&rsquo;re small enough.',
-            tech :'<b>Grind cycle.</b> Retropulsion against a closed pylorus shears particles. Recirculation continues until material passes the &lt;2 mm spec.' } },
+      cap:{ plain:'<b>Grinding.</b> Waves of muscle push the solid food at the exit valve, which is almost closed. Large pieces go back into the stomach and break apart. Liquids go through more easily. Most solid pieces stay in the stomach until they are small.',
+            tech :'<b>Grind cycle.</b> The pylorus stays shut, so the contents drive back into the vessel and tear apart. The vessel recirculates the material until the particles are smaller than 2 mm.' } },
 
     { k:'empty', label:{ plain:'Emptying', tech:'Discharge' }, fault:false,
-      cap:{ plain:'<b>Emptying.</b> The bottom gate opens in pulses and the level drops over hours. Liquids leave fast; a heavy, fatty meal takes far longer.',
-            tech :'<b>Discharge.</b> Metered emptying, 2–3 mL/stroke. Rate is modulated downstream by fat and acid sensing in the duodenum — feedback control, not a timer.' } },
+      cap:{ plain:'<b>Emptying.</b> The bottom valve opens and closes many times. The level of the contents goes down during a period of hours. Liquids go out quickly. A large meal that contains much fat needs more time.',
+            tech :'<b>Discharge.</b> The pylorus releases 2 to 3 mL at each stroke. Sensors in the duodenum measure the fat and the acid that arrive, and they set the rate. The vessel does not empty on a schedule.' } },
 
     { k:'vent', label:{ plain:'Burp', tech:'Vent cycle' }, fault:false,
-      cap:{ plain:"<b>Burp.</b> Air you swallowed with your food collects at the top, the top gate relaxes for a moment, and the gas goes back up the pipe. That's all a burp is.",
-            tech :'<b>Vent cycle.</b> Gas accumulates in the fundic headspace; transient LES relaxation opens the inlet and the gas is expelled up the oesophagus.' } },
+      cap:{ plain:'<b>Burp.</b> The air that you swallow with your food collects at the top of the stomach. The top valve opens for a moment. The air then goes up the pipe. This is a burp.',
+            tech :'<b>Vent cycle.</b> Gas collects in the space at the top of the vessel. The inlet valve relaxes for a moment. The gas then travels up the oesophagus.' } },
 
     { k:'reflux', label:{ plain:'Reflux', tech:'Valve fault' }, fault:true,
-      cap:{ plain:"<b>Reflux.</b> The anti-reflux barrier gives way and acid reaches the food pipe, whose lining is far less acid-resistant than the stomach's. That's heartburn: primarily a barrier problem, not a chilli burning tissue.",
-            tech :'<b>Valve fault.</b> Failure of the anti-reflux barrier permits retrograde gastric contents into the oesophagus. LES pressure, transient relaxations, hiatal anatomy, meal size and posture can all contribute.' } }
+      cap:{ plain:'<b>Reflux.</b> The top valve does not close correctly, and acid goes into the food pipe. The lining of the food pipe does not resist acid as well as the lining of the stomach. You feel this as heartburn. The valve causes it.',
+            tech :'<b>Valve fault.</b> The inlet valve does not seal, and acid contents travel back into the oesophagus. Valve pressure, the anatomy at the diaphragm, the size of the meal and your posture each change how often this happens.' } }
   ],
 
   /* ---------------- the drawing ---------------- */
@@ -158,7 +158,7 @@ export default {
   <g class="techonly mechonly">
     <path class="leader" d="M474 300 L552 268 L588 268"/>
     <text class="lbl-fn" x="584" y="264">Bicarbonate mucus gel</text>
-    <text class="lbl-fn" x="594" y="283">0.2–0.5 mm · renewed q3–5 d</text>
+    <text class="lbl-fn" x="594" y="283">0.2–0.5 mm · replaced every 3–5 days</text>
   </g>
 
   <g class="mythonly">
@@ -175,7 +175,7 @@ export default {
     <text class="lbl-name techonly"  x="498" y="119">Cardia / LES</text>
     <text class="lbl-name plainonly" x="498" y="119">The Top Gate</text>
     <text class="lbl-fn techonly"    x="498" y="133">Inlet check valve</text>
-    <text class="lbl-fn plainonly"   x="498" y="134">Stops food coming back up</text>
+    <text class="lbl-fn plainonly"   x="498" y="134">Stops food returning</text>
     <circle class="hotring" cx="358" cy="192" r="10"/>
     <circle class="hithalo" cx="358" cy="192" r="22"/>
     <circle class="hotdot" cx="358" cy="192" r="10"/>
@@ -187,7 +187,7 @@ export default {
     <text class="lbl-name techonly"  x="606" y="193">Fundus</text>
     <text class="lbl-name plainonly" x="606" y="193">The Stretchy Top</text>
     <text class="lbl-fn techonly"    x="606" y="207">Surge tank · gas headspace</text>
-    <text class="lbl-fn plainonly"   x="606" y="208">Makes room for a big meal</text>
+    <text class="lbl-fn plainonly"   x="606" y="208">Makes room for a large meal</text>
     <circle class="hotring" cx="444" cy="226" r="10"/>
     <circle class="hithalo" cx="444" cy="226" r="22"/>
     <circle class="hotdot" cx="444" cy="226" r="10"/>
@@ -199,7 +199,7 @@ export default {
     <text class="lbl-name techonly"  x="592" y="401">Body</text>
     <text class="lbl-name plainonly" x="592" y="401">The Acid Bath</text>
     <text class="lbl-fn techonly"    x="592" y="415">Acid dosing · agitation</text>
-    <text class="lbl-fn plainonly"   x="592" y="416">Where the acid goes in</text>
+    <text class="lbl-fn plainonly"   x="592" y="416">The acid enters here</text>
     <circle class="hotring" cx="418" cy="372" r="10"/>
     <circle class="hithalo" cx="418" cy="372" r="22"/>
     <circle class="hotdot" cx="418" cy="372" r="10"/>
@@ -211,7 +211,7 @@ export default {
     <text class="lbl-name techonly"  x="360" y="618" text-anchor="middle">Antrum</text>
     <text class="lbl-name plainonly" x="360" y="618" text-anchor="middle">The Grinder</text>
     <text class="lbl-fn techonly"    x="360" y="632" text-anchor="middle">3 strokes/min</text>
-    <text class="lbl-fn plainonly"   x="360" y="633" text-anchor="middle">Squeezes food into mush</text>
+    <text class="lbl-fn plainonly"   x="360" y="633" text-anchor="middle">Breaks food into a paste</text>
     <circle class="hotring" cx="348" cy="478" r="10"/>
     <circle class="hithalo" cx="348" cy="478" r="22"/>
     <circle class="hotdot" cx="348" cy="478" r="10"/>
@@ -222,8 +222,8 @@ export default {
     <path class="leader" d="M241 466 L170 548 L128 548"/>
     <text class="lbl-name techonly"  x="122" y="545" text-anchor="end">Pylorus</text>
     <text class="lbl-name plainonly" x="122" y="545" text-anchor="end">The Bottom Gate</text>
-    <text class="lbl-fn techonly"    x="122" y="559" text-anchor="end">Metering valve · 2–3 mL/stroke</text>
-    <text class="lbl-fn plainonly"   x="122" y="560" text-anchor="end">Lets a little out at a time</text>
+    <text class="lbl-fn techonly"    x="122" y="559" text-anchor="end">Metering valve · 2–3 mL a stroke</text>
+    <text class="lbl-fn plainonly"   x="122" y="560" text-anchor="end">Releases a little at a time</text>
     <circle class="hotring" cx="241" cy="466" r="10"/>
     <circle class="hithalo" cx="241" cy="466" r="22"/>
     <circle class="hotdot" cx="241" cy="466" r="10"/>
@@ -240,22 +240,22 @@ export default {
   /* ---------------- main panel ---------------- */
   main: {
     plain: {
-      kicker: 'The short version',
+      kicker: 'Summary',
       points: [
-        { h:'It is mostly a holding and mixing reactor.', p:'Protein digestion starts here, along with some fat digestion, but very little of the meal is absorbed here. The main refinery is downstream.' },
-        { h:'It does not dissolve itself.', p:'A layer of slime coats the inside, and the whole lining is replaced every few days while it keeps working.' },
+        { h:'The stomach holds the food and mixes it.', p:'The stomach starts to break down protein. It also breaks down some fat. It absorbs very little of the meal. Station 03 absorbs most of it.' },
+        { h:'The stomach does not dissolve itself.', p:'A layer of mucus covers the inside surface. The body replaces the full lining every three to five days. The stomach continues to operate during this time.' },
         { k:'cardia', h:'The Top Gate',
-          p:"A ring of muscle that stays clamped shut so the contents stay in. When it leaks, you feel it as heartburn — a valve that isn't sealing, not a punishment for dinner." },
-        { k:'fundus', h:'It buys you time.',
-          p:"This part relaxes as food arrives, so even a large meal can be accommodated with surprisingly little rise in pressure. Swallowed air collects up here too — which is where a burp comes from." },
-        { k:'body', h:'The acid is genuinely strong.',
-          p:'Acid strong enough to strip metal is made right here, on demand, by cells sitting in the wall. It kills many swallowed microbes and starts unravelling protein.' },
+          p:'A ring of muscle keeps this valve closed and holds the contents in the stomach. If the valve leaks, you feel heartburn.' },
+        { k:'fundus', h:'The top of the stomach makes space.',
+          p:'This part becomes larger as the food comes in. A large meal thus causes only a small increase in pressure. Swallowed air also collects here, and a burp releases it.' },
+        { k:'body', h:'The stomach makes its own acid.',
+          p:'Cells in the wall make the acid when the stomach needs it. The acid is strong enough to remove metal. It kills many of the microbes that you swallow, and it starts to break down protein.' },
         { k:'antrum', h:'The Grinder',
-          p:"Three squeezes a minute drive food at a nearly-shut exit. Most solid food bounces back and gets sheared apart on the way. Liquids can leave sooner; larger solid particles usually wait until they are small enough." },
-        { k:'pylorus', h:'The exit valve is the clever part.',
-          p:'The most underrated part. It releases small spurts at a time, which helps explain why a solid meal takes hours to clear while liquids can leave much faster.' }
+          p:'The wall contracts three times each minute and pushes the food at the exit valve, which is almost closed. Most of the solid food goes back and breaks into smaller pieces. Liquids go out sooner.' },
+        { k:'pylorus', h:'The exit valve controls the rate.',
+          p:'The valve releases a small quantity at each stroke. A solid meal thus needs some hours to go out of the stomach. A glass of water goes out in approximately twenty minutes.' }
       ],
-      note: '<b>The point.</b> Most of what you have been told to fear about your stomach — spice, acid, "burning a hole" — misunderstands what it is. It is a reinforced mixing tank designed to handle exactly this, and it has been doing it every day of your life without your involvement.'
+      note: '<b>Summary.</b> People tell you to be afraid of spice and acid in your stomach. The stomach is a strong tank that mixes food, and it is made for these conditions. It has operated every day of your life without your attention.'
     },
     tech: {
       kicker: 'Equipment Datasheet',
@@ -270,22 +270,22 @@ export default {
         { k:'Lining turnover',  v:'<em>3–5 days</em>, full replacement, no downtime' },
         { k:'Agitation',        v:'3 contractions/min, antral peristalsis' },
         { k:'Discharge valve',  v:'Pylorus, 2–3 mL per stroke' },
-        { k:'Particle spec',    v:'&lt; 2 mm passes; larger material recirculated' },
+        { k:'Particle spec',    v:'Particles smaller than 2 mm pass. The vessel recirculates the rest.' },
         { k:'Residence time',   v:'2–4 h mixed meal · 20 min glucose solution' },
-        { k:'Absorption duty',  v:'Limited. Most nutrient absorption is downstream.' },
+        { k:'Absorption duty',  v:'Limited. Station 03 absorbs most nutrients.' },
         { k:'Service life',     v:'<em>~80 years continuous</em>, unscheduled maintenance only' }
       ],
       points: [
         { k:'cardia', h:'Cardia / LES',
-          p:'Lower oesophageal sphincter. A one-way inlet valve holding against a pressurised, acidic vessel. Failure to seat presents as reflux.' },
+          p:'Lower oesophageal sphincter. This one-way inlet valve holds against a vessel that contains acid and carries pressure. If the valve does not seat, reflux occurs.' },
         { k:'fundus', h:'Fundus',
-          p:'Surge capacity with receptive relaxation: accepts a large charge with relatively little pressure rise. Gas headspace collects here and is vented upward.' },
+          p:'The wall relaxes as the vessel fills, so a large charge raises the pressure only a little. Gas collects at the top and leaves through the inlet valve.' },
         { k:'body', h:'Body',
           p:'Parietal cells pump hydrogen ions against a millionfold gradient — the steepest your body maintains anywhere. Chief cells add pepsinogen, which the acid then activates.' },
         { k:'antrum', h:'Antrum',
-          p:'Antral peristalsis at ~3 cycles/min drives material at a near-closed pylorus; retropulsion shears it. Recirculation is by design, not failure.' },
+          p:'The wall contracts about 3 times a minute and drives material at a pylorus that is almost shut. The material tears as it turns back. This recirculation is a design feature.' },
         { k:'pylorus', h:'Pylorus',
-          p:'Metering valve, 2–3 mL per stroke, so the downstream refinery is never flooded. Explains gastric emptying kinetics and the liquid-vs-solid difference.' }
+          p:'A metering valve. It passes 2 to 3 mL at each stroke, so the refinery downstream never floods. This is why liquids leave the vessel sooner than solids.' }
       ],
       note: '<b>Design note.</b> This vessel gets more credit for digestion than it deserves. It stores, mixes, acidifies and starts protein digestion, then meters the meal into <b>Station 03</b>, where most enzymatic digestion and absorption happen.',
       analogy: {
@@ -296,7 +296,7 @@ export default {
   },
 
   modelLimits: [
-    'The stomach is not merely storage: protein digestion begins here and gastric lipase contributes to fat digestion. It is simply not the main site of nutrient absorption.',
+    'The stomach does more than store food. Protein digestion begins here, and gastric lipase starts on fat. It is not the main site of nutrient absorption.',
     'The “faulty valve” model explains reflux mechanics, but meal size, body position, hiatal anatomy and transient sphincter relaxations can change when reflux occurs.'
   ],
 
@@ -304,10 +304,10 @@ export default {
   myth: {
     claim: 'Chillies burn holes in your stomach.',
     mechanism: [
-      "Capsaicin does not chemically burn a hole. It activates <b>TRPV1</b> — a heat-sensitive pain channel that also responds around noxious temperatures. The molecule picks the lock, so your nerves can report fire without corrosive tissue injury.",
-      'Ulcers are overwhelmingly caused by <em>Helicobacter pylori</em> and by long-term NSAID use. Barry Marshall proved the first one in 1984 by drinking a beaker of the bacteria, giving himself gastritis, and collecting a Nobel Prize in 2005.',
-      'Spicy food can aggravate symptoms in some people with reflux or dyspepsia, but it is not a usual cause of peptic ulcers. Pain and tissue injury are different questions.'
+      'Capsaicin does not burn a hole in the tissue. It opens <b>TRPV1</b>, which is a pain sensor in the nerve. The same sensor also responds to high temperature. The molecule opens the sensor, and the nerve sends a pain signal. The tissue has no damage.',
+      'Two causes account for most ulcers: the bacterium <em>Helicobacter pylori</em>, and the long-term use of NSAID medicines. In 1984 Barry Marshall drank a container of the bacteria and gave himself gastritis. This showed the first cause. He received a Nobel Prize in 2005.',
+      'Spicy food can make the symptoms worse for some persons who have reflux or indigestion. It is not a usual cause of ulcers. Pain and damage to the tissue are two different conditions.'
     ],
-    whySurvives: "Because pain feels like proof. The sensation is real and vivid, so damage seems self-evident. A smoke alarm can be screaming while the house is still intact."
+    whySurvives: 'The pain is real, and pain feels like proof of damage. But a smoke alarm can make a loud noise when there is no fire.'
   }
 };
