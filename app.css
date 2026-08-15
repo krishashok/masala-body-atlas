@@ -1,0 +1,624 @@
+/* ============================================================
+   MASALA BODY — THE FACILITY TOUR
+   Shared drawing-office vocabulary. Every station uses these
+   classes and only these classes. If a station needs a new
+   primitive it belongs HERE, next to its relatives — never in
+   a station module. The set effect is the whole visual argument.
+   ============================================================ */
+
+:root{
+  --ink:#100F0C; --ink-2:#17150F; --panel:#1A1813;
+  --line:#EDE4D0;
+  --line-dim:rgba(237,228,208,.34);
+  --line-faint:rgba(237,228,208,.13);
+  /* --line-dim is a STROKE weight — leaders, dimension lines, borders. It is
+     2.7:1 against the ink and must never be used for type. Small text uses
+     --label (6.3:1, clears AA) and, in the drawing, must also be sized for
+     the viewBox scale: the sheet renders at ~0.78, so a 9px glyph lands at
+     7 real pixels. Nothing in a drawing should be set below ~13. */
+  --label:rgba(237,228,208,.62);
+  --turmeric:#E8A63C; --chilli:#D4553C; --cardamom:#8FA95C; --steel:#7FA0BA;
+  --mono: ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans: "Helvetica Neue",Inter,system-ui,-apple-system,sans-serif;
+  /* Overlay furniture (mode flag, mode strip, title block) insets to here so
+     it clears the corner registration marks, which sit at 14px and must stay
+     visible — they are what makes ten drawings read as one set (A5). */
+  --inset:38px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--ink);color:var(--line);font-family:var(--sans);
+     -webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+
+/* ============ layer switching ============ */
+body.plain .techonly{display:none!important}
+body.tech  .plainonly{display:none!important}
+
+/* ============ topbar ============ */
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:54px;flex:0 0 54px;border-bottom:1px solid var(--line-faint);background:var(--ink-2)}
+.brand{display:flex;align-items:baseline;gap:12px}
+.brand b{font-size:14px;letter-spacing:.22em;text-transform:uppercase}
+.brand span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--line-dim);text-transform:uppercase}
+
+.layerswitch{display:flex;align-items:center;gap:10px}
+.layerswitch .cap{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--line-dim);text-transform:uppercase}
+.seg{display:flex;border:1px solid var(--line-dim)}
+.seg button{background:transparent;border:0;color:var(--line-dim);cursor:pointer;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:6px 13px}
+.seg button.on{background:var(--line);color:var(--ink);font-weight:700}
+
+/* ============ layout ============ */
+.main{flex:1;display:grid;grid-template-columns:1.14fr .86fr;min-height:0}
+
+.surface{position:relative;overflow:hidden;border-right:1px solid var(--line-faint);
+  background-color:var(--ink);display:flex;align-items:center;justify-content:center}
+body.tech .surface{
+  background-image:
+    linear-gradient(rgba(237,228,208,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(237,228,208,.045) 1px,transparent 1px),
+    linear-gradient(rgba(237,228,208,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(237,228,208,.018) 1px,transparent 1px);
+  background-size:96px 96px,96px 96px,16px 16px,16px 16px}
+.surface svg{width:100%;height:100%;display:block}
+/* The drawing host fills the surface, less the chrome above and below it —
+   the mode flag on top, the mode strip and title block underneath — both
+   measured by app.js. Chrome is sized in CSS pixels while the drawing
+   scales with the viewBox, so at narrow widths a "small" corner tag covers
+   a large part of the sheet. No fixed position in drawing coordinates can
+   dodge that; the band has to be reserved. */
+#drawing{position:absolute;inset:var(--flag-h,0px) 0 var(--furniture-h,0px) 0;
+  display:flex;align-items:center;justify-content:center}
+
+.corner{position:absolute;width:16px;height:16px;border:1px solid var(--line-dim);opacity:.5}
+.corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}
+.corner.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.corner.bl{bottom:14px;left:14px;border-right:0;border-top:0}
+.corner.br{bottom:14px;right:14px;border-left:0;border-top:0}
+
+.titleblock{position:absolute;right:var(--inset);bottom:var(--inset);border:1px solid var(--line-dim);
+  font-family:var(--mono);font-size:10px;letter-spacing:.09em;color:var(--label);
+  text-transform:uppercase;background:rgba(16,15,12,.88)}
+.titleblock div{display:flex}
+.titleblock span{padding:5px 9px;border-right:1px solid var(--line-faint)}
+.titleblock span:last-child{border-right:0}
+.titleblock div+div{border-top:1px solid var(--line-faint)}
+.titleblock b{color:var(--line);font-weight:500}
+
+.modeflag{position:absolute;left:var(--inset);top:var(--inset);font-family:var(--mono);font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--line-dim);color:var(--label)}
+body.myth .modeflag{color:var(--chilli);border-color:var(--chilli)}
+
+/* ============ process mode strip ============ */
+.modestrip{position:absolute;left:var(--inset);bottom:var(--inset);right:var(--inset);
+  display:flex;flex-direction:column;gap:9px;pointer-events:none}
+.modebtns{display:flex;gap:0;pointer-events:auto;flex-wrap:wrap}
+.modebtns button{background:rgba(16,15,12,.9);border:1px solid var(--line-faint);border-right:0;
+  color:var(--label);cursor:pointer;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;padding:8px 13px}
+.modebtns button:last-child{border-right:1px solid var(--line-faint)}
+.modebtns button:hover{color:var(--line)}
+.modebtns button.on{background:var(--turmeric);border-color:var(--turmeric);color:var(--ink);font-weight:700}
+.modebtns button.on.fault{background:var(--chilli);border-color:var(--chilli);color:#fff}
+.modecap{font-size:12.5px;color:rgba(237,228,208,.72);max-width:60ch;line-height:1.45}
+/* In Nerd Mode the title block occupies the bottom-right. Rather than squeeze
+   the caption beside it — which wraps it to five or six lines on a small
+   laptop — lift the whole strip above it. --tb-h is measured by app.js. */
+body.tech .modestrip{bottom:calc(var(--inset) + var(--tb-h,0px) + 10px)}
+.modecap b{color:var(--turmeric);font-weight:600}
+
+/* ============ svg ============ */
+
+/* The shared paint servers live in index.html and are lit from the top-left.
+   Nothing below may introduce a second light direction. */
+.matdefs{position:absolute;width:0;height:0;overflow:hidden}
+
+.vessel{fill:url(#mb-form);stroke:url(#mb-rim);stroke-width:1.6;stroke-linejoin:round}
+.vessel-inner{fill:none;stroke:var(--line-dim);stroke-width:.8;stroke-dasharray:3 4}
+
+/* Wall thickness, for one path and no new geometry: a stroked copy of the
+   vessel outline clipped to the vessel's own fill area. Half the stroke is
+   discarded by the clip, and what is left reads as the thickness of the
+   wall — lit on the shoulder, dark underneath. Needs the station to expose
+   a clipPath of the vessel, which most already have for their contents. */
+.wall{fill:none;stroke:url(#mb-wall);stroke-width:17;stroke-linejoin:round;pointer-events:none}
+.wall.thin{stroke-width:11}
+
+/* One soft specular patch. Clip it to the vessel or it will float. */
+.sheen{fill:url(#mb-spec);pointer-events:none}
+
+.pipe{fill:url(#mb-pipe);stroke:url(#mb-rim);stroke-width:1.4}
+/* straight runs get a real cylinder ramp across the bore */
+.pipe.v{fill:url(#mb-tube-v)}
+.pipe.h{fill:url(#mb-tube-h)}
+.dimline{stroke:var(--line-dim);stroke-width:.7}
+.dimtext{fill:var(--label);font-family:var(--mono);font-size:13px;letter-spacing:.06em}
+.leader{stroke:var(--line-dim);stroke-width:.7;fill:none}
+.lbl-name{fill:var(--line);font-family:var(--sans);font-size:13.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+.lbl-fn{fill:var(--label);font-family:var(--mono);font-size:13px;letter-spacing:.03em}
+body.plain .lbl-fn{font-family:var(--sans);font-size:13.5px;letter-spacing:0;fill:var(--label)}
+/* invisible tap target behind every hotspot dot; grows on mobile (A7) */
+.hithalo{fill:transparent}
+.hotdot{fill:var(--ink);stroke:var(--line);stroke-width:1.2}
+.hotnum{fill:var(--line);font-family:var(--mono);font-size:11.5px;text-anchor:middle;pointer-events:none;dominant-baseline:central}
+
+/* ---- site plan (Stations 00 and 09) ----
+   This sheet is a map, not a machine. Its node labels and annotation
+   blocks carry the weight that hotspot callouts carry on the other
+   sheets, so they are set larger than .lbl-fn rather than competing
+   with it at 9px. */
+.nodenum{fill:var(--line);font-family:var(--mono);font-size:13px;text-anchor:middle;
+  pointer-events:none;dominant-baseline:central}
+.lbl-node{fill:var(--line);font-family:var(--sans);font-size:16.5px;letter-spacing:.01em}
+body.tech .lbl-node{font-family:var(--mono);font-size:14.5px;letter-spacing:.05em;fill:rgba(237,228,208,.92)}
+.blk-h{fill:var(--label);font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+.blk-p{fill:rgba(237,228,208,.9);font-family:var(--sans);font-size:15px}
+body.tech .blk-p{font-family:var(--mono);font-size:13.5px}
+.hotring{fill:none;stroke:var(--turmeric);stroke-width:1.1;opacity:0;transform-box:fill-box;transform-origin:center}
+g.hot{cursor:pointer}
+g.hot:hover .hotdot,g.hot.on .hotdot{fill:var(--turmeric);stroke:var(--turmeric)}
+g.hot:hover .hotnum,g.hot.on .hotnum{fill:var(--ink);font-weight:700}
+g.hot.on .hotring{opacity:1;animation:ping 2s ease-out infinite}
+g.hot.on .lbl-name{fill:var(--turmeric)}
+g.hot.on .leader{stroke:var(--turmeric)}
+g.hot:focus{outline:none}
+g.hot:focus-visible .hotdot{stroke:var(--turmeric);stroke-width:2.5}
+@keyframes ping{0%{transform:scale(1);opacity:.9}70%{transform:scale(2.1);opacity:0}100%{opacity:0}}
+
+.flowline{stroke:var(--turmeric);stroke-width:2;stroke-dasharray:5 11;fill:none;opacity:.7;animation:flow 1.6s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-32}}
+
+/* contents */
+.chyme{fill:var(--turmeric);opacity:.72;transform-box:fill-box;transform-origin:center;
+       animation:churn 5.5s ease-in-out infinite}
+.chyme.b{fill:var(--chilli);opacity:.62}
+@keyframes churn{0%{transform:translate(0,0)}25%{transform:translate(-15px,11px)}
+  50%{transform:translate(7px,21px)}75%{transform:translate(17px,9px)}100%{transform:translate(0,0)}}
+body.mode-grind .chyme{animation-duration:2.2s}
+
+/* peristalsis */
+.wave{fill:none;stroke:var(--line);stroke-width:2.6;stroke-linecap:round;opacity:0}
+.wavegrp{transform-box:fill-box;animation:peristalsis 3.4s cubic-bezier(.5,0,.6,1) infinite}
+@keyframes peristalsis{0%{transform:translate(0,0) scale(1);opacity:0}12%{opacity:.95}
+  85%{opacity:.5}100%{transform:translate(-150px,108px) scale(.5);opacity:0}}
+body.mode-grind .wavegrp{animation-duration:1.5s}
+body.mode-grind .wave{stroke:var(--turmeric);stroke-width:3.2}
+
+/* ---- mode-gated drawing groups (§D4) ----
+   A group tagged .anim .a-<k> stays display:none until its mode is
+   active, which conveniently restarts its CSS animations on switch,
+   so nothing needs JS scheduling. One rule per mode key; extend this
+   list as each station lands. */
+.anim{display:none}
+body.mode-normal   .a-normal,
+body.mode-grind    .a-grind,
+body.mode-empty    .a-empty,
+body.mode-vent     .a-vent,
+body.mode-reflux   .a-reflux,
+body.mode-chew     .a-chew,
+body.mode-swallow  .a-swallow,
+body.mode-inverted .a-inverted,
+body.mode-aspirate .a-aspirate,
+body.mode-flow     .a-flow,
+body.mode-fatty    .a-fatty,
+body.mode-closeup  .a-closeup,
+body.mode-lactose  .a-lactose,
+body.mode-ferment  .a-ferment,
+body.mode-water    .a-water,
+body.mode-gas      .a-gas,
+body.mode-fast     .a-fast,
+body.mode-slow     .a-slow,
+body.mode-fed      .a-fed,
+body.mode-fasted   .a-fasted,
+body.mode-alcohol  .a-alcohol,
+body.mode-filter   .a-filter,
+body.mode-dry      .a-dry,
+body.mode-aftermeal .a-aftermeal,
+body.mode-exercise  .a-exercise,
+body.mode-sticking  .a-sticking,
+body.mode-reading   .a-reading,
+body.mode-errorbars .a-errorbars,
+body.mode-months    .a-months,
+body.mode-onestudy  .a-onestudy,
+body.mode-allgauges .a-allgauges,
+body.mode-converge  .a-converge,
+body.mode-megaphone .a-megaphone,
+body.mode-running   .a-running,
+body.mode-postmeal  .a-postmeal,
+body.mode-overnight .a-overnight,
+body.mode-nominal   .a-nominal{display:block}
+
+/* normal: occasional metered squirt */
+.squirt{fill:var(--turmeric);opacity:0;transform-box:fill-box;animation:squirt 3.4s linear infinite}
+@keyframes squirt{0%,58%{transform:translate(0,0);opacity:0}62%{opacity:.95}
+  100%{transform:translate(-118px,10px);opacity:0}}
+
+/* grind: fragmentation */
+.frag-big{fill:var(--chilli);opacity:.75;transform-box:fill-box;transform-origin:center;
+  animation:fragbig 2.6s ease-in-out infinite}
+@keyframes fragbig{0%{transform:scale(1);opacity:.8}60%{transform:scale(.45);opacity:.55}
+  75%{opacity:0}100%{transform:scale(1);opacity:0}}
+.frag-bit{fill:var(--turmeric);opacity:0;transform-box:fill-box;animation:fragbit 2.6s ease-out infinite}
+@keyframes fragbit{0%,55%{transform:translate(0,0);opacity:0}
+  65%{opacity:.9}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
+.recirc{fill:none;stroke:var(--turmeric);stroke-width:1.6;stroke-dasharray:4 6;opacity:.8;
+  animation:flow 1.1s linear infinite}
+
+/* empty: level drop + outflow */
+.level{fill:rgba(232,166,60,.19);transform-box:fill-box;transform-origin:bottom;
+  animation:drain 6s ease-in-out infinite}
+@keyframes drain{0%{transform:scaleY(1)}70%{transform:scaleY(.22)}100%{transform:scaleY(1)}}
+.out{fill:var(--turmeric);opacity:0;transform-box:fill-box;animation:outflow 1.5s linear infinite}
+@keyframes outflow{0%{transform:translate(0,0);opacity:0}15%{opacity:.95}
+  100%{transform:translate(-135px,12px);opacity:0}}
+
+/* vent: gas bubble */
+.bubble{fill:rgba(127,160,186,.16);stroke:var(--steel);stroke-width:2.2;opacity:0;transform-box:fill-box;
+  transform-origin:center;animation:vent 4s ease-in-out infinite}
+@keyframes vent{
+  0%{transform:translate(0,0) scale(.2);opacity:0}
+  18%{transform:translate(0,0) scale(1);opacity:.9}
+  45%{transform:translate(-6px,-26px) scale(1.1);opacity:.9}
+  62%{transform:translate(-92px,-58px) scale(.8);opacity:.95}
+  100%{transform:translate(-96px,-190px) scale(.55);opacity:0}}
+.gascloud{fill:rgba(127,160,186,.2)}
+
+/* reflux: acid column rising */
+.refluxcol{fill:rgba(212,85,60,.4);transform-box:fill-box;transform-origin:bottom;
+  animation:rise 4s ease-in-out infinite}
+@keyframes rise{0%{transform:scaleY(0)}35%{transform:scaleY(1)}70%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+.faultmark{stroke:var(--chilli);stroke-width:2;fill:none;opacity:0;animation:blink 1.4s steps(1) infinite}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:.15}}
+.faulttext{fill:var(--chilli);font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase}
+
+.needle{stroke:var(--chilli);stroke-width:1.6;stroke-linecap:round;transform-box:fill-box;
+  transform-origin:0% 100%;animation:wobble 6s ease-in-out infinite}
+@keyframes wobble{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(13deg)}}
+
+.mucus{stroke:var(--cardamom);stroke-width:3.4;fill:none;opacity:.55}
+
+/* ---- size reduction, dosing, and vertical conveying (Station 01) ----
+   Kept here rather than in the station file so stroke weights and timings
+   stay common property. --bite/--dx/--dy are set per element. */
+.jaw{transform-box:fill-box;transform-origin:center;animation:chomp 1.6s ease-in-out infinite}
+@keyframes chomp{0%,100%{transform:translateY(0)}50%{transform:translateY(var(--bite,9px))}}
+.drip{fill:var(--steel);opacity:0;transform-box:fill-box;animation:drip 2.4s ease-in infinite}
+@keyframes drip{0%{transform:translate(0,0);opacity:0}18%{opacity:.8}
+  100%{transform:translate(var(--dx,0px),var(--dy,58px));opacity:0}}
+.bolus{fill:var(--turmeric);opacity:0;transform-box:fill-box;animation:convey 3s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes convey{0%{transform:translateY(0);opacity:0}12%{opacity:.85}
+  88%{opacity:.85}100%{transform:translateY(var(--dy,340px));opacity:0}}
+/* view-box, not fill-box: the hinge is a point in the drawing, so each
+   station sets transform-origin in its own user units */
+.flap{transform-box:view-box;animation:seal 3s ease-in-out infinite}
+@keyframes seal{0%,14%{transform:rotate(0)}30%,68%{transform:rotate(-75deg)}86%,100%{transform:rotate(0)}}
+
+/* ---- the swallow, as a sequence (Station 01) ----
+   A bolus that starts in the oesophagus has already passed the valve, so the
+   valve looks decorative. These routes start in the mouth, cross the pharynx
+   and only then go down a pipe. Both run 3s against .flap above, so the
+   airway is shut at 30% — well before the bolus reaches the crossing at 46%
+   — and reopens at 68%, after it has gone. The fault route is the same
+   journey with the valve left open, so it takes the wrong pipe. */
+.bolus.route{animation:swallow 3s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes swallow{
+  0%  {transform:translate(0,0);opacity:0}
+  8%  {opacity:.85}
+  30% {transform:translate(118px,18px)}
+  46% {transform:translate(176px,48px)}
+  58% {transform:translate(219px,126px)}
+  92% {opacity:.85}
+  100%{transform:translate(219px,340px);opacity:0}}
+.bolus.misroute{animation:misswallow 3s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes misswallow{
+  0%  {transform:translate(0,0);opacity:0}
+  8%  {opacity:.9}
+  30% {transform:translate(118px,18px)}
+  46% {transform:translate(170px,44px)}
+  60% {transform:translate(149px,116px)}
+  92% {opacity:.9}
+  100%{transform:translate(149px,300px);opacity:0}}
+/* the resting valve is drawn open; hide it while the animated one is working */
+body.mode-swallow .flapidle{display:none}
+.mythonly{display:none}
+body.myth .mythonly{display:block}
+body.myth .mechonly{display:none}
+.hazard{fill:none;stroke:var(--chilli);stroke-width:1.5}
+.hazardtext{fill:var(--chilli);font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+.scribble{stroke:var(--chilli);stroke-width:2.2;fill:none;stroke-linecap:round;opacity:.9}
+
+/* ---- process line drawn as a stroked run (Station 03) ----
+   A folded coil cannot be hand-outlined, so the tube is one path drawn
+   three times: wall, bore, tint. Wall thickness matches .pipe at 1.4. */
+.run{fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* Deliberately NOT the rim gradient. A gradient is scaled to the path's
+   bounding box, and these runs are a folded coil spanning the sheet, so
+   the ramp would light the top-left fold and starve the bottom-right one
+   — which reads as a mistake, not as light, because every fold is at the
+   same depth. The lighting on a run goes on the crown instead. */
+.run.wall{stroke:var(--line);stroke-width:26}
+.run.bore{stroke:var(--ink);stroke-width:23.2}
+.run.tint{stroke:rgba(127,160,186,.09);stroke-width:23.2}
+/* A curve cannot take a cylinder gradient — the ramp would follow the
+   bounding box, not the tube. Instead the specular runs along the crown
+   as a narrow stroke nudged toward the light. It is inset far enough to
+   stay inside the bore, so it needs no mask. */
+.run.gloss{stroke:rgba(237,228,208,.09);stroke-width:7;transform:translate(-3px,-3px)}
+
+/* wider bore, for vessels that are tubes at a coarser scale (Station 04) */
+.run.wide.wall{stroke-width:44}
+.run.wide.bore,.run.wide.tint{stroke-width:41.2}
+.run.wide.gloss{stroke-width:11;transform:translate(-5px,-5px)}
+
+/* ---- a resident population, not a fluid (Station 04) ---- */
+.biota{fill:var(--cardamom);opacity:.55;transform-box:fill-box;transform-origin:center;
+  animation:teem 4.5s ease-in-out infinite}
+@keyframes teem{0%,100%{transform:translate(0,0)}33%{transform:translate(3px,-3px)}66%{transform:translate(-3px,2px)}}
+
+/* ---- equipment the plant conspicuously does not have ---- */
+.stamp{fill:none;stroke:var(--chilli);stroke-width:1.4}
+.stamptext{fill:var(--chilli);font-family:var(--mono);font-size:13.5px;letter-spacing:.15em;text-transform:uppercase}
+
+/* ---- receiving bays, shutters and a dispatcher (Station 06) ---- */
+.bay{fill:url(#mb-bay);stroke:url(#mb-rim);stroke-width:1.4}
+.shutter{fill:rgba(237,228,208,.14);stroke:var(--line);stroke-width:1.2;
+  transform-box:view-box;transform-origin:center}
+.booth{fill:none;stroke:var(--steel);stroke-width:1.4;stroke-dasharray:4 3}
+
+/* ---- an instrument reading, and the honesty about it (Station 07) ---- */
+.readoutbox{fill:rgba(16,15,12,.9);stroke:var(--line-dim);stroke-width:1}
+.digits{fill:var(--turmeric);font-family:var(--mono);font-size:40px;letter-spacing:.06em}
+.errbar{stroke:var(--chilli);stroke-width:1.6;fill:none}
+.errband{fill:rgba(212,85,60,.16)}
+
+/* ---- detail windows ----
+   A magnified view of something too small to draw at plant scale. */
+.inset{fill:rgba(16,15,12,.94);stroke:var(--line-dim);stroke-width:1}
+.insetline{stroke:var(--line-dim);stroke-width:.7;stroke-dasharray:3 3;fill:none}
+.fringe{fill:none;stroke:var(--line);stroke-width:1.1}
+.turnstile{fill:none;stroke:var(--cardamom);stroke-width:1.6}
+
+/* ============ panel ============ */
+.panel{display:flex;flex-direction:column;min-height:0;background:var(--ink-2)}
+.phead{padding:18px 24px 15px;border-bottom:1px solid var(--line-faint)}
+.stationno{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--turmeric);text-transform:uppercase}
+.phead h1{margin:8px 0 4px;font-size:25px;letter-spacing:-.015em;line-height:1.1}
+.phead h2{margin:0;font-size:12.5px;font-weight:400;color:var(--line-dim);letter-spacing:.03em}
+body.tech .phead h2{font-family:var(--mono)}
+
+.toggle{display:flex;margin:14px 24px 0;border:1px solid var(--line-dim);flex:0 0 auto}
+.toggle button{flex:1;background:transparent;border:0;color:var(--line-dim);cursor:pointer;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:9px 0}
+.toggle button.on{background:var(--line);color:var(--ink);font-weight:700}
+.toggle button.mythbtn.on{background:var(--chilli);color:#fff}
+
+.body{flex:1;overflow-y:auto;padding:17px 24px 22px}
+.body::-webkit-scrollbar{width:8px}
+.body::-webkit-scrollbar-thumb{background:rgba(237,228,208,.16)}
+.kicker{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;color:var(--line-dim);text-transform:uppercase;margin:0 0 11px}
+
+.spec{font-family:var(--mono);font-size:11px;line-height:1.05}
+.spec .row{display:flex;align-items:baseline;gap:6px;padding:5px 0;border-bottom:1px dotted rgba(237,228,208,.11)}
+.spec .k{color:var(--line-dim);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;font-size:9.5px}
+.spec .dots{flex:1;border-bottom:1px dotted rgba(237,228,208,.2);transform:translateY(-3px)}
+.spec .v{color:var(--line);text-align:right;max-width:56%}
+.spec .v em{color:var(--turmeric);font-style:normal}
+
+.plainlist{list-style:none;margin:0;padding:0}
+.plainlist li{padding:11px 0;border-bottom:1px solid var(--line-faint);font-size:14px;line-height:1.5}
+.plainlist li b{color:var(--turmeric);font-weight:600;display:block;margin-bottom:2px;font-size:14.5px}
+.plainlist li span{color:rgba(237,228,208,.75)}
+
+/* An entry that corresponds to a numbered component in the drawing. The badge
+   repeats the marker so the two halves of the page are visibly the same list,
+   and selection runs both ways — tap the drawing or tap the text. */
+.plainlist li.linked{display:grid;grid-template-columns:26px 1fr;gap:13px;align-items:start;
+  cursor:pointer;padding-left:10px;margin-left:-10px;transition:background .12s ease}
+.plainlist li.linked .num{width:26px;height:26px;border:1px solid var(--line-dim);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11.5px;
+  color:var(--label);margin-top:1px}
+.plainlist li.linked:hover{background:rgba(237,228,208,.03)}
+.plainlist li.linked:focus-visible{outline:2px solid var(--turmeric);outline-offset:-2px}
+.plainlist li.linked.on{background:rgba(232,166,60,.06);box-shadow:inset 2px 0 0 var(--turmeric)}
+.plainlist li.linked.on .num{background:var(--turmeric);border-color:var(--turmeric);
+  color:var(--ink);font-weight:700}
+
+.note{margin-top:16px;padding:12px 14px;border-left:2px solid var(--turmeric);
+  background:rgba(232,166,60,.06);font-size:13px;line-height:1.6;color:rgba(237,228,208,.86)}
+.note b{color:var(--turmeric);font-weight:600}
+
+.mythcard{border:1px solid var(--chilli);padding:14px 16px;margin-bottom:14px;background:rgba(212,85,60,.07)}
+.mythcard .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--chilli);text-transform:uppercase}
+.mythcard p{margin:8px 0 0;font-size:16px;line-height:1.4;font-style:italic}
+.mechcard{border:1px solid rgba(143,169,92,.6);padding:14px 16px;background:rgba(143,169,92,.06)}
+.mechcard .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--cardamom);text-transform:uppercase}
+.mechcard p{margin:9px 0 0;font-size:13.5px;line-height:1.6;color:rgba(237,228,208,.9)}
+.mechcard p+p{margin-top:11px}
+.analogy{margin-top:17px;border:1px solid var(--line-faint);padding:14px 16px}
+.analogy .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--steel);text-transform:uppercase}
+.analogy p{margin:9px 0 0;font-size:13px;line-height:1.6;color:rgba(237,228,208,.84)}
+
+.readout{border-top:1px solid var(--line-faint);padding:13px 24px;flex:0 0 auto;background:var(--panel);min-height:88px}
+.readout .tag{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--line-dim);text-transform:uppercase}
+.readout h3{margin:7px 0 5px;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--turmeric)}
+.readout p{margin:0;font-size:13px;line-height:1.55;color:rgba(237,228,208,.8)}
+
+/* ============ station rail ============ */
+.rail{flex:0 0 42px;display:flex;align-items:center;border-top:1px solid var(--line-faint);
+  background:var(--ink-2);padding:0 18px;overflow-x:auto}
+.rail .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--label);padding:0 14px;height:100%;display:flex;align-items:center;
+  border-right:1px solid var(--line-faint);white-space:nowrap;text-decoration:none}
+.rail .chip:first-child{border-left:1px solid var(--line-faint)}
+.rail .chip.on{color:var(--ink);background:var(--turmeric);font-weight:700}
+.rail .chip b{font-weight:400;opacity:.55;margin-right:7px}
+.rail .chip:hover{color:rgba(237,228,208,.72)}
+.rail .chip.on:hover{color:var(--ink)}
+.rail .chip:focus-visible{outline:1px solid var(--turmeric);outline-offset:-2px}
+
+/* Keyboard focus, everywhere it can land (A7). The SVG node links on the
+   site plan are focusable too, so they get a visible ring of their own. */
+.seg button:focus-visible,
+.toggle button:focus-visible,
+.modebtns button:focus-visible{outline:2px solid var(--turmeric);outline-offset:-2px}
+.surface svg a:focus-visible{outline:none}
+.surface svg a:focus-visible circle{stroke:var(--turmeric);stroke-width:2.6}
+
+/* a station that has not been drawn yet still routes, and says so
+   in the drawing-office voice rather than throwing a blank surface */
+.pending{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--line-dim);border:1px dashed var(--line-dim);padding:22px 26px;text-align:center;line-height:2}
+
+/* Every mode must read frozen (§D5). These elements sit at opacity:0 and are
+   revealed by their keyframes, so killing animation would erase them. */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important}
+  .squirt,.out,.bubble,.frag-bit,.wave,.drip,.bolus{opacity:.7}
+  .faultmark{opacity:1}
+}
+@media (max-width:980px){
+  .main{grid-template-columns:1fr;grid-template-rows:minmax(380px,54vh) auto}
+  .surface{border-right:0;border-bottom:1px solid var(--line-faint)}
+  .titleblock{display:none}
+  /* A7 wants a 44 px tap target. The drawing is scaled down here, so the
+     invisible hit halo behind each dot has to grow in user units to match. */
+  .hithalo{r:58px}
+}
+@media (max-width:700px){
+  /* A8: drop the callout subtitles rather than shrink the type */
+  g.hot .lbl-fn{display:none}
+}
+
+/* ============ revision pass: controls, model limits, mobile flow ============ */
+.topactions{display:flex;align-items:center;gap:6px}
+.iconbtn,.sharebtn{height:32px;border:1px solid var(--line-dim);background:transparent;color:rgba(237,228,208,.7);cursor:pointer;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:0 10px}
+.iconbtn{width:34px;padding:0;font-size:15px;line-height:1}
+.iconbtn:hover,.sharebtn:hover{color:var(--line);border-color:rgba(237,228,208,.62)}
+.iconbtn:disabled{opacity:.25;cursor:default}
+.iconbtn:focus-visible,.sharebtn:focus-visible{outline:2px solid var(--turmeric);outline-offset:-2px}
+.firsthint{position:absolute;left:50%;top:18px;z-index:4;transform:translateX(-50%);font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:rgba(237,228,208,.82);background:rgba(16,15,12,.92);border:1px solid rgba(232,166,60,.52);padding:7px 10px;white-space:nowrap;pointer-events:none;transition:opacity .2s ease}
+.firsthint.gone{opacity:0}
+.modelwrap{flex:0 0 auto;padding:0 24px 14px}
+.modellimits{border:1px solid var(--line-faint);background:rgba(127,160,186,.035)}
+.modellimits summary{cursor:pointer;list-style:none;padding:9px 11px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
+.modellimits summary::-webkit-details-marker{display:none}
+.modellimits summary:after{content:'+';float:right;color:var(--line-dim);font-size:14px;line-height:.7}
+.modellimits[open] summary:after{content:'−'}
+.modellimits summary span{color:var(--line-dim);margin-left:7px}
+.modellimits div{border-top:1px solid var(--line-faint);padding:5px 11px 8px}
+.modellimits p{margin:8px 0;font-size:12px;line-height:1.55;color:rgba(237,228,208,.72)}
+g.hot[aria-pressed="true"] .hotring{stroke:var(--turmeric)}
+
+/* Secondary prose is still drafted faintly, but remains readable on ordinary displays. */
+.phead h2,.kicker,.spec .k,.readout .tag{color:rgba(237,228,208,.52)}
+
+@media (max-width:980px){
+  html,body{height:auto;min-height:100%}
+  body{display:block;padding-bottom:43px}
+  .topbar{position:sticky;top:0;z-index:20}
+  .main{display:block}
+
+  /* On a phone the overlay model stops paying for itself. Everything in the
+     surface was absolutely positioned, so the shell had to measure the
+     furniture and subtract it from a 44vh surface — and on a 812px screen
+     that left the drawing 167px, a fifth of the display, with labels too
+     small to read. The artwork is the argument, and it was the thing being
+     squeezed.
+
+     So here the surface is an ordinary column: hint, drawing, controls,
+     each taking the room it needs. Nothing overlaps the artwork and there
+     is nothing to measure — --furniture-h and --flag-h simply go unused. */
+  .surface{height:auto;min-height:0;overflow:visible;
+    display:flex;flex-direction:column;
+    padding:12px 22px 16px;
+    border-right:0;border-bottom:1px solid var(--line-faint)}
+  /* Every sheet is 850x800, so a portrait box letterboxes it and wastes the
+     slack above and below. Matching the box to the sheet gives that height
+     back to the page instead of to empty ink. */
+  #drawing{position:static;inset:auto;flex:0 0 auto;
+    width:100%;aspect-ratio:var(--sheet-ar,1.0625);height:auto;max-height:64vh}
+  .firsthint{position:static;transform:none;order:-1;align-self:center;
+    max-width:100%;white-space:normal;text-align:center;margin:0 0 10px}
+  .modeflag{position:static;align-self:flex-start;margin:0 0 8px}
+  .modestrip{position:static;left:auto;right:auto;bottom:auto;margin-top:14px}
+  .modecap{display:block;order:-1;max-width:none;font-size:11.5px;
+    background:transparent;padding:0 0 8px}
+
+  .panel{min-height:0}
+  .body{overflow:visible;flex:none}
+  .titleblock{display:none}
+  .modelwrap{padding-bottom:18px}
+  .readout{min-height:0}
+  .rail{position:fixed;left:0;right:0;bottom:0;z-index:30;height:42px;flex:none}
+
+  /* A7 wants 44px targets. The drawing is scaled down here, so the invisible
+     halo behind each dot grows in user units to compensate; the chrome
+     buttons just get taller. */
+  .hithalo{r:58px}
+  .iconbtn,.sharebtn{height:44px}
+  .iconbtn{width:44px}
+  .seg button,.modebtns button,.toggle button{min-height:44px}
+}
+@media (max-width:700px){
+  g.hot .lbl-fn{display:none}
+  .brand span{display:none}
+  .firsthint{top:12px;max-width:82vw;white-space:normal;text-align:center;line-height:1.35}
+}
+@media (max-width:560px){
+  .topbar{padding-left:12px;padding-right:12px}
+  .topactions{gap:4px}
+  .sharebtn{width:34px;padding:0;font-size:0}
+  .sharebtn:after{content:'↗';font-size:15px}
+  .seg button{padding-left:8px;padding-right:8px;font-size:9px}
+  .surface{padding-left:14px;padding-right:14px}
+  #drawing{max-height:58vh}
+  .modecap{font-size:11px;line-height:1.35}
+}
+
+/* ============ phones: the drawing becomes markers only ============
+   In-drawing type is sized in viewBox units, so it shrinks with the sheet.
+   At 375px the sheet renders at ~0.41 and a 13px label lands at 5.3 real
+   pixels — below this file's own floor, and small enough that glyph advances
+   round up and run labels past the sheet edge.
+
+   Callouts go, because they are the one class of label that is said twice:
+   every hotspot name and description already appears in the panel list
+   immediately below the drawing, and tapping a marker highlights its entry
+   there. What is left is text that exists nowhere else — orientation notes,
+   site-plan nodes, bay names, the annotation blocks — and that gets sized
+   up to land near 10 real pixels instead. */
+@media (max-width:700px){
+  g.hot .lbl-name,g.hot .lbl-fn,g.hot .leader{display:none}
+
+  /* Markers carry the whole burden now, so they have to be seeable as well
+     as tappable — the hit halo was already grown for A7 above. r=16 rather
+     than the 21 that would match the type: bigger than that and the dots
+     start covering the bay names they sit beside. */
+  .hotdot,.hotring{r:16px}
+  .hotnum{font-size:18px}
+
+  /* ~1.5x, not the ~1.8x that would put this type at a comfortable 10px.
+     These sheets were composed with tight margins for small labels, and
+     past this point short labels near the edges start running off the
+     sheet rather than the type getting usefully bigger. 8 real pixels on
+     a 3x phone screen is the honest ceiling without re-laying out all ten. */
+  .dimtext{font-size:19.5px}
+  .lbl-node{font-size:23px}
+  body.tech .lbl-node{font-size:21px}
+  .nodenum{font-size:18px}
+  .blk-h{font-size:18.5px}
+  .blk-p{font-size:21px}
+  .stamptext{font-size:19px}
+  .faulttext,.hazardtext{font-size:18.5px}
+  /* bay and block names that are not callouts (Station 05) stay, enlarged */
+  .lbl-name{font-size:20px}
+  .lbl-fn{font-size:18.5px}
+  body.plain .lbl-fn{font-size:19px}
+}
+
+/* Tagged by the shell: an in-drawing note wider than a third of the sheet.
+   At phone scale it cannot be read and cannot fit, and the panel below the
+   drawing is already carrying the same argument in full-size type. */
+@media (max-width:700px){
+  .sheetprose{display:none}
+}

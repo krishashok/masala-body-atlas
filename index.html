@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masala Body — The Facility Tour</title>
+<meta name="description" content="A guided tour of the human body drawn as an industrial plant. Ten stations, two detail layers.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- Sharing is the whole distribution plan (A9), so the card matters, and
+     these are absolute: a good number of scrapers will not resolve a relative
+     og:image, and the per-station pages sit one directory down. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://krishashok.github.io/masala-body-atlas/">
+<meta property="og:title" content="Masala Body — The Facility Tour">
+<meta property="og:description" content="Ten stations of the human body, drawn as an industrial plant. Every organ gets an engineering datasheet and a myth-vs-mechanism toggle.">
+<meta property="og:image" content="https://krishashok.github.io/masala-body-atlas/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Masala Body — The Facility Tour">
+<meta name="twitter:description" content="Ten stations of the human body, drawn as an industrial plant.">
+<meta name="twitter:image" content="https://krishashok.github.io/masala-body-atlas/og.png">
+
+<link rel="stylesheet" href="app.css">
+</head>
+<body class="plain">
+
+<!-- ============ SHARED PAINT SERVERS ============
+     One implied light source for the whole set: top-left, always. Every
+     sheet references these by fragment id, so the ten drawings are lit
+     consistently and the gradients are downloaded once rather than
+     re-declared in ten <defs> blocks.
+
+     On a near-black ground you model with light, not shadow — a drop
+     shadow against #100F0C is invisible, so there are none here. What
+     gives an object its volume is a lit contour, a shaded interior and
+     a wall that catches the light on one side. -->
+<svg class="matdefs" aria-hidden="true" focusable="false"><defs>
+
+  <!-- vessel interior: bright at the top-left shoulder, falling away -->
+  <linearGradient id="mb-form" x1="0" y1="0" x2=".9" y2="1">
+    <stop offset="0"   stop-color="#E8A63C" stop-opacity=".14"/>
+    <stop offset=".55" stop-color="#E8A63C" stop-opacity=".055"/>
+    <stop offset="1"   stop-color="#E8A63C" stop-opacity=".015"/>
+  </linearGradient>
+
+  <!-- contour: the outline itself is lit, so it is not a uniform weight.
+       The dark end stops at .52 so the shaded edge stays legible. -->
+  <linearGradient id="mb-rim" x1="0" y1="0" x2=".85" y2="1">
+    <stop offset="0"   stop-color="#EDE4D0" stop-opacity="1"/>
+    <stop offset=".5"  stop-color="#EDE4D0" stop-opacity=".8"/>
+    <stop offset="1"   stop-color="#EDE4D0" stop-opacity=".52"/>
+  </linearGradient>
+
+  <!-- the wall seen edge-on. Painted on a stroke that is clipped to its
+       own shape, so only the inner half survives and the vessel gains a
+       thickness instead of a boundary. -->
+  <linearGradient id="mb-wall" x1="0" y1="0" x2=".8" y2="1">
+    <stop offset="0"   stop-color="#EDE4D0" stop-opacity=".26"/>
+    <stop offset=".45" stop-color="#EDE4D0" stop-opacity=".1"/>
+    <stop offset="1"   stop-color="#EDE4D0" stop-opacity=".04"/>
+  </linearGradient>
+
+  <!-- sheen: a wet surface has one soft specular patch, not an even wash -->
+  <radialGradient id="mb-spec" cx=".5" cy=".5" r=".5">
+    <stop offset="0" stop-color="#EDE4D0" stop-opacity=".09"/>
+    <stop offset="1" stop-color="#EDE4D0" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- pipes. The diagonal is the safe default for bent and tapered runs;
+       .v and .h get a true cylinder ramp across the bore. -->
+  <linearGradient id="mb-pipe" x1="0" y1="0" x2=".9" y2="1">
+    <stop offset="0" stop-color="#7FA0BA" stop-opacity=".17"/>
+    <stop offset="1" stop-color="#7FA0BA" stop-opacity=".03"/>
+  </linearGradient>
+  <linearGradient id="mb-tube-v" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0"   stop-color="#7FA0BA" stop-opacity=".04"/>
+    <stop offset=".3"  stop-color="#7FA0BA" stop-opacity=".2"/>
+    <stop offset=".62" stop-color="#7FA0BA" stop-opacity=".07"/>
+    <stop offset="1"   stop-color="#7FA0BA" stop-opacity=".02"/>
+  </linearGradient>
+  <linearGradient id="mb-tube-h" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0"   stop-color="#7FA0BA" stop-opacity=".04"/>
+    <stop offset=".3"  stop-color="#7FA0BA" stop-opacity=".2"/>
+    <stop offset=".62" stop-color="#7FA0BA" stop-opacity=".07"/>
+    <stop offset="1"   stop-color="#7FA0BA" stop-opacity=".02"/>
+  </linearGradient>
+
+  <!-- plant, not organ: bays and blocks are lit from the same corner -->
+  <linearGradient id="mb-bay" x1="0" y1="0" x2=".6" y2="1">
+    <stop offset="0" stop-color="#E8A63C" stop-opacity=".11"/>
+    <stop offset="1" stop-color="#E8A63C" stop-opacity=".02"/>
+  </linearGradient>
+
+</defs></svg>
+
+<div class="topbar">
+  <div class="brand"><b>Masala Body</b><span>The Facility Tour</span></div>
+  <div class="topactions">
+    <button class="iconbtn" id="btnPrev" aria-label="Previous station" title="Previous station">←</button>
+    <button class="iconbtn" id="btnNext" aria-label="Next station" title="Next station">→</button>
+    <button class="sharebtn" id="btnShare">Share this view</button>
+  <div class="layerswitch">
+    <div class="seg">
+      <button id="btnPlain" class="on" aria-pressed="true">Simple</button>
+      <button id="btnTech" aria-pressed="false">Nerd Mode</button>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ================== DRAWING ================== -->
+  <div class="surface" id="surface">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <div class="modeflag techonly" id="modeflag">Mechanism View</div>
+    <div class="firsthint" id="firsthint">Tap a numbered component. Change operating state below.</div>
+
+    <div id="drawing"></div>
+
+    <div class="titleblock techonly" id="titleblock"></div>
+
+    <div class="modestrip">
+      <div class="modebtns" id="modebtns"></div>
+      <div class="modecap" id="modecap"></div>
+    </div>
+  </div>
+
+  <!-- ================== PANEL ================== -->
+  <div class="panel">
+    <div class="phead">
+      <div class="stationno" id="stationno"></div>
+      <h1 id="ptitle"></h1>
+      <h2 id="psub"></h2>
+    </div>
+
+    <div class="toggle" id="toggle">
+      <button id="btnMain" class="on" aria-pressed="true">What It Does</button>
+      <button id="btnMyth" class="mythbtn" aria-pressed="false">Myth &rlarr; Mechanism</button>
+    </div>
+
+    <div class="body plainonly" id="bodyPlain"></div>
+    <div class="body techonly" id="bodyTech"></div>
+    <div class="modelwrap techonly" id="modelwrap" style="display:none"></div>
+    <div class="body" id="bodyMyth" style="display:none"></div>
+
+    <div class="readout" id="readout" aria-live="polite">
+      <div class="tag" id="roTag"></div>
+      <h3 id="roName"></h3>
+      <p id="roText"></p>
+    </div>
+  </div>
+</div>
+
+<nav class="rail" id="rail" aria-label="Stations"></nav>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
