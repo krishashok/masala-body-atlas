@@ -1,0 +1,20 @@
+.station-controls{position:absolute;z-index:8;right:var(--inset);top:76px;width:min(360px,42%);padding:12px 14px;border:1px solid var(--line-dim);background:rgba(16,15,12,.94);font-family:var(--mono);color:var(--line);backdrop-filter:blur(4px)}
+.controls-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.controls-head b{font-weight:600;color:var(--turmeric)}
+.controls-reset{border:1px solid var(--line-dim);background:transparent;color:var(--label);font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;cursor:pointer}
+.controls-reset:hover{color:var(--line)}
+.energy-sliders{display:grid;gap:8px}
+.control-row{display:grid;grid-template-columns:88px 1fr 52px;gap:8px;align-items:center;font-size:9.5px;color:var(--label)}
+.control-row span{white-space:nowrap}
+.control-row output{text-align:right;color:var(--line);font-variant-numeric:tabular-nums}
+.station-controls input[type="range"]{width:100%;accent-color:var(--turmeric)}
+.controls-result{display:flex;justify-content:space-between;align-items:baseline;margin-top:11px;padding-top:9px;border-top:1px solid var(--line-faint);font-size:9.5px;color:var(--label);text-transform:uppercase;letter-spacing:.08em}
+.controls-result strong{color:var(--turmeric);font-size:13px;font-weight:600;letter-spacing:.02em}
+.controls-note{margin:9px 0 0;font-family:var(--sans);font-size:11px;line-height:1.35;color:rgba(237,228,208,.62)}
+.gain-control{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--label)}
+.gauge-content{transform-box:fill-box;transform-origin:center;transition:transform .18s ease,opacity .18s ease}
+.evidence-method{transition:opacity .18s ease}
+.evidence-megaphone,.evidence-headline{transition:opacity .18s ease,font-size .18s ease}
+@media (prefers-reduced-motion:reduce){.gauge-content,.evidence-method,.evidence-megaphone,.evidence-headline{transition:none}}
+@media (max-width:980px){.station-controls{position:static;order:1;width:100%;margin-top:10px;right:auto;top:auto}.modestrip{order:2}.control-row{grid-template-columns:96px 1fr 52px}}
+@media (max-width:560px){.station-controls{padding:10px}.control-row{grid-template-columns:82px 1fr 46px;gap:6px;font-size:9px}.controls-note{font-size:10.5px}}
