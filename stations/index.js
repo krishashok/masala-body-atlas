@@ -12,10 +12,11 @@ import controlRoom  from './08-control-room.js';
 import closing      from './09-closing.js';
 import applyEditorialPass from './editorial-pass.js';
 import applyDiagramPass from './diagram-pass.js';
+import applyInteractivePass from './interactive-pass.js';
 
 const stations = [
   preface, intake, reactor, refinery, bioreactor,
   reprocessing, logistics, meter, controlRoom, closing
 ];
 
-export default applyDiagramPass(applyEditorialPass(stations));
+export default applyInteractivePass(applyDiagramPass(applyEditorialPass(stations)));
