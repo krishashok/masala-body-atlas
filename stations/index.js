@@ -10,8 +10,11 @@ import logistics    from './06-logistics.js';
 import meter        from './07-meter.js';
 import controlRoom  from './08-control-room.js';
 import closing      from './09-closing.js';
+import applyEditorialPass from './editorial-pass.js';
 
-export default [
+const stations = [
   preface, intake, reactor, refinery, bioreactor,
   reprocessing, logistics, meter, controlRoom, closing
 ];
+
+export default applyEditorialPass(stations);
